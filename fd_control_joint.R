@@ -1,8 +1,8 @@
 library(tidyverse)
 library(ajive)
 source("gen_data.R")
-file_fd <- "results_fd.RData"
-file_metric <- "results_metric.RData"
+file_fd <- "results_diffNoise_fd.RData"
+file_metric <- "results_diffNoise_metric.RData"
 load(file_fd)
 load(file_metric)
 
@@ -16,7 +16,7 @@ n <- 100
 p1 <- 100
 p2 <- 150
 sigma1 <- 1
-sigma2 <- 1
+sigma2 <- 10
 sim_iter <- 100
 signal_strength <- 15
 dj <- rnorm(rj, mean = signal_strength, sd = 2)
@@ -61,13 +61,13 @@ for (i in 1:sim_iter){
   X1 <- data[["X1"]]
   X2 <- data[["X2"]]
   Uj <- data[["joint"]]
-  
+
   # apply oracle ajive
   jointFdControlOut <- jointFdControl(X1, X2, alpha = alpha)
   colProjJointFdControl <- jointFdControlOut %*% t(jointFdControlOut)
   # compute true col space
   trueProj <- Uj %*% t(Uj)
-  
+
   # compute FD and metric
   fds[i] <- sum(diag((diag(n)-trueProj) %*% colProjJointFdControl))
   metric[i] <- sum((trueProj - colProjJointFdControl)^2)
@@ -92,3 +92,25 @@ results.metric <- rbind(results.metric, df)
 # save results.fd and results.metric
 save(results.fd, file = file_fd)
 save(results.metric, file = file_metric)
+
+# test different alphas
+# results = list()
+# for (alpha in seq(0.5, 0.95, 0.05)){
+#   fds <- rep(0, sim_iter)
+#   for (i in 1:sim_iter){
+#     data <- gen_data(n, p1, p2, rj, ri1, ri2, dj, di1, di2, sigma1, sigma2)
+#     X1 <- data[["X1"]]
+#     X2 <- data[["X2"]]
+#     Uj <- data[["joint"]]
+#     
+#     # apply oracle ajive
+#     jointFdControlOut <- jointFdControl(X1, X2, alpha = alpha)
+#     colProjJointFdControl <- jointFdControlOut %*% t(jointFdControlOut)
+#     # compute true col space
+#     trueProj <- Uj %*% t(Uj)
+#     
+#     # compute FD and metric
+#     fds[i] <- sum(diag((diag(n)-trueProj) %*% colProjJointFdControl))
+#   }
+#   results[[as.character(alpha)]] <- mean(fds)
+# }
