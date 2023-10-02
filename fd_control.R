@@ -1,8 +1,8 @@
 library(tidyverse)
 library(ajive)
 source("gen_data.R")
-file_fd <- "results_noIndiv_fd.RData"
-file_metric <- "results_noIndiv_metric.RData"
+file_fd <- "results_diffNoise_fd.RData"
+file_metric <- "results_diffNoise_metric.RData"
 load(file_fd)
 load(file_metric)
 
@@ -16,14 +16,14 @@ n <- 100
 p1 <- 100
 p2 <- 150
 sigma1 <- 1
-sigma2 <- 1
+sigma2 <- 10
 sim_iter <- 100
 signal_strength <- 15
 dj <- rnorm(rj, mean = signal_strength, sd = 2)
-di1 <- rep(0, ri1)
-# rnorm(ri1, mean = signal_strength, sd = 2)
-di2 <- rep(0, ri2)
-# rnorm(ri2, mean = signal_strength, sd = 2)
+di1 <- rnorm(ri1, mean = signal_strength, sd = 2)
+# rep(0, ri1)
+di2 <- rnorm(ri2, mean = signal_strength, sd = 2)
+# rep(0, ri2)
 snr1 <- (sum(dj ** 2) + sum(di1 ** 2)) / sum(n * p1)
 snr2 <- (sum(dj ** 2) + sum(di2 ** 2)) / sum(n * p2)
 snr <- (snr1 + snr2) / 2
@@ -62,7 +62,7 @@ for (i in 1:sim_iter){
   Uj <- data[["joint"]]
   
   # apply oracle ajive
-  fdControlOut <- fdControl(X1, alpha = alpha)
+  fdControlOut <- fdControl(X2, alpha = alpha)
   colProjfdControl <- fdControlOut %*% t(fdControlOut)
   # compute true col space
   trueProj <- Uj %*% t(Uj)
@@ -74,7 +74,7 @@ for (i in 1:sim_iter){
 # add a row to results.fd
 df <- data.frame(
   SNR = snr,  # Creating an empty numeric vector for SNR
-  Method = "fdControl",
+  Method = "fdControl X2",
   Mean = mean(fds),
   SD = sd(fds)
 )
@@ -82,7 +82,7 @@ results.fd <- rbind(results.fd, df)
 
 df <- data.frame(
   SNR = snr,  # Creating an empty numeric vector for SNR
-  Method = "fdControl",
+  Method = "fdControl X2",
   Mean = mean(metric),
   SD = sd(metric)
 )

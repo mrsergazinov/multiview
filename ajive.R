@@ -1,8 +1,8 @@
 library(tidyverse)
 library(ajive)
 source("gen_data.R")
-file_fd <- "results_fd.RData"
-file_metric <- "results_metric.RData"
+file_fd <- "results_diffNoise_fd.RData"
+file_metric <- "results_diffNoise_metric.RData"
 load(file_fd)
 load(file_metric)
 
@@ -15,7 +15,7 @@ n <- 100
 p1 <- 100
 p2 <- 150
 sigma1 <- 1
-sigma2 <- 1
+sigma2 <- 10
 sim_iter <- 100
 signal_strength <- 15
 dj <- rnorm(rj, mean = signal_strength, sd = 2)
