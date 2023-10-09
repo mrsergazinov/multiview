@@ -25,12 +25,18 @@ gen_data <- function(n, p1, p2, rj, ri1, ri2, dj, di1, di2, sigma1, sigma2) {
   X1.joint <- Uj %*% diag(dj) %*% t(V1)
   X2.joint <- Uj %*% diag(dj) %*% t(V2)
   # individual part
-  Ui1 <- U[, (rj+1):(rj+ri1)]
-  Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
-  V1 <- svd(matrix(rnorm(ri1 * p1), ri1, p1))$v
-  V2 <- svd(matrix(rnorm(ri2 * p2), ri2, p2))$v
-  X1.indiv <- Ui1 %*% diag(di1) %*% t(V1)
-  X2.indiv <- Ui2 %*% diag(di2) %*% t(V2)
+  X1.indiv <- matrix(0, n, p1)
+  if (ri1 > 0){
+    Ui1 <- U[, (rj+1):(rj+ri1)]
+    V1 <- svd(matrix(rnorm(ri1 * p1), ri1, p1))$v
+    X1.indiv <- Ui1 %*% diag(di1) %*% t(V1)
+  }
+  X2.indiv <- matrix(0, n, p2)
+  if (ri2 > 0){
+    Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
+    V2 <- svd(matrix(rnorm(ri2 * p2), ri2, p2))$v
+    X2.indiv <- Ui2 %*% diag(di2) %*% t(V2)
+  }
   # combine with noise
   X1 <- X1.joint + X1.indiv + matrix(rnorm(n * p1), n, p1) * sigma1
   X2 <- X2.joint + X2.indiv + matrix(rnorm(n * p2), n, p2) * sigma2
