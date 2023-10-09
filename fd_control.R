@@ -1,18 +1,25 @@
-thresh <- function(X, sigma = NA){
-  # thresholding using Gavish and Donoho 2014
-  beta = nrow(X) / ncol(X)
-  if (is.na(sigma)){
-    sigma = median(svd(X)$d)
-    omega = 0.56*beta^3 - 0.95*beta^2 + 1.82*beta + 1.43
-    return (omega * sigma)
+# thresh <- function(X, sigma = NA){
+#   # thresholding using Gavish and Donoho 2014
+#   beta = nrow(X) / ncol(X)
+#   if (is.na(sigma)){
+#     sigma = median(svd(X)$d)
+#     omega = 0.56*beta^3 - 0.95*beta^2 + 1.82*beta + 1.43
+#     return (omega * sigma)
+# 
+#   } else {
+#     lambda = sqrt(2*(beta+1)+8*beta/((beta+1) + sqrt(beta^2+14*beta+1)))
+#     return (lambda * sigma * sqrt(ncol(X)))
+#   }
+# }
 
-  } else {
-    lambda = sqrt(2*(beta+1)+8*beta/((beta+1) + sqrt(beta^2+14*beta+1)))
-    return (lambda * sigma * sqrt(ncol(X)))
-  }
+thresh <- function(X, sigma = NA) {
+  if (is.na(sigma)){
+    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)) * ncol(X))
+  } 
+  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
 }
 
-fdControl <- function(X1, X2, args){
+fd_control <- function(X1, X2, args){
     X <- X1
     # X is n x p matrix
     n <- nrow(X)
@@ -29,5 +36,5 @@ fdControl <- function(X1, X2, args){
     }
     avgP <- avgP / args$numSamples
     svdAvg <- svd(avgP) 
-    return (svdAvg$u[, svdAvg$d > args$alpha]) # select left singular vectors for which singular values are > alpha
+    return (svdAvg$u[, svdAvg$d > args$alpha, drop = FALSE]) # select left singular vectors for which singular values are > alpha
 }

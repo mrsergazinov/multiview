@@ -1,18 +1,25 @@
-thresh <- function(X, sigma = NA){
-  # thresholding using Gavish and Donoho 2014
-  beta = nrow(X) / ncol(X)
-  if (is.na(sigma)){
-    sigma = median(svd(X)$d)
-    omega = 0.56*beta^3 - 0.95*beta^2 + 1.82*beta + 1.43
-    return (omega * sigma)
+# thresh <- function(X, sigma = NA){
+#   # thresholding using Gavish and Donoho 2014
+#   beta = nrow(X) / ncol(X)
+#   if (is.na(sigma)){
+#     sigma = median(svd(X)$d)
+#     omega = 0.56*beta^3 - 0.95*beta^2 + 1.82*beta + 1.43
+#     return (omega * sigma)
+# 
+#   } else {
+#     lambda = sqrt(2*(beta+1)+8*beta/((beta+1) + sqrt(beta^2+14*beta+1)))
+#     return (lambda * sigma * sqrt(ncol(X)))
+#   }
+# }
 
-  } else {
-    lambda = sqrt(2*(beta+1)+8*beta/((beta+1) + sqrt(beta^2+14*beta+1)))
-    return (lambda * sigma * sqrt(ncol(X)))
-  }
+thresh <- function(X, sigma = NA) {
+  if (is.na(sigma)){
+    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)) * ncol(X))
+  } 
+  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
 }
 
-jointFdControl <- function(X1, X2, args){
+fd_control_joint <- function(X1, X2, args){
   avg.P <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
   for (i in 1:args$numSamples){
     X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
@@ -28,7 +35,7 @@ jointFdControl <- function(X1, X2, args){
   }
   avg.P <- avg.P / args$numSamples
   svd.avg <- svd(avg.P)
-  out <- svd.avg$u[, svd.avg$d > args$alpha]
+  out <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
   return(out)
 }
 
