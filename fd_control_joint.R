@@ -12,13 +12,13 @@ thresh <- function(X, sigma = NA){
   }
 }
 
-jointFdControl <- function(X1, X2, sigma1=NA, sigma2=NA, numSamples=100, alpha=0.7){
+jointFdControl <- function(X1, X2, args){
   avg.P <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
-  for (i in 1:numSamples){
+  for (i in 1:args$numSamples){
     X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
     X2.sample <- X2[, sample(1:ncol(X2), as.integer(ncol(X2)/2), replace=FALSE)]
-    thresh.X1 <- thresh(X1.sample) # thresholding singular values
-    thresh.X2 <- thresh(X2.sample)
+    thresh.X1 <- thresh(X1.sample, sigma=args$sigma1) # thresholding singular values
+    thresh.X2 <- thresh(X2.sample, sigma=args$sigma2)
     svd.X1.sample <- svd(X1.sample)
     svd.X2.sample <- svd(X2.sample)
     u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1] # thresholding using Gavish and Donoho 2014
@@ -26,9 +26,9 @@ jointFdControl <- function(X1, X2, sigma1=NA, sigma2=NA, numSamples=100, alpha=0
     avg.step <- (u1.sample %*% t(u1.sample) + u2.sample %*% t(u2.sample)) / 2
     avg.P <- avg.P + avg.step
   }
-  avg.P <- avg.P / numSamples
+  avg.P <- avg.P / args$numSamples
   svd.avg <- svd(avg.P)
-  out <- svd.avg$u[, svd.avg$d > alpha]
+  out <- svd.avg$u[, svd.avg$d > args$alpha]
   return(out)
 }
 

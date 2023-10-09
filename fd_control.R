@@ -12,21 +12,22 @@ thresh <- function(X, sigma = NA){
   }
 }
 
-fdControl <- function(X, sigma=NA, numSamples=100, alpha=0.7){
+fdControl <- function(X1, X2, args){
+    X <- X1
     # X is n x p matrix
     n <- nrow(X)
     p <- ncol(X)
     avgP <- matrix(0, nrow = n, ncol = n)
-    for (i in 1:numSamples){
+    for (i in 1:args$numSamples){
         # resample cols
         Xsample <- X[, sample(1:p, as.integer(p/2), replace=FALSE)]
-        thresh.X = thresh(Xsample, sigma=sigma) # thresholding singular valuess
+        thresh.X = thresh(Xsample, sigma=args$sigma) # thresholding singular valuess
         svd.Xsample = svd(Xsample)
         U <- svd.Xsample$u[, svd.Xsample$d > thresh.X] # decompose and extract left singular vectors
         P <- U %*% t(U) # projection matrix
         avgP <- avgP + P
     }
-    avgP <- avgP / numSamples
+    avgP <- avgP / args$numSamples
     svdAvg <- svd(avgP) 
-    return (svdAvg$u[, svdAvg$d > alpha]) # select left singular vectors for which singular values are > alpha
+    return (svdAvg$u[, svdAvg$d > args$alpha]) # select left singular vectors for which singular values are > alpha
 }
