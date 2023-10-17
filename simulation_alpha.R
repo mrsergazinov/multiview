@@ -16,13 +16,19 @@ ri2 <- 20
 n <- 100
 p1 <- 100
 p2 <- 150
-sigma1 <- 1
-sigma2 <- 1
+sigma1 <- 0.3
+sigma2 <- 0.3
 sim_iter <- 10
 signal_strength <- 15
 dj <- rnorm(rj, mean = signal_strength, sd = 3)
 di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
 di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
+snr1hat1 <- (sum(dj ^ 2) + sum(di1 ^ 2)) / sum(n * p1 * sigma1 ^ 2)
+snr2hat1 <- (sum(dj ^ 2) + sum(di2 ^ 2)) / sum(n * p2 * sigma2 ^ 2)
+maxSigma1 <- sigma1 * sqrt(2*log(6)*(n+p1))
+maxSigma2 <- sigma2 * sqrt(2*log(6)*(n+p2))
+snr1hat2 <- min(c(di1, dj)) / maxSigma1
+snr2hat2 <- min(c(di2, dj)) / maxSigma2
 
 for (alpha in seq(0.7, 0.95, 0.01)) {
     args = list("sigma1" = NA, "sigma2" = NA,
@@ -40,7 +46,7 @@ for (alpha in seq(0.7, 0.95, 0.01)) {
         trueProj <- Uj %*% t(Uj) # true projection matrix
 
         # apply models from the list
-        out <- fd_control_joint(X1, X2, args)
+        out <- fd_control_joint(X1, X2, args)$joint
         td = ncol(out)
         colProj <- out %*% t(out)
         if (all(is.na(out))){
@@ -62,7 +68,8 @@ for (alpha in seq(0.7, 0.95, 0.01)) {
       SdTP = sd(tps),
       MeanTD = mean(tds),
       SdTD = sd(tds),
-      Description = paste(c('sig1 =', sigma1, 'sig2 =', sigma2,
+      Description = paste(c('snr1hat1 =', round(snr1hat1, 2), 'snr2hat1 =', round(snr2hat1, 2),
+                            'snr1hat2 =', round(snr1hat2, 2), 'snr2hat2 =', round(snr2hat2, 2),
                             'rj =', rj, 'ri1 =', ri1, 'ri2 =', ri2, 
                             'n = ', n, 'p1 = ', p1, 'p2 = ', p2), collapse = " "))
     results <- rbind(results, df)

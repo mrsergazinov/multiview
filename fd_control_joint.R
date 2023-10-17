@@ -1,3 +1,48 @@
+thresh <- function(X, sigma = NA) {
+  if (is.na(sigma)){
+    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)) * ncol(X))
+  } 
+  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
+}
+
+fd_control_joint <- function(X1, X2, args){
+  avg.P <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
+  avg.P1 <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
+  avg.P2 <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
+  for (i in 1:args$numSamples){
+    X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
+    X2.sample <- X2[, sample(1:ncol(X2), as.integer(ncol(X2)/2), replace=FALSE)]
+    thresh.X1 <- thresh(X1.sample, sigma=args$sigma1) # thresholding singular values
+    thresh.X2 <- thresh(X2.sample, sigma=args$sigma2)
+    svd.X1.sample <- svd(X1.sample)
+    svd.X2.sample <- svd(X2.sample)
+    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1] # thresholding using Gavish and Donoho 2014
+    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2]
+    sample.P1 <- (u1.sample %*% t(u1.sample))
+    sample.P2 <- (u2.sample %*% t(u2.sample))
+    avg.P1 <- avg.P1 + sample.P1
+    avg.P2 <- avg.P2 + sample.P2
+    avg.P <- avg.P + (sample.P1 + sample.P2) / 2
+  }
+  avg.P <- avg.P / args$numSamples
+  svd.avg <- svd(avg.P)
+  joint <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
+  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+
+  avg.P1 <- avg.P1 / args$numSamples
+  svd.avg1 <- svd(avg.P1)
+  signal1 <- svd.avg1$u[, svd.avg1$d > args$alpha, drop = FALSE]
+  indiv1 <- jointPerp %*% signal1
+
+
+  avg.P2 <- avg.P2 / args$numSamples
+  svd.avg2 <- svd(avg.P2)
+  signal2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
+  indiv2 <- jointPerp %*% signal2
+  
+  return(list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2))
+}
+
 # thresh <- function(X, sigma = NA){
 #   # thresholding using Gavish and Donoho 2014
 #   beta = nrow(X) / ncol(X)
@@ -11,33 +56,6 @@
 #     return (lambda * sigma * sqrt(ncol(X)))
 #   }
 # }
-
-thresh <- function(X, sigma = NA) {
-  if (is.na(sigma)){
-    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)) * ncol(X))
-  } 
-  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
-}
-
-fd_control_joint <- function(X1, X2, args){
-  avg.P <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
-  for (i in 1:args$numSamples){
-    X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
-    X2.sample <- X2[, sample(1:ncol(X2), as.integer(ncol(X2)/2), replace=FALSE)]
-    thresh.X1 <- thresh(X1.sample, sigma=args$sigma1) # thresholding singular values
-    thresh.X2 <- thresh(X2.sample, sigma=args$sigma2)
-    svd.X1.sample <- svd(X1.sample)
-    svd.X2.sample <- svd(X2.sample)
-    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1] # thresholding using Gavish and Donoho 2014
-    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2]
-    avg.step <- (u1.sample %*% t(u1.sample) + u2.sample %*% t(u2.sample)) / 2
-    avg.P <- avg.P + avg.step
-  }
-  avg.P <- avg.P / args$numSamples
-  svd.avg <- svd(avg.P)
-  out <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
-  return(out)
-}
 
 # test different alphas
 # results = list()
