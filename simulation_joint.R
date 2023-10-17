@@ -12,7 +12,7 @@ file_name <- "results.RData"
 load(file_name)
 
 # models to test
-model_names <- c("fd_control_joint (estim sigma)")
+model_names <- c("fd_control_joint")
 # ajive, "ajive_oracle", "fd_control_joint", "fd_control"
 models <- c(fd_control_joint)
 # ajive_wrapper, ajive_oracle_wrapper, fd_control_joint, fd_control
@@ -20,18 +20,24 @@ models <- c(fd_control_joint)
 # set simulation parameters
 set.seed(235017)
 rj <- 4
-ri1 <- 0
-ri2 <- 0
+ri1 <- 8
+ri2 <- 8
 n <- 100
-p1 <- 100
+p1 <- 120
 p2 <- 150
-sigma1 <- 1
-sigma2 <- 1
+sigma1 <- 0.3
+sigma2 <- 0.3
 sim_iter <- 100
 signal_strength <- 15
 dj <- rnorm(rj, mean = signal_strength, sd = 3)
 di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
 di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
+snr1hat1 <- (sum(dj ^ 2) + sum(di1 ^ 2)) / sum(n * p1 * sigma1 ^ 2)
+snr2hat1 <- (sum(dj ^ 2) + sum(di2 ^ 2)) / sum(n * p2 * sigma2 ^ 2)
+maxSigma1 <- sigma1 * sqrt(2*log(6)*(n+p1))
+maxSigma2 <- sigma2 * sqrt(2*log(6)*(n+p2))
+snr1hat2 <- min(c(di1, dj)) / maxSigma1
+snr2hat2 <- min(c(di2, dj)) / maxSigma2
 
 # set args for models
 args = list("sigma1" = NA, "sigma2" = NA,
@@ -56,6 +62,15 @@ for (i in 1:length(model_names)){
 
         # apply models from the list
         out <- model(X1, X2, args)
+
+        # extract joint
+        if (model_name == 'fd_control_joint' || 
+            model_name == 'ajive' || 
+            model_name == 'ajive_oracle'){
+            out <- out$joint
+        }
+
+        # compute projection matrix
         td = ncol(out)
         colProj <- out %*% t(out)
         if (all(is.na(out))){
@@ -78,7 +93,8 @@ for (i in 1:length(model_names)){
       SdTP = sd(tps),
       MeanTD = mean(tds),
       SdTD = sd(tds),
-      Description = paste(c('sig1 =', sigma1, 'sig2 =', sigma2,
+      Description = paste(c('snr1hat1 =', round(snr1hat1, 2), 'snr2hat1 =', round(snr2hat1, 2),
+                            'snr1hat2 =', round(snr1hat2, 2), 'snr2hat2 =', round(snr2hat2, 2),
                             'rj =', rj, 'ri1 =', ri1, 'ri2 =', ri2, 
                             'n = ', n, 'p1 = ', p1, 'p2 = ', p2), collapse = " "))
     results <- rbind(results, df)
