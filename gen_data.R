@@ -41,5 +41,8 @@ gen_data <- function(n, p1, p2, rj, ri1, ri2, dj, di1, di2, sigma1, sigma2) {
   X1 <- X1.joint + X1.indiv + matrix(rnorm(n * p1), n, p1) * sigma1
   X2 <- X2.joint + X2.indiv + matrix(rnorm(n * p2), n, p2) * sigma2
   
-  return(list("X1" = X1, "X2" = X2, "joint" = Uj, "indiv1" = Ui1, "indiv2" = Ui2))
+  return(list("X1" = X1, "X2" = X2, 
+              "X1.joint" = X1.joint, "X1.indiv" = X1.indiv,
+              "X2.joint" = X2.joint, "X1.indiv" = X2.indiv,
+              "joint" = Uj, "indiv1" = Ui1, "indiv2" = Ui2))
 }
