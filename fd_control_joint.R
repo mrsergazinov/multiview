@@ -32,13 +32,13 @@ fd_control_joint <- function(X1, X2, args){
   avg.P1 <- avg.P1 / args$numSamples
   avg.P1 <- jointPerp %*% avg.P1
   svd.avg1 <- svd(avg.P1)
-  signal1 <- svd.avg1$u[, svd.avg1$d > args$alpha, drop = FALSE]
+  indiv1 <- svd.avg1$u[, svd.avg1$d > args$alpha, drop = FALSE]
 
 
   avg.P2 <- avg.P2 / args$numSamples
   avg.P2 <- jointPerp %*% avg.P2
   svd.avg2 <- svd(avg.P2)
-  signal2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
+  indiv2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
   
   return(list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2))
 }
