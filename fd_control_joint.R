@@ -22,6 +22,9 @@ fd_control_joint <- function(X1, X2, args){
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
     avg.P2 <- avg.P2 + sample.P2
+    # avg.P <- avg.P + sample.P1 %*% sample.P2
+    # avg.P <- avg.P + (sample.P1 %*% sample.P2 %*% sample.P1 +
+    #                     sample.P2 %*% sample.P1 %*% sample.P2) / 2
     avg.P <- avg.P + (sample.P1 + sample.P2) / 2
   }
   avg.P <- avg.P / args$numSamples
@@ -34,14 +37,24 @@ fd_control_joint <- function(X1, X2, args){
   svd.avg1 <- svd(avg.P1)
   indiv1 <- svd.avg1$u[, svd.avg1$d > args$alpha, drop = FALSE]
 
-
   avg.P2 <- avg.P2 / args$numSamples
   avg.P2 <- jointPerp %*% avg.P2
   svd.avg2 <- svd(avg.P2)
   indiv2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
   
-  return(list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2))
+  return(list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2, "avgPd" = svd.avg$d))
 }
+
+
+# avg.P1 <- avg.P1 / args$numSamples
+# avg.P2 <- avg.P2 / args$numSamples
+# svd.avg1 <- svd(avg.P1)
+# svd.avg2 <- svd(avg.P2)
+# signal1 <- svd.avg1$u[, svd.avg1$d > args$alpha, drop = FALSE]
+# signal2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
+# svd.avg <- svd(signal1 %*% t(signal1) %*% signal2 %*% t(signal2))
+# joint <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
+# jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
 
 # thresh <- function(X, sigma = NA){
 #   # thresholding using Gavish and Donoho 2014
