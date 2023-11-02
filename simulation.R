@@ -11,20 +11,20 @@ file_name <- "results.RData"
 load(file_name)
 
 # models to test
-model_list = list("fd_control_joint" = fd_control_joint,
+model_list = list("fd_control_joint_mult" = fd_control_joint,
                   "ajive" = ajive_wrapper,
                   "ajive_oracle" = ajive_oracle_wrapper)
-model_name <- "fd_control_joint"
+model_name <- "fd_control_joint_mult"
 model <- model_list[[model_name]]
 
 # set simulation parameters
 set.seed(235017)
-rj <- 4
-ri1 <- 10
-ri2 <- 20
+rj <- 2
+ri1 <- 2
+ri2 <- 2
 n <- 100
-p1 <- 120
-p2 <- 150
+p1 <- 50
+p2 <- 60
 sigma1 <- 0.5
 sigma2 <- 0.5
 sim_iter <- 100
@@ -43,7 +43,10 @@ snr2hat2 <- min(c(di2, dj)) / maxSigma2
 args = list("sigma1" = NA, "sigma2" = NA,
             "rj" = rj, "ri1" = ri1,
             "ri2" = ri2, "numSamples" = 100,
-            "alpha" = 0.9)
+            "alpha" = 0.4)
+
+# for (alpha in seq(0.6, 0.95, 0.05)) {
+# args$alpha = alpha
 
 fds_joint <- rep(0, sim_iter)
 tps_joint <- rep(0, sim_iter)
@@ -103,7 +106,7 @@ df <- data.frame(
     SNR_X2 = snr2hat1,
     SNR2_X1 = snr1hat2,
     SNR2_X2 = snr2hat2,
-    RankJoin = rj,
+    RankJoint = rj,
     RankIndiv1 = ri1,
     RankIndiv2 = ri2,
     sigma1 = sigma1,
@@ -114,10 +117,12 @@ df <- data.frame(
     alpha = args$alpha,
     stabilityIter = args$numSamples,
     paramSigma1 = args$sigma1,
-    paramSigma2 = args$sigma2,
+    paramSigma2 = args$sigma2
 )
 results <- rbind(results, df)
-
+# }
 
 # save results.fd and results.metric
 save(results, file = file_name)
+
+
