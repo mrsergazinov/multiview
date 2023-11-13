@@ -16,16 +16,15 @@ fd_control_joint <- function(X1, X2, args){
     thresh.X2 <- thresh(X2.sample, sigma=args$sigma2)
     svd.X1.sample <- svd(X1.sample)
     svd.X2.sample <- svd(X2.sample)
-    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1] # thresholding using Gavish and Donoho 2014
-    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2]
+    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1 + 1e-10] # thresholding using Gavish and Donoho 2014
+    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2 + 1e-10]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
     avg.P2 <- avg.P2 + sample.P2
-    # avg.P <- avg.P + sample.P1 %*% sample.P2
-    # avg.P <- avg.P + (sample.P1 %*% sample.P2 %*% sample.P1 +
-    #                     sample.P2 %*% sample.P1 %*% sample.P2) / 2
-    avg.P <- avg.P + (sample.P1 + sample.P2) / 2
+    avg.P <- avg.P + (sample.P1 %*% sample.P2 %*% sample.P1 + 
+                        sample.P2 %*% sample.P1 %*% sample.P2) / 2
+    # avg.P <- avg.P + (sample.P1 + sample.P2) / 2
   }
   avg.P <- avg.P / args$numSamples
   svd.avg <- svd(avg.P)
