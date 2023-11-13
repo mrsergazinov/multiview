@@ -11,10 +11,10 @@ file_name <- "results.RData"
 load(file_name)
 
 # models to test
-model_list = list("fd_control_joint_mult" = fd_control_joint,
+model_list = list("fd_control_joint(PQP+QPQ/2)" = fd_control_joint,
                   "ajive" = ajive_wrapper,
                   "ajive_oracle" = ajive_oracle_wrapper)
-model_name <- "fd_control_joint_mult"
+model_name <- "ajive_oracle"
 model <- model_list[[model_name]]
 
 # set simulation parameters
@@ -43,9 +43,9 @@ snr2hat2 <- min(c(di2, dj)) / maxSigma2
 args = list("sigma1" = NA, "sigma2" = NA,
             "rj" = rj, "ri1" = ri1,
             "ri2" = ri2, "numSamples" = 100,
-            "alpha" = 0.4)
+            "alpha" = 0.5)
 
-# for (alpha in seq(0.6, 0.95, 0.05)) {
+# for (alpha in seq(0.7, 0.9, 0.05)) {
 # args$alpha = alpha
 
 fds_joint <- rep(0, sim_iter)
