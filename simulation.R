@@ -6,48 +6,54 @@ source("gen_data.R")
 source("fd_control_joint.R")
 source("ajive_oracle.R")
 source("ajive.R")
+source("bounds.R")
 
 file_name <- "results.RData"
 load(file_name)
 
 # models to test
-model_list = list("fd_control_joint(PQP+QPQ/2)" = fd_control_joint,
+model_list = list("fd_control_joint" = fd_control_joint,
                   "ajive" = ajive_wrapper,
                   "ajive_oracle" = ajive_oracle_wrapper)
-model_name <- "ajive_oracle"
+model_name <- "fd_control_joint"
 model <- model_list[[model_name]]
 
 # set simulation parameters
 set.seed(235017)
-rj <- 2
+rj <- 3
 ri1 <- 2
 ri2 <- 2
 n <- 100
-p1 <- 50
-p2 <- 60
-sigma1 <- 0.5
-sigma2 <- 0.5
+p1 <- 20
+p2 <- 20
+sigma1 <- 1
+sigma2 <- 1
 sim_iter <- 100
-signal_strength <- 15
-dj <- rnorm(rj, mean = signal_strength, sd = 3)
-di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
-di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
+signal_strength <- 40
+dj <- rnorm(rj, mean = signal_strength, sd = 10)
+di1 <- rnorm(ri1, mean = signal_strength, sd = 10)
+di2 <- rnorm(ri2, mean = signal_strength, sd = 10)
+# compute SNR -- 2 ways
 snr1hat1 <- (sum(dj ^ 2) + sum(di1 ^ 2)) / sum(n * p1 * sigma1 ^ 2)
 snr2hat1 <- (sum(dj ^ 2) + sum(di2 ^ 2)) / sum(n * p2 * sigma2 ^ 2)
 maxSigma1 <- sigma1 * sqrt(2 * log(6) * (n + p1))
 maxSigma2 <- sigma2 * sqrt(2 * log(6) * (n + p2))
 snr1hat2 <- min(c(di1, dj)) / maxSigma1
 snr2hat2 <- min(c(di2, dj)) / maxSigma2
+# compute spectral bound
+bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, p1 / n)
+print(paste("Spectral bound = ", bound.val))
 
 # set args for models
 args = list("sigma1" = NA, "sigma2" = NA,
             "rj" = rj, "ri1" = ri1,
             "ri2" = ri2, "numSamples" = 100,
-            "alpha" = 0.5)
+            "alpha" = 0.4)
 
 # for (alpha in seq(0.7, 0.9, 0.05)) {
 # args$alpha = alpha
 
+sing.vals <- c()
 fds_joint <- rep(0, sim_iter)
 tps_joint <- rep(0, sim_iter)
 fds_indiv1 <- rep(0, sim_iter)
@@ -67,6 +73,7 @@ for (i in 1:sim_iter){
 
     # apply models from the list
     out <- model(X1, X2, args)
+    sing.vals <- c(out$avgPd, sing.vals)
 
     # compute projection matrix
     estimJointProj <- out$joint %*% t(out$joint)
@@ -122,7 +129,17 @@ df <- data.frame(
 results <- rbind(results, df)
 # }
 
+hist_plot <- ggplot(data = data.frame(x = sing.vals), aes(x = x)) +
+  geom_histogram(binwidth = 0.1, fill = "orange", color = "black", alpha = 0.7) +
+  ggtitle(paste("Histogram of eigenvalues\nBound = ", bound.val, 
+                "\nMean signal eigenvalue = ", signal_strength,
+                "\nBeta = ", p1/n),
+          ) +
+  xlab("Values") +
+  ylab("Frequency") +
+  theme_minimal()
+
 # save results.fd and results.metric
-save(results, file = file_name)
+# save(results, file = file_name)
 
 
