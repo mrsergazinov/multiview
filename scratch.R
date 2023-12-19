@@ -21,22 +21,34 @@ library(RMTstat)
 
 source("gen_data.R")
 source("fd_control_joint.R")
+source("bounds.R")
 
 # set simulation parameters
 set.seed(235017)
-rj <- 2
+rj <- 3
 ri1 <- 2
 ri2 <- 2
 n <- 100
 p1 <- 20
 p2 <- 20
-sigma1 <- 0.5
-sigma2 <- 0.5
+sigma1 <- 1
+sigma2 <- 1
 sim_iter <- 100
-signal_strength <- 20
+signal_strength <- 40
 dj <- rnorm(rj, mean = signal_strength, sd = 3)
 di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
 di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
+# compute spectral bound
+bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, p1 / n)
+print(paste("Spectral bound = ", bound.val))
+
+thresh <- function(X, sigma = NA) {
+  # Based on ...
+  if (is.na(sigma)){
+    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)))
+  }
+  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
+}
 
 sing.vals <- c()
 for (i in 1:sim_iter){
@@ -50,16 +62,32 @@ for (i in 1:sim_iter){
   indiv1Proj <- Ui1 %*% t(Ui1)
   indiv2Proj <- Ui2 %*% t(Ui2)
   
-  thresh.X1 <- thresh(X1, sigma=NA) # thresholding singular values
-  thresh.X2 <- thresh(X2, sigma=NA)
-  svd.X1 <- svd(X1)
-  svd.X2 <- svd(X2)
-  u1 <- svd.X1$u[, svd.X1$d > thresh.X1 + 1e-10] # thresholding using Gavish and Donoho 2014
-  u2 <- svd.X2$u[, svd.X2$d > thresh.X2 + 1e-10]
-  P1 <- (u1 %*% t(u1))
-  P2 <- (u2 %*% t(u2))
-  prod <- P1 %*% P2
-  sing.vals <- svd(prod)$d
+  # sampling
+  X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
+  X2.sample <- X2[, sample(1:ncol(X2), as.integer(ncol(X2)/2), replace=FALSE)]
+  # svd of sample + thresholding
+  svd.X1.sample <- svd(X1.sample)
+  svd.X2.sample <- svd(X2.sample)
+  thresh.X1 <- thresh(X1.sample, sigma=1) # thresholding singular values
+  thresh.X2 <- thresh(X2.sample, sigma=1)
+  u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1]
+  u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2]
+  # print(paste("dim after thresh of U1: ", dim(u1.sample)[2]))
+  # print(paste("dim after thresh of U2: ", dim(u1.sample)[2]))
+  # compute projection
+  sample.P1 <- (u1.sample %*% t(u1.sample))
+  sample.P2 <- (u2.sample %*% t(u2.sample))
+  # compute product
+  prod <- sample.P1 %*% sample.P2
+  # print singular values
+  svd.prod <- svd(prod)
+  print(paste("max sing val of PQ:", max(svd.prod$d)))
+  # save sing.vals of prod
+  sing.vals <- c(sing.vals, svd.prod$d)
+}
+
+for (i in seq(0, 0.9, 0.1)) {
+  print(paste("Range [", i, i+0.1, "]: ", sum((sing.vals >= i) & (sing.vals < i+0.1))))
 }
 
 

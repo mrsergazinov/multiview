@@ -20,19 +20,19 @@ model <- model_list[[model_name]]
 
 # set simulation parameters
 set.seed(235017)
-rj <- 3
+rj <- 2
 ri1 <- 2
-ri2 <- 2
-n <- 100
-p1 <- 20
-p2 <- 20
+ri2 <- 3
+n <- 20
+p1 <- 100
+p2 <- 100
 sigma1 <- 1
 sigma2 <- 1
 sim_iter <- 100
 signal_strength <- 40
-dj <- rnorm(rj, mean = signal_strength, sd = 10)
-di1 <- rnorm(ri1, mean = signal_strength, sd = 10)
-di2 <- rnorm(ri2, mean = signal_strength, sd = 10)
+dj <- rnorm(rj, mean = signal_strength, sd = 3)
+di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
+di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
 # compute SNR -- 2 ways
 snr1hat1 <- (sum(dj ^ 2) + sum(di1 ^ 2)) / sum(n * p1 * sigma1 ^ 2)
 snr2hat1 <- (sum(dj ^ 2) + sum(di2 ^ 2)) / sum(n * p2 * sigma2 ^ 2)
@@ -41,7 +41,7 @@ maxSigma2 <- sigma2 * sqrt(2 * log(6) * (n + p2))
 snr1hat2 <- min(c(di1, dj)) / maxSigma1
 snr2hat2 <- min(c(di2, dj)) / maxSigma2
 # compute spectral bound
-bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, p1 / n)
+bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1)
 print(paste("Spectral bound = ", bound.val))
 
 # set args for models
