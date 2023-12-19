@@ -1,9 +1,9 @@
 thresh <- function(X, sigma = NA) {
-  # Based on ...
+  # Based on Gavish and Donoho 2014
   if (is.na(sigma)){
-    sigma = median(svd(X)$d) / sqrt(qmp(0.5, nrow(X), ncol(X)) * ncol(X))
+    sigma = median(svd(X)$d) / sqrt(qmp(0.5, ncol(X), nrow(X)))
   }
-  return (sigma * (1 + sqrt(min(ncol(X), nrow(X)) / max(ncol(X), nrow(X)))))
+  return (sigma * (1 + sqrt(nrow(X) / ncol(X))))
 }
 
 fd_control_joint <- function(X1, X2, args){
@@ -17,22 +17,19 @@ fd_control_joint <- function(X1, X2, args){
     svd.X2.sample <- svd(X2.sample)
     thresh.X1 <- thresh(X1.sample, sigma=args$sigma1) # thresholding singular values
     thresh.X2 <- thresh(X2.sample, sigma=args$sigma2)
-    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1 + 1e-10]
-    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2 + 1e-10]
+    u1.sample <- svd.X1.sample$u[, svd.X1.sample$d > thresh.X1]
+    u2.sample <- svd.X2.sample$u[, svd.X2.sample$d > thresh.X2]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
     avg.P2 <- avg.P2 + sample.P2
-    avg.P <- avg.P + (sample.P1 %*% sample.P2)
-    # avg.P <- avg.P + (sample.P1 %*% sample.P2 %*% sample.P1 + 
-                        # sample.P2 %*% sample.P1 %*% sample.P2) / 2
-    # avg.P <- avg.P + (sample.P1 + sample.P2) / 2
+    prod <- sample.P1 %*% sample.P2
+    avg.P <- avg.P + prod
   }
   avg.P1 <- avg.P1 / args$numSamples
   avg.P2 <- avg.P2 / args$numSamples
   avg.P <- avg.P / args$numSamples
   
-  # avg.P <- avg.P1 %*% avg.P2
   svd.avg <- svd(avg.P)
   joint <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
   jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
