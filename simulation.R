@@ -21,8 +21,8 @@ model <- model_list[[model_name]]
 # set simulation parameters
 set.seed(235017)
 rj <- 2
-ri1 <- 2
-ri2 <- 3
+ri1 <- 3
+ri2 <- 2
 n <- 20
 p1 <- 100
 p2 <- 100
@@ -42,13 +42,17 @@ snr1hat2 <- min(c(di1, dj)) / maxSigma1
 snr2hat2 <- min(c(di2, dj)) / maxSigma2
 # compute spectral bound
 bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1)
+bound.approx.val <- bound.approx(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1)
+bound.approx.angle.val <- bound.approx.angle(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1, 0.01, 0.05)
 print(paste("Spectral bound = ", bound.val))
+print(paste("Approx spectral bound = ", bound.approx.val))
+print(paste("Approx angle spectral bound = ", bound.approx.angle.val))
 
 # set args for models
 args = list("sigma1" = NA, "sigma2" = NA,
             "rj" = rj, "ri1" = ri1,
             "ri2" = ri2, "numSamples" = 100,
-            "alpha" = 0.4)
+            "alpha" = 0.4, "boundJoint" = bound.val)
 
 # for (alpha in seq(0.7, 0.9, 0.05)) {
 # args$alpha = alpha
@@ -73,7 +77,7 @@ for (i in 1:sim_iter){
 
     # apply models from the list
     out <- model(X1, X2, args)
-    sing.vals <- c(out$avgPd, sing.vals)
+    sing.vals <- c(out$avgPd, sing.vals1)
 
     # compute projection matrix
     estimJointProj <- out$joint %*% t(out$joint)
@@ -140,6 +144,6 @@ hist_plot <- ggplot(data = data.frame(x = sing.vals), aes(x = x)) +
   theme_minimal()
 
 # save results.fd and results.metric
-# save(results, file = file_name)
+save(results, file = file_name)
 
 
