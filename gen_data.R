@@ -44,5 +44,5 @@ gen_data <- function(n, p1, p2, rj, ri1, ri2, dj, di1, di2, sigma1, sigma2) {
   return(list("X1" = X1, "X2" = X2, 
               "X1.joint" = X1.joint, "X1.indiv" = X1.indiv,
               "X2.joint" = X2.joint, "X1.indiv" = X2.indiv,
-              "joint" = Uj, "indiv1" = Ui1, "indiv2" = Ui2))
+              "joint" = Uj, "jointPerp" = U[, (rj+1):ncol(U)], "indiv1" = Ui1, "indiv2" = Ui2))
 }
