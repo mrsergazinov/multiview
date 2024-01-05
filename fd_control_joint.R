@@ -1,9 +1,13 @@
 thresh <- function(X, sigma = NA) {
-  # Based on Gavish and Donoho 2014
   if (is.na(sigma)){
     sigma = median(svd(X)$d) / sqrt(qmp(0.5, ncol(X), nrow(X)))
   }
-  return (sigma * (1 + sqrt(nrow(X) / ncol(X))))
+  beta = nrow(X) / ncol(X)
+  # Gavish and Donoho 2014
+  # lambda = sqrt(2*(beta + 1) + 8 * beta / sqrt(beta^2 + 14*beta + 1))
+  # Bulk edge
+  lambda = 1 + sqrt(beta)
+  return (sigma * lambda)
 }
 
 fd_control_joint <- function(X1, X2, args){
@@ -31,7 +35,7 @@ fd_control_joint <- function(X1, X2, args){
   avg.P <- avg.P / args$numSamples
   
   svd.avg <- svd(avg.P)
-  joint <- svd.avg$u[, svd.avg$d > args$alpha, drop = FALSE]
+  joint <- svd.avg$u[, svd.avg$d > args$boundJoint, drop = FALSE]
   jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
 
   avg.P1 <- jointPerp %*% avg.P1
@@ -42,7 +46,13 @@ fd_control_joint <- function(X1, X2, args){
   svd.avg2 <- svd(avg.P2)
   indiv2 <- svd.avg2$u[, svd.avg2$d > args$alpha, drop = FALSE]
   
-  return(list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2, "avgPd" = svd.avg$d))
+  return(list("joint" = joint, 
+              "indiv1" = indiv1, 
+              "indiv2" = indiv2, 
+              "avgPd" = svd.avg$d,
+              "avgP1" = svd.avg1$d,
+              "avgP2" = svd.avg2$d
+              ))
 }
 
 
