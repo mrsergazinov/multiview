@@ -12,10 +12,12 @@ file_name <- "results.RData"
 load(file_name)
 
 # models to test
-model_list = list("fd_control_joint" = fd_control_joint,
+model_list = list("fd_control_joint(no subsample)" = fd_control_joint.nosubsample,
+                  "fd_control_joint" = fd_control_joint,
                   "ajive" = ajive_wrapper,
                   "ajive_oracle" = ajive_oracle_wrapper)
 model_name <- "fd_control_joint"
+# fd_control_joint(no subsample)"
 model <- model_list[[model_name]]
 
 # set simulation parameters
@@ -26,10 +28,10 @@ ri2 <- 2
 n <- 20
 p1 <- 100
 p2 <- 100
-sigma1 <- 1
-sigma2 <- 1
+sigma1 <- 0.5
+sigma2 <- 2
 sim_iter <- 100
-signal_strength <- 40
+signal_strength <- 25
 dj <- rnorm(rj, mean = signal_strength, sd = 3)
 di1 <- rnorm(ri1, mean = signal_strength, sd = 3)
 di2 <- rnorm(ri2, mean = signal_strength, sd = 3)
@@ -42,7 +44,7 @@ snr1hat2 <- min(c(di1, dj)) / maxSigma1
 snr2hat2 <- min(c(di2, dj)) / maxSigma2
 # compute spectral bound
 bound.val <- bound(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1)
-bound.approx.val <- bound.approx(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1)
+bound.approx.val <- bound.approx(min(c(dj, di1)), min(c(dj, di2)), rj, ri1, ri2, n / p1)
 bound.approx.angle.val <- bound.approx.angle(c(dj, di1), c(dj, di2), rj, ri1, ri2, n / p1, 0.01, 0.05)
 print(paste("Spectral bound = ", bound.val))
 print(paste("Approx spectral bound = ", bound.approx.val))
@@ -57,7 +59,6 @@ args = list("sigma1" = NA, "sigma2" = NA,
 # for (alpha in seq(0.7, 0.9, 0.05)) {
 # args$alpha = alpha
 
-sing.vals <- c()
 fds_joint <- rep(0, sim_iter)
 tps_joint <- rep(0, sim_iter)
 fds_indiv1 <- rep(0, sim_iter)
@@ -77,7 +78,6 @@ for (i in 1:sim_iter){
 
     # apply models from the list
     out <- model(X1, X2, args)
-    sing.vals <- c(out$avgPd, sing.vals1)
 
     # compute projection matrix
     estimJointProj <- out$joint %*% t(out$joint)
@@ -133,15 +133,15 @@ df <- data.frame(
 results <- rbind(results, df)
 # }
 
-hist_plot <- ggplot(data = data.frame(x = sing.vals), aes(x = x)) +
-  geom_histogram(binwidth = 0.1, fill = "orange", color = "black", alpha = 0.7) +
-  ggtitle(paste("Histogram of eigenvalues\nBound = ", bound.val, 
-                "\nMean signal eigenvalue = ", signal_strength,
-                "\nBeta = ", p1/n),
-          ) +
-  xlab("Values") +
-  ylab("Frequency") +
-  theme_minimal()
+# hist_plot <- ggplot(data = data.frame(x = sing.vals), aes(x = x)) +
+#   geom_histogram(binwidth = 0.1, fill = "orange", color = "black", alpha = 0.7) +
+#   ggtitle(paste("Histogram of eigenvalues\nBound = ", bound.val, 
+#                 "\nMean signal eigenvalue = ", signal_strength,
+#                 "\nBeta = ", p1/n),
+#           ) +
+#   xlab("Values") +
+#   ylab("Frequency") +
+#   theme_minimal()
 
 # save results.fd and results.metric
 save(results, file = file_name)
