@@ -49,11 +49,49 @@ fd_control_joint <- function(X1, X2, args){
   return(list("joint" = joint, 
               "indiv1" = indiv1, 
               "indiv2" = indiv2, 
-              "avgPd" = svd.avg$d,
-              "avgP1" = svd.avg1$d,
-              "avgP2" = svd.avg2$d
+              "svd.avg" = svd.avg,
+              "svd.avgP1" = svd.avg1,
+              "svd.avgP2" = svd.avg2
               ))
 }
+
+fd_control_joint.nosubsample <- function(X1, X2, args){
+  svd.X1 <- svd(X1)
+  svd.X2 <- svd(X2)
+  thresh.X1 <- thresh(X1) # thresholding singular values
+  thresh.X2 <- thresh(X2)
+  print(thresh.X1)
+  print(svd.X1$d)
+  print(thresh.X2)
+  print(svd.X2$d)
+  u1 <- svd.X1$u[, svd.X1$d > thresh.X1]
+  u2 <- svd.X2$u[, svd.X2$d > thresh.X2]
+  P1 <- (u1 %*% t(u1))
+  P2 <- (u2 %*% t(u2))
+  
+  prod <- P1 %*% P2
+  svd.prod <- svd(prod)
+  joint <- svd.prod$u[, svd.prod$d > args$boundJoint, drop = FALSE]
+  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  
+  P1 <- jointPerp %*% P1
+  svd.P1 <- svd(P1)
+  indiv1 <- svd.P1$u[, svd.P1$d > args$alpha, drop = FALSE]
+  
+  P2 <- jointPerp %*% P2
+  svd.P2 <- svd(P2)
+  indiv2 <- svd.P2$u[, svd.P2$d > args$alpha, drop = FALSE]
+
+  
+  return(list("joint" = joint, 
+              "indiv1" = indiv1, 
+              "indiv2" = indiv2,
+              "svd.prod" = svd.prod,
+              "svd.P1" = svd.P1,
+              "svd.P2" = svd.P2
+  ))
+}
+
 
 
 # avg.P1 <- avg.P1 / args$numSamples
