@@ -5,20 +5,34 @@ library(SLIDE)
 library(RMTstat)
 library(pracma)
 library(Ckmeans.1d.dp)
-
 set.seed(235017)
+
 rj <- 2
 ri1 <- 3
 ri2 <- 2
-n <- 20
-phi.max <- 0.5
-p1 <- 100
-p2 <- 120
-sigma1 = 2
-sigma2 = 3
+m <- 20
+phi_max <- 0.5
+n1 <- 100
+n2 <- 120
+sigma1 = 1
+sigma2 = 1
 signal_strength1 <- 30
 signal_strength2 <- 40
-rank.spec <- 'exact'
+rank_spec <- 'exact'
+no_joint <- FALSE
+no_indiv <- TRUE
+try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
+
+# set args from command line
+args <- commandArgs(trailingOnly = TRUE)
+# Check if arguments are provided
+if (length(args) > 0) {
+  # Parse command-line arguments
+  for (i in seq_along(args)) {
+    print(args[[i]])
+    eval(parse(text = args[[i]]))
+  }
+}
 
 # compute error
 compute_fd <- function(P1, P2){
@@ -27,31 +41,30 @@ compute_fd <- function(P1, P2){
 compute_tp <- function(P1, P2){
   sum(diag(P1 %*% P2))
 }
-
 # models
 compute <- list()
 form_output <- function(joint, indiv1, indiv2){
   check_null <- function(X){
     if (is.null(X)){
       return(list("r" = Inf,
-                  "P" = matrix(0, nrow=n, ncol=n)))
+                  "P" = matrix(0, nrow=m, ncol=m)))
     }
     return (list("r" = ncol(X),
                  "P" = X %*% t(X)))
   }
-  check_null2 <- function(X1, X2) {
-    if (is.null(X1) && is.null(X2)){
+  check_null2 <- function(Y1, Y2) {
+    if (is.null(Y1) && is.null(Y2)){
       return (list("r" = Inf,
-                  "P" = matrix(0, nrow=n, ncol=n)))
-    } else if (is.null(X1)) {
-      return (list("r" = ncol(X2),
-                  "P" = X2 %*% t(X2)))
-    } else if (is.null(X2)) {
-      return (list("r" = ncol(X1),
-                  "P" = X1 %*% t(X1)))
+                  "P" = matrix(0, nrow=m, ncol=m)))
+    } else if (is.null(Y1)) {
+      return (list("r" = ncol(Y2),
+                  "P" = Y2 %*% t(Y2)))
+    } else if (is.null(Y2)) {
+      return (list("r" = ncol(Y1),
+                  "P" = Y1 %*% t(Y1)))
     } else{
-      return (list("r" = ncol(X1) + ncol(X2),
-                  "P" = X1 %*% t(X1) + X2 %*% t(X2)))
+      return (list("r" = ncol(Y1) + ncol(Y2),
+                  "P" = Y1 %*% t(Y1) + Y2 %*% t(Y2)))
     }
   }
   Pjoint <- check_null(joint)
@@ -70,12 +83,14 @@ form_output <- function(joint, indiv1, indiv2){
               "ri1" = Pindiv1$r,
               "ri2" = Pindiv2$r))
 }
-compute[["ajive"]] <- function(X1, X2, rank1, rank2){
-  out <- ajive(list(X1, X2), c(rank1, rank2),
+compute[["ajive"]] <- function(Y1, Y2, rank1, rank2){
+  out <- ajive(list(Y1, Y2), c(rank1, rank2),
               n_wedin_samples = 100, 
               n_rand_dir_samples = 100)
   check_null <- function(X) {
-    if (all(X == 0)){
+    if (is.na(X)) {
+      return (NULL)
+    } else if (all(X == 0)){
       return (NULL)
     }
     return (X)
@@ -85,8 +100,8 @@ compute[["ajive"]] <- function(X1, X2, rank1, rank2){
   indiv2 <- check_null(out$block_decomps[[2]][['individual']][['u']])
   return (form_output(joint, indiv1, indiv2))
 }
-compute[["jive"]] <- function(X1, X2, rank1, rank2) {
-  out <- jive(list(t(X1), t(X2)), rankA = c(rank1, rank2),
+compute[["jive"]] <- function(Y1, Y2, rank1, rank2) {
+  out <- jive(list(t(Y1), t(Y2)), rankA = c(rank1, rank2),
               method='perm', showProgress=FALSE)
   check_null <- function(X, rank){
     if (rank == 0){ return (NULL) }
@@ -97,8 +112,8 @@ compute[["jive"]] <- function(X1, X2, rank1, rank2) {
   indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
   return (form_output(joint, indiv1, indiv2))
 }
-compute[["slide"]] <- function(X1, X2, rank1, rank2) {
-  out <- slide(cbind(X1, X2), pvec = c(ncol(X1), ncol(X2)))
+compute[["slide"]] <- function(Y1, Y2, rank1, rank2) {
+  out <- slide(cbind(Y1, Y2), pvec = c(ncol(Y1), ncol(Y2)))
   check_null <- function(X, mask){
     if (any(mask)){return(X[, mask, drop = FALSE])}
     return (NULL)
@@ -108,9 +123,9 @@ compute[["slide"]] <- function(X1, X2, rank1, rank2) {
   indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1))
   return (form_output(joint, indiv1, indiv2))
 }
-compute[["proposed"]] <- function(X1, X2, rank1, rank2) {
-  U1.hat <- svd(X1)$u[, 1:rank1, drop = FALSE]
-  U2.hat <- svd(X2)$u[, 1:rank2, drop = FALSE]
+compute[["proposed"]] <- function(Y1, Y2, rank1, rank2) {
+  U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
+  U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
   P.hat <- U1.hat %*% t(U1.hat)
   Q.hat <- U2.hat %*% t(U2.hat)
 
@@ -132,17 +147,17 @@ compute[["proposed"]] <- function(X1, X2, rank1, rank2) {
   
   return (form_output(joint, indiv1, indiv2))
 }
-compute[["proposed_subsampling"]] <- function(X1, X2, rank1, rank2, numSamples=100) {
-  avg.P <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
-  avg.P1 <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
-  avg.P2 <- matrix(0, nrow=nrow(X1), ncol=nrow(X1))
+compute[["proposed_subsampling1"]] <- function(Y1, Y2, rank1, rank2, numSamples=100) {
+  avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   for (i in 1:numSamples){
-    X1.sample <- X1[, sample(1:ncol(X1), as.integer(ncol(X1)/2), replace=FALSE)]
-    X2.sample <- X2[, sample(1:ncol(X2), as.integer(ncol(X2)/2), replace=FALSE)]
-    svd.X1.sample <- svd(X1.sample)
-    svd.X2.sample <- svd(X2.sample)
-    u1.sample <- svd.X1.sample$u[, 1:rank1]
-    u2.sample <- svd.X2.sample$u[, 1:rank2]
+    Y1.sample <- Y1[, sample(1:ncol(Y1), as.integer(ncol(Y1)/2), replace=FALSE)]
+    Y2.sample <- Y2[, sample(1:ncol(Y2), as.integer(ncol(Y2)/2), replace=FALSE)]
+    svd.Y1.sample <- svd(Y1.sample)
+    svd.Y2.sample <- svd(Y2.sample)
+    u1.sample <- svd.Y1.sample$u[, 1:rank1]
+    u2.sample <- svd.Y2.sample$u[, 1:rank2]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
@@ -155,7 +170,11 @@ compute[["proposed_subsampling"]] <- function(X1, X2, rank1, rank2, numSamples=1
   avg.P <- avg.P / numSamples
 
   svd.avg <- svd(avg.P)
-  cluster <- Ckmeans.1d.dp(svd.avg$d, k = 3)
+  cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
+  # q1 <- rank1 / m
+  # q2 <- rank2 / m
+  # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
+  # & (svd.avg$d > b)
   joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
   jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
 
@@ -171,11 +190,58 @@ compute[["proposed_subsampling"]] <- function(X1, X2, rank1, rank2, numSamples=1
 
   return (form_output(joint, indiv1, indiv2))
 }
-
+compute[["proposed_subsampling2"]] <- function(Y1, Y2, rank1, rank2, numSamples=100) {
+  avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  for (i in 1:numSamples){
+    if (i %% 2 == 0) {
+      Y1.sample <- Y1[, sample(1:ncol(Y1), as.integer(ncol(Y1)/2), replace=FALSE)]
+      Y2.sample <- Y2
+    } else {
+      Y1.sample <- Y1
+      Y2.sample <- Y2[, sample(1:ncol(Y2), as.integer(ncol(Y2)/2), replace=FALSE)]
+    }
+    svd.Y1.sample <- svd(Y1.sample)
+    svd.Y2.sample <- svd(Y2.sample)
+    u1.sample <- svd.Y1.sample$u[, 1:rank1]
+    u2.sample <- svd.Y2.sample$u[, 1:rank2]
+    sample.P1 <- (u1.sample %*% t(u1.sample))
+    sample.P2 <- (u2.sample %*% t(u2.sample))
+    avg.P1 <- avg.P1 + sample.P1
+    avg.P2 <- avg.P2 + sample.P2
+    prod <- (sample.P1 %*% sample.P2 + sample.P2 %*% sample.P1) / 2
+    avg.P <- avg.P + prod
+  }
+  avg.P1 <- avg.P1 / numSamples
+  avg.P2 <- avg.P2 / numSamples
+  avg.P <- avg.P / numSamples
+  
+  svd.avg <- svd(avg.P)
+  cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
+  # q1 <- rank1 / m
+  # q2 <- rank2 / m
+  # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
+  # & (svd.avg$d > b)
+  joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  
+  avg.P1 <- jointPerp %*% avg.P1
+  svd.avg1 <- svd(avg.P1)
+  cluster <- Ckmeans.1d.dp(svd.avg1$d, k = 2)
+  indiv1 <- svd.avg1$u[, cluster$cluster == 2, drop = FALSE]
+  
+  avg.P2 <- jointPerp %*% avg.P2
+  svd.avg2 <- svd(avg.P2)
+  cluster <- Ckmeans.1d.dp(svd.avg2$d, k = 2)
+  indiv2 <- svd.avg2$u[,  cluster$cluster == 2, drop = FALSE]
+  
+  return (form_output(joint, indiv1, indiv2))
+}
 sim_iter <- 50
 progress <- txtProgressBar(min=0, max=sim_iter, style=3, width = 100)
 results <- list()
-for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling")){
+for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")){
   results[[model]] <- matrix(0, sim_iter, 10)
 }
 for (i in 1:sim_iter) {
@@ -184,28 +250,37 @@ for (i in 1:sim_iter) {
   di1 <- rnorm(ri1, mean = signal_strength1, sd = 3)
   di2 <- rnorm(ri2, mean = signal_strength2, sd = 3)
   # generate data
-  U <- svd(matrix(rnorm(n * (p1+p2)), n, p1+p2))$u
-  # joint part
+  U <- svd(matrix(rnorm(m * (n1+n2)), m, n1+n2))$u
+  # joint parts
   Uj <- U[, 1:rj]
   Ujperp <- U[, (rj+1):ncol(U)]
   O <- randortho(rj, type = 'orthonormal') # rotate Uj
   Uj1 <- Uj %*% O
   Uj2 <- Uj
+  if (no_joint) {
+    Uj1 <- matrix(0, m, rj)
+    Uj2 <- matrix(0, m, rj)
+  }
   # individual part
   Ui1 <- U[, (rj+1):(rj+ri1)]
   Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
-  O <- matrix(runif(ri1 * ri2, -phi.max, phi.max), ri1, ri2) # rotate
+  O <- matrix(runif(ri1 * ri2, -phi_max, phi_max), ri1, ri2) # rotate
   Ui2 <- Ui2 + Ui1 %*% O
   Ui2 <- gramSchmidt(Ui2)$Q # orthonormalize
+  if (no_indiv) {
+    Ui1 <- matrix(0, m, ri1)
+    Ui2 <- matrix(0, m, ri2)
+  }
   # loadings
-  V1 <- svd(matrix(rnorm((rj + ri1) * p1), rj + ri1, p1))$v
-  V2 <- svd(matrix(rnorm((rj + ri2) * p2), rj + ri2, p2))$v
+  Vj1 <- svd(matrix(rnorm(m * n1), m, n1))$v[, 1:rj]
+  Vj2 <- svd(matrix(rnorm(m * n2), m, n2))$v[, 1:rj]
+  Vi1 <- svd(matrix(rnorm(m * n1), m, n1))$v[, 1:ri1]
+  Vi2 <- svd(matrix(rnorm(m * n2), m, n2))$v[, 1:ri2]
   # combine
-  Y1 <- cbind(Uj1, Ui1) %*% diag(c(dj1, di1)) %*% t(V1)
-  Y2 <- cbind(Uj2, Ui2) %*% diag(c(dj2, di2)) %*% t(V2)
-  # noise
-  X1 <- Y1 + matrix(rnorm(n * p1), n, p1) * sigma1
-  X2 <- Y2 + matrix(rnorm(n * p2), n, p2) * sigma2
+  X1 <- Uj1 %*% diag(dj1) %*% t(Vj1) + Ui1 %*% diag(di1) %*% t(Vi1)
+  Y1 <- X1 + matrix(rnorm(m * n1), m, n1) * sigma1
+  X2 <- Uj2 %*% diag(dj2) %*% t(Vj2) + Ui2 %*% diag(di2) %*% t(Vi2)
+  Y2 <- X2 + matrix(rnorm(m * n2), m, n2) * sigma2
 
   # compute true
   Pjoint <- Uj1 %*% t(Uj1) # true projection
@@ -216,15 +291,21 @@ for (i in 1:sim_iter) {
   
   # signal rank
   error1 <- 0
-    # sample(1:2, 1)
   error2 <- 0
-    # sample(1:2, 1)
+  if (rank_spec == 'over') {
+    error1 <- sample(1:2, 1)
+    error2 <- sample(1:2, 1)
+  } else if (rank_spec == 'under') {
+    error1 <- (-1) * sample(1:2, 1)
+    error2 <- (-1) * sample(1:2, 1)
+  }
   rank1 <- rj + ri1 + error1
   rank2 <- rj + ri2 + error2
 
   # compute results
-  for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling")) {
-    out <- compute[[model]](X1, X2, rank1, rank2)
+  for (model in c("ajive", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
+    # "jive", "slide",
+    out <- compute[[model]](Y1, Y2, rank1, rank2)
     res <- c(compute_fd(out$P1, P1) / out$r1, compute_tp(out$P1, P1) / rank1,
              compute_fd(out$P2, P2) / out$r2, compute_tp(out$P2, P2) / rank2,
              compute_fd(out$Pjoint, Pjoint) / out$rj, compute_tp(out$Pjoint, Pjoint) / rj,
@@ -268,13 +349,17 @@ results.save[["sim_iter"]] <- sim_iter
 results.save[["rj"]] <- rj
 results.save[["ri1"]] <- ri1
 results.save[["ri2"]] <- ri2
-results.save[["n"]] <- n
-results.save[["phi.max"]] <- phi.max
-results.save[["p1"]] <- p1
-results.save[["p2"]] <- p2
+results.save[["m"]] <- m
+results.save[["phi_max"]] <- phi_max
+results.save[["n1"]] <- n1
+results.save[["n2"]] <- n2
+results.save[["SNR1"]] <- signal_strength1 / (sigma1 * (sqrt(m) + sqrt(n1)))
+results.save[["SNR2"]] <- signal_strength2 / (sigma2 * (sqrt(m) + sqrt(n2)))
 results.save[["sigma1"]] <- sigma1
 results.save[["sigma2"]] <- sigma2
 results.save[["signal_strength1"]] <- signal_strength1
 results.save[["signal_strength2"]] <- signal_strength2
-results.save[["rank_spec"]] <- rank.spec
-save(results.save, file=paste0("demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
+results.save[["rank_spec"]] <- rank_spec
+results.save[["no_joint"]] <- no_joint
+results.save[["no_indiv"]] <- no_indiv
+save(results.save, file=paste0("results/demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
