@@ -7,21 +7,21 @@ library(pracma)
 library(Ckmeans.1d.dp)
 
 set.seed(235017)
-rj <- 2
+rj <- 4
 ri1 <- 3
 ri2 <- 2
-ri3 <- 2
-m <- 20
+ri3 <- 4
+m <- 50
 phi_max <- 0.8
-n1 <- 100
-n2 <- 120
+n1 <- 80
+n2 <- 100
 n3 <- 110
 sigma1 <- 1
 sigma2 <- 1
 sigma3 <- 1
-signal_strength1 <- 30
-signal_strength2 <- 40
-signal_strength3 <- 30
+signal_strength1 <- 10
+signal_strength2 <- 12
+signal_strength3 <- 15
 rank_spec <- 'exact'
 no_joint <- FALSE
 no_indiv <- FALSE
@@ -268,17 +268,22 @@ for (model in c("ajive", "proposed", "proposed_subsampling1", "proposed_subsampl
   results[[model]] <- matrix(0, sim_iter, 14)
 }
 for (i in 1:sim_iter) {
-  dj1 <- rnorm(rj, mean = signal_strength1, sd = 3)
-  dj2 <- rnorm(rj, mean = signal_strength2, sd = 3)
-  dj3 <- rnorm(rj, mean = signal_strength3, sd = 3)
-  di1 <- rnorm(ri1, mean = signal_strength1, sd = 3)
-  di2 <- rnorm(ri2, mean = signal_strength2, sd = 3)
-  di3 <- rnorm(ri3, mean = signal_strength3, sd = 3)
+  d1 <- svd(matrix(signal_strength1 * rnorm(m * n1), m, n1))$d[1:(rj+ri1)]
+  d2 <- svd(matrix(signal_strength2 * rnorm(m * n2), m, n2))$d[1:(rj+ri2)]
+  d3 <- svd(matrix(signal_strength3 * rnorm(m * n3), m, n3))$d[1:(rj+ri3)]
+  d1 <- sample(d1)
+  d2 <- sample(d2)
+  d3 <- sample(d3)
+  dj1 <- d1[1:rj]
+  dj2 <- d2[1:rj]
+  dj3 <- d3[1:rj]
+  di1 <- d1[(rj+1):(rj+ri1)]
+  di2 <- d2[(rj+1):(rj+ri2)]
+  di3 <- d3[(rj+1):(rj+ri3)]
   # generate data
   U <- svd(matrix(rnorm(m * (n1+n2+n3)), m, n1+n2+n3))$u
   # joint part
   Uj <- U[, 1:rj]
-  Ujperp <- U[, (rj+1):ncol(U)]
   O1 <- randortho(rj, type = 'orthonormal') # rotate Uj
   O2 <- randortho(rj, type = 'orthonormal') # rotate Uj
   Uj1 <- Uj 
@@ -306,9 +311,12 @@ for (i in 1:sim_iter) {
   X2 <- Uj2 %*% diag(dj2) %*% t(Vj2) + Ui2 %*% diag(di2) %*% t(Vi2)
   X3 <- Uj3 %*% diag(dj3) %*% t(Vj3) + Ui3 %*% diag(di3) %*% t(Vi3)
   # noise
-  Y1 <- X1 + matrix(rnorm(m * n1), m, n1) * sigma1
-  Y2 <- X2 + matrix(rnorm(m * n2), m, n2) * sigma2
-  Y3 <- X3 + matrix(rnorm(m * n3), m, n3) * sigma3
+  Z1 <- matrix(rnorm(m * n1), m, n1) * sigma1
+  Z2 <- matrix(rnorm(m * n2), m, n2) * sigma2
+  Z3 <- matrix(rnorm(m * n3), m, n3) * sigma3
+  Y1 <- X1 + Z1
+  Y2 <- X2 + Z2
+  Y3 <- X3 + Z3
   
   # compute true
   Pjoint <- Uj1 %*% t(Uj1) # true projection
@@ -395,9 +403,9 @@ results.save[["phi_max"]] <- phi_max
 results.save[["n1"]] <- n1
 results.save[["n2"]] <- n2
 results.save[["n3"]] <- n3
-results.save[["SNR1"]] <- signal_strength1 / (sigma1 * (sqrt(m) + sqrt(n1)))
-results.save[["SNR2"]] <- signal_strength2 / (sigma2 * (sqrt(m) + sqrt(n2)))
-results.save[["SNR3"]] <- signal_strength3 / (sigma3 * (sqrt(m) + sqrt(n3)))
+results.save[["SNR1"]] <- signal_strength1 / sigma1
+results.save[["SNR2"]] <- signal_strength2 / sigma2 
+results.save[["SNR3"]] <- signal_strength3 / sigma3
 results.save[["sigma1"]] <- sigma1
 results.save[["sigma2"]] <- sigma2
 results.save[["sigma3"]] <- sigma3
