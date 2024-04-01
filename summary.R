@@ -19,7 +19,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo3_.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)

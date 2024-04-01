@@ -12,18 +12,18 @@ ri1 <- 3
 ri2 <- 2
 ri3 <- 4
 m <- 50
-phi_max <- 0.8
+phi_max <- 0.1
 n1 <- 80
 n2 <- 100
 n3 <- 110
-sigma1 <- 1
-sigma2 <- 1
-sigma3 <- 1
+sigma1 <- 5
+sigma2 <- 6
+sigma3 <- 7
 signal_strength1 <- 10
 signal_strength2 <- 12
 signal_strength3 <- 15
 rank_spec <- 'exact'
-no_joint <- FALSE
+no_joint <- TRUE
 no_indiv <- FALSE
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
@@ -123,9 +123,14 @@ compute[["proposed"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
              Q.hat %*% R.hat %*% P.hat + 
              R.hat %*% P.hat %*% Q.hat) / 3
   svd.prod <- svd(prod)
-  cluster <- Ckmedian.1d.dp(sqrt(svd.prod$d), k=3)
-  joint <- svd.prod$u[, cluster$cluster == 3, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.prod$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(svd.prod$u))
+  } else {
+    cluster <- Ckmedian.1d.dp(sqrt(svd.prod$d), k=3)
+    joint <- svd.prod$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
   
   P.hat <- jointPerp %*% P.hat
   svd.P.hat <- svd(P.hat)
@@ -176,9 +181,14 @@ compute[["proposed_subsampling1"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3, 
   avg.P <- avg.P / numSamples
   
   svd.avg <- svd(avg.P)
-  cluster <- Ckmedian.1d.dp(svd.avg$d, k=2)
-  joint <- svd.avg$u[, cluster$cluster == 2, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.avg$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(avg.P))
+  } else {
+    cluster <- Ckmedian.1d.dp(sqrt(svd.avg$d), k=3)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
   
   avg.P1 <- jointPerp %*% avg.P1
   svd.avg1 <- svd(avg.P1)
@@ -239,9 +249,14 @@ compute[["proposed_subsampling2"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3, 
   avg.P <- avg.P / numSamples
   
   svd.avg <- svd(avg.P)
-  cluster <- Ckmedian.1d.dp(svd.avg$d, k=2)
-  joint <- svd.avg$u[, cluster$cluster == 2, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.avg$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(avg.P))
+  } else {
+    cluster <- Ckmedian.1d.dp(sqrt(svd.avg$d), k=3)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
   
   avg.P1 <- jointPerp %*% avg.P1
   svd.avg1 <- svd(avg.P1)
@@ -289,6 +304,11 @@ for (i in 1:sim_iter) {
   Uj1 <- Uj 
   Uj2 <- Uj %*% O1
   Uj3 <- Uj %*% O2
+  if (no_joint) {
+    Uj1 <- matrix(0, m, rj)
+    Uj2 <- matrix(0, m, rj)
+    Uj3 <- matrix(0, m, rj)
+  }
   # individual part
   Ui1 <- U[, (rj+1):(rj+ri1)]
   Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
@@ -299,6 +319,11 @@ for (i in 1:sim_iter) {
   O2 <- matrix(runif(ri2 * ri3, -phi_max, phi_max), ri2, ri3) # rotate
   Ui3 <- Ui3 + Ui2 %*% O2
   Ui3 <- gramSchmidt(Ui3)$Q # orthonormalize
+  if (no_indiv) {
+    Ui1 <- matrix(0, m, ri1)
+    Ui2 <- matrix(0, m, ri2)
+    Ui3 <- matrix(0, m, ri3)
+  }
   # loadings
   Vj1 <- svd(matrix(rnorm(m * n1), m, n1))$v[, 1:rj]
   Vj2 <- svd(matrix(rnorm(m * n2), m, n2))$v[, 1:rj]

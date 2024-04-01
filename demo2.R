@@ -11,7 +11,7 @@ rj <- 4
 ri1 <- 3
 ri2 <- 2
 m <- 50
-phi_max <- 0.5
+phi_max <- 0.1
 n1 <- 80
 n2 <- 100
 sigma1 = 1
@@ -19,8 +19,8 @@ sigma2 = 1
 signal_strength1 <- 10
 signal_strength2 <- 12
 rank_spec <- 'exact'
-no_joint <- FALSE
-no_indiv <- TRUE
+no_joint <- TRUE
+no_indiv <- FALSE
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # set args from command line
@@ -43,46 +43,37 @@ compute_tp <- function(P1, P2){
 }
 # models
 compute <- list()
-form_output <- function(joint, indiv1, indiv2){
-  check_null <- function(X){
-    if (is.null(X)){
-      return(list("r" = Inf,
-                  "P" = matrix(0, nrow=m, ncol=m)))
+form_output <- function(joint, indiv1, indiv2) {
+  # Simplified function to handle null checks and calculations
+  check_and_compute <- function(X, Y = NULL) {
+    # If both X and Y are NULL, return infinity and a zero matrix
+    if (is.null(X) && is.null(Y)) {
+      return(list("r" = Inf, "P" = matrix(0, nrow = m, ncol = m)))
     }
-    return (list("r" = ncol(X),
-                 "P" = X %*% t(X)))
-  }
-  check_null2 <- function(Y1, Y2) {
-    if (is.null(Y1) && is.null(Y2)){
-      return (list("r" = Inf,
-                  "P" = matrix(0, nrow=m, ncol=m)))
-    } else if (is.null(Y1)) {
-      return (list("r" = ncol(Y2),
-                  "P" = Y2 %*% t(Y2)))
-    } else if (is.null(Y2)) {
-      return (list("r" = ncol(Y1),
-                  "P" = Y1 %*% t(Y1)))
-    } else{
-      return (list("r" = ncol(Y1) + ncol(Y2),
-                  "P" = Y1 %*% t(Y1) + Y2 %*% t(Y2)))
+    # Calculate for single or combined inputs
+    compute_P <- function(Z) {
+      if (is.null(Z)) matrix(0, nrow = m, ncol = m) else Z %*% t(Z)
     }
+    P_X <- compute_P(X)
+    P_Y <- compute_P(Y)
+    return(list("r" = ifelse(is.null(X), 0, ncol(X)) + ifelse(is.null(Y), 0, ncol(Y)),
+                "P" = P_X + P_Y))
   }
-  Pjoint <- check_null(joint)
-  Pindiv1 <- check_null(indiv1)
-  Pindiv2 <- check_null(indiv2)
-  P1 <- check_null2(joint, indiv1)
-  P2 <- check_null2(joint, indiv2)
-  return (list("P1" = P1$P,
-              "P2" = P2$P,
-              "Pjoint" = Pjoint$P,
-              "Pindiv1" = Pindiv1$P,
-              "Pindiv2" = Pindiv2$P,
-              "r1" = P1$r,
-              "r2" = P2$r,
-              "rj" = Pjoint$r,
-              "ri1" = Pindiv1$r,
-              "ri2" = Pindiv2$r))
+  
+  # Apply the function to each combination of inputs
+  Pjoint <- check_and_compute(joint)
+  Pindiv1 <- check_and_compute(indiv1)
+  Pindiv2 <- check_and_compute(indiv2)
+  P1 <- check_and_compute(joint, indiv1)
+  P2 <- check_and_compute(joint, indiv2)
+  
+  # Return the results in a list
+  return(list("P1" = P1$P, "P2" = P2$P,
+              "Pjoint" = Pjoint$P, "Pindiv1" = Pindiv1$P, "Pindiv2" = Pindiv2$P,
+              "r1" = P1$r, "r2" = P2$r,
+              "rj" = Pjoint$r, "ri1" = Pindiv1$r, "ri2" = Pindiv2$r))
 }
+
 compute[["ajive"]] <- function(Y1, Y2, rank1, rank2){
   out <- ajive(list(Y1, Y2), c(rank1, rank2),
               n_wedin_samples = 100, 
@@ -131,9 +122,14 @@ compute[["proposed"]] <- function(Y1, Y2, rank1, rank2) {
 
   prod <- (P.hat %*% Q.hat + Q.hat %*% P.hat) / 2
   svd.prod <- svd(prod)
-  cluster <- Ckmedian.1d.dp(sqrt(svd.prod$d), k = 3)
-  joint <- svd.prod$u[, cluster$cluster == 3, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.prod$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(prod))
+  } else {
+    cluster <- Ckmedian.1d.dp(sqrt(svd.prod$d), k = 3)
+    joint <- svd.prod$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
 
   P.hat <- jointPerp %*% P.hat
   svd.P.hat <- svd(P.hat)
@@ -170,13 +166,18 @@ compute[["proposed_subsampling1"]] <- function(Y1, Y2, rank1, rank2, numSamples=
   avg.P <- avg.P / numSamples
 
   svd.avg <- svd(avg.P)
-  cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
-  # q1 <- rank1 / m
-  # q2 <- rank2 / m
-  # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
-  # & (svd.avg$d > b)
-  joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.avg$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(avg.P))
+  } else {
+    cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
+    # q1 <- rank1 / m
+    # q2 <- rank2 / m
+    # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
+    # & (svd.avg$d > b)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
 
   avg.P1 <- jointPerp %*% avg.P1
   svd.avg1 <- svd(avg.P1)
@@ -218,13 +219,18 @@ compute[["proposed_subsampling2"]] <- function(Y1, Y2, rank1, rank2, numSamples=
   avg.P <- avg.P / numSamples
   
   svd.avg <- svd(avg.P)
-  cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
-  # q1 <- rank1 / m
-  # q2 <- rank2 / m
-  # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
-  # & (svd.avg$d > b)
-  joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-  jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  if (svd.avg$d[1] < 0.5) {
+    joint <- NULL
+    jointPerp <- diag(nrow(avg.P))
+  } else {
+    cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
+    # q1 <- rank1 / m
+    # q2 <- rank2 / m
+    # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
+    # & (svd.avg$d > b)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
   
   avg.P1 <- jointPerp %*% avg.P1
   svd.avg1 <- svd(avg.P1)
