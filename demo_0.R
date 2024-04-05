@@ -16,16 +16,19 @@ params <- list(
   n1 = rep(30, num_exp),
   n2 = rep(40, num_exp),
   sim_iter = rep(100, num_exp),
-  signal_strength1 = rep(30, num_exp),
-  signal_strength2 = rep(40, num_exp),
-  sigma1 = c(1 / sqrt(30), 1, 3),
-  sigma2 = c(1 / sqrt(40), 1, 4),
-  dj1 = list(rnorm(4, mean = 30, sd = 3), rnorm(4, mean = 30, sd = 3), rnorm(4, mean = 30, sd = 3)),
-  dj2 = list(rnorm(4, mean = 40, sd = 3), rnorm(4, mean = 40, sd = 3), rnorm(4, mean = 40, sd = 3)),
-  di1 = list(rnorm(3, mean = 30, sd = 3), rnorm(3, mean = 30, sd = 3), rnorm(3, mean = 30, sd = 3)),
-  di2 = list(rnorm(3, mean = 40, sd = 3), rnorm(3, mean = 40, sd = 3), rnorm(3, mean = 40, sd = 3))
+  signal_strength1 = rep(10, num_exp),
+  signal_strength2 = rep(12, num_exp),
+  sigma1 = c(1, 5, 10),
+  sigma2 = c(1, 6, 10)
 )
-plts <- list()
+
+# create dataframe with columns singular values, product, and parameters
+df <- data.frame(
+  Singular_value = numeric(0),
+  Product = character(0),
+  Parameters = character(0)
+)
+param.title <- c()
 for (exp_id in 1:num_exp) {
   rj <- params$rj[exp_id]
   ri1 <- params$ri1[exp_id]
@@ -39,10 +42,14 @@ for (exp_id in 1:num_exp) {
   signal_strength2 <- params$signal_strength2[exp_id]
   sigma1 = params$sigma1[exp_id]
   sigma2 = params$sigma2[exp_id]
-  dj1 <- params$dj1[[exp_id]]
-  dj2 <- params$dj2[[exp_id]]
-  di1 <- params$di1[[exp_id]]
-  di2 <- params$di2[[exp_id]]
+  d1 <- svd(matrix(signal_strength1 * rnorm(m * n1), m, n1))$d[1:(rj+ri1)]
+  d2 <- svd(matrix(signal_strength2 * rnorm(m * n2), m, n2))$d[1:(rj+ri2)]
+  d1 <- sample(d1)
+  d2 <- sample(d2)
+  dj1 <- d1[1:rj]
+  dj2 <- d2[1:rj]
+  di1 <- d1[(rj+1):(rj+ri1)]
+  di2 <- d2[(rj+1):(rj+ri2)]
   # generate data
   U <- svd(matrix(rnorm(m * (n1+n2)), m, n1+n2))$u
   # joint part
@@ -67,6 +74,8 @@ for (exp_id in 1:num_exp) {
   Y1 <- X1 + matrix(rnorm(m * n1), m, n1) * sigma1
   X2 <- Uj2 %*% diag(dj2) %*% t(Vj2) + Ui2 %*% diag(di2) %*% t(Vi2)
   Y2 <- X2 + matrix(rnorm(m * n2), m, n2) * sigma2
+  # angle
+  angle <- min(acos(svd(t(Ui1) %*% Ui2)$d))
 
   # compute P, Q - true
   P <- cbind(Uj1, Ui1) %*% t(cbind(Uj1, Ui1))
@@ -80,17 +89,20 @@ for (exp_id in 1:num_exp) {
   Q.hat <- U2.hat %*% t(U2.hat)
 
   # use ggplot to plot singular values of P %*% Q and P.hat %*% Q.hat
-  df <- data.frame(
-    singular_value = c(svd(P %*% Q)$d, svd(P.hat %*% Q.hat)$d),
-    Product = rep(c('PQ', 'P.hat Q.hat'), each = length(svd(P %*% Q)$d))
-  )
-  plts[[exp_id]] <- ggplot(df, aes(x = singular_value, fill = Product)) +
-    geom_histogram(binwidth = 0.05, position = 'dodge') +
-    theme_minimal() +
-    xlab('Singular values') +
-    ylab('Count') +
-    scale_fill_discrete(labels = c(expression(hat(P)[ColY1]*hat(P)[ColY2]), expression(P[ColX1]*P[ColX2]))) +
-    theme(text = element_text(size = 20)) +
-    ylim(c(0, 27))
+  df <- rbind(df, data.frame(
+    Singular_value = c(svd(P %*% Q)$d, svd(P.hat %*% Q.hat)$d),
+    Product = rep(c('PQ', 'P.hat Q.hat'), each = length(svd(P %*% Q)$d)),
+    Parameters = rep(exp_id, 2 * length(svd(P %*% Q)$d))
+  ))
+  param.title <- c(param.title, paste(c('SNR = ', signal_strength1 / sigma1, 
+                              ', ', 'Angle = ', round(angle, 2)), collapse = ''))
 }
-grid_arrange_shared_legend(plts[[1]], plts[[2]], plts[[3]], ncol = 3, position='right')
+
+#facet grid of histograms
+p <- ggplot(df, aes(x = Singular_value)) +
+  geom_histogram(binwidth = 0.1, position = 'dodge') +
+  facet_wrap(~factor(Product, c('PQ', 'P.hat Q.hat'), labels = c('True product', 'Estimated product')) + 
+               factor(Parameters, labels = param.title), scales = 'free') +
+  theme_minimal() +
+  xlab('Singular values') +
+  ylab('Count')
