@@ -245,7 +245,7 @@ compute[["proposed_subsampling2"]] <- function(Y1, Y2, rank1, rank2, numSamples=
   return (form_output(joint, indiv1, indiv2))
 }
 sim_iter <- 50
-progress <- txtProgressBar(min=0, max=sim_iter, style=3, width = 100)
+# progress <- txtProgressBar(min=0, max=sim_iter, style=3, width = 100)
 results <- list()
 for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")){
   results[[model]] <- matrix(0, sim_iter, 10)
@@ -314,8 +314,7 @@ for (i in 1:sim_iter) {
   rank2 <- rj + ri2 + error2
 
   # compute results
-  for (model in c("ajive", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
-    # "jive", "slide",
+  for (model in c("jive", "slide", "ajive", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
     out <- compute[[model]](Y1, Y2, rank1, rank2)
     res <- c(compute_fd(out$P1, P1) / out$r1, compute_tp(out$P1, P1) / rank1,
              compute_fd(out$P2, P2) / out$r2, compute_tp(out$P2, P2) / rank2,
@@ -329,9 +328,9 @@ for (i in 1:sim_iter) {
     }
     results[[model]][i,] <- res
   }
-  setTxtProgressBar(progress, i)
+  # setTxtProgressBar(progress, i)
 }
-close(progress)
+# close(progress)
 results <- lapply(results, function(x) colMeans(x))
 results <- do.call(rbind, results)
 results <- as.data.frame(results)

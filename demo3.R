@@ -111,6 +111,31 @@ compute[["ajive"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3){
   indiv3 <- check_null(out$block_decomps[[3]][['individual']][['u']])
   return (form_output(joint, indiv1, indiv2, indiv3))
 }
+compute[["jive"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  out <- jive(list(t(Y1), t(Y2), t(Y3)), rankA = c(rank1, rank2, rank3),
+              method='perm', showProgress=FALSE)
+  check_null <- function(X, rank){
+    if (rank == 0){ return (NULL) }
+    return (X[, 1:rank, drop = FALSE])
+  }
+  joint <- check_null(svd(t(out$joint[[1]]))$u, out$rankJ)
+  indiv1 <- check_null(svd(t(out$individual[[1]]))$u, out$rankA[1])
+  indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
+  indiv3 <- check_null(svd(t(out$individual[[3]]))$u, out$rankA[3])
+  return (form_output(joint, indiv1, indiv2))
+}
+compute[["slide"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  out <- slide(cbind(Y1, Y2, Y3), pvec = c(ncol(Y1), ncol(Y2), ncol(Y3)))
+  check_null <- function(X, mask){
+    if (any(mask)){return(X[, mask, drop = FALSE])}
+    return (NULL)
+  }
+  joint <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 1 & out$S[3, ] == 1))
+  indiv1 <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 0 & out$S[3, ] == 0))
+  indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1 & out$S[3, ] == 0))
+  indiv3 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 0 & out$S[3, ] == 1))
+  return (form_output(joint, indiv1, indiv2, indiv3))
+}
 compute[["proposed"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
   U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
   U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
@@ -276,10 +301,10 @@ compute[["proposed_subsampling2"]] <- function(Y1, Y2, Y3, rank1, rank2, rank3, 
   return (form_output(joint, indiv1, indiv2, indiv3))
 }
 
-sim_iter <- 100
-progress <- txtProgressBar(min=0, max=sim_iter, style=3, width = 100)
+sim_iter <- 50
+# progress <- txtProgressBar(min=0, max=sim_iter, style=3, width = 100)
 results <- list()
-for (model in c("ajive", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
+for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
   results[[model]] <- matrix(0, sim_iter, 14)
 }
 for (i in 1:sim_iter) {
@@ -370,7 +395,7 @@ for (i in 1:sim_iter) {
   rank3 <- rj + ri3 + error3
   
   # compute results
-  for (model in c("ajive", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
+  for (model in c("ajive", "jive", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")) {
     out <- compute[[model]](Y1, Y2, Y3, rank1, rank2, rank3)
     res <- c(compute_fd(out$P1, P1) / out$r1, compute_tp(out$P1, P1) / rank1,
              compute_fd(out$P2, P2) / out$r2, compute_tp(out$P2, P2) / rank2,
@@ -386,9 +411,9 @@ for (i in 1:sim_iter) {
     }
     results[[model]][i,] <- res
   }
-  setTxtProgressBar(progress, i)
+  # setTxtProgressBar(progress, i)
 }
-close(progress)
+# close(progress)
 results <- lapply(results, function(x) colMeans(x))
 results <- do.call(rbind, results)
 results <- as.data.frame(results)
