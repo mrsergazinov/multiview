@@ -10,7 +10,7 @@ suppressPackageStartupMessages({
   library(doParallel)
 })
 
-# Define number of cores and start parallel backend
+# define number of cores and start parallel backend
 numCores <- detectCores() - 1  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
