@@ -44,8 +44,8 @@ if (length(args) > 0) {
 }
 
 sim_iter <- 50
-models <- c("jive", "ajive", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")
-iters <- foreach(i = 1:sim_iter, 
+models <- c("jive", "ajive", "dcca", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")
+iters <- foreach(i = 1:sim_iter,
                    .packages=c("pracma", "r.jive", "ajive", "SLIDE", "Ckmeans.1d.dp")) %dopar% {
   # compute error
   compute_fd <- function(P1, P2){
@@ -91,7 +91,7 @@ iters <- foreach(i = 1:sim_iter,
                 n_wedin_samples = 100, 
                 n_rand_dir_samples = 100)
     check_null <- function(X) {
-      if (is.na(X)) {
+      if (any(is.na(X))) {
         return (NULL)
       } else if (all(X == 0)){
         return (NULL)
@@ -113,6 +113,84 @@ iters <- foreach(i = 1:sim_iter,
     joint <- check_null(svd(t(out$joint[[1]]))$u, out$rankJ)
     indiv1 <- check_null(svd(t(out$individual[[1]]))$u, out$rankA[1])
     indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
+    return (form_output(joint, indiv1, indiv2))
+  }
+  compute[["dcca"]] <- function(Y1, Y2, rank1, rank2) {
+    library(reticulate)
+    use_condaenv("base", required = TRUE)
+    source_python("src/dcca.py")
+    res <- dCCA(t(Y1), t(Y2), r_1 = as.integer(rank1), r_2 = as.integer(rank2))
+    
+    #--------------------------------------------------------------
+    # Below code is taken from Gaynanova et al.
+    #--------------------------------------------------------------
+    projection <- function(A){
+      return(A %*% t(A))
+    }
+    angle_cal <- function(X, Y, tol = .Machine$double.eps^0.5){
+      X = as.matrix(X)
+      Y = as.matrix(Y)
+      Xnorm = svd(X)$u
+      Ynorm = svd(Y)$u
+      M = crossprod(Xnorm,Ynorm)
+      # Extreme case when both X and Y only contain one number
+      if (dim(M)[1] == 1 && dim(M)[2] == 1){
+        cos_angle = abs(M)
+        principal_angle = NA
+        if (cos_angle >= 1){principal_angle = 0}
+        if (cos_angle <= 0){principal_angle = pi/2}
+        if (cos_angle > 0 && cos_angle < 1){
+          principal_angle = acos(cos_angle)
+        }
+        principal_mat1 = Xnorm 
+        principal_mat2 = Ynorm 
+        return(list("angle" = principal_angle, "cos_angle" = cos_angle,
+                    "principal_vector1" = principal_mat1, 
+                    "principal_vector2" = principal_mat2))
+      }
+      # Normal case when X and Y are matrices (data frames)
+      else{
+        svd_result = svd(M)
+        cos_angle = svd_result$d
+        l = length(cos_angle)
+        principal_angle = rep(NA, l)
+        for (i in 1:l){
+          if (cos_angle[i] >= 1){principal_angle[i] = 0}
+          if (cos_angle[i] <= 0){principal_angle[i] = pi/2}
+          if (cos_angle[i] > 0 && cos_angle[i] < 1){
+            principal_angle[i] = acos(cos_angle[i])
+          }
+        }
+        principal_mat1 = Xnorm %*% svd_result$u
+        principal_mat2 = Ynorm %*% svd_result$v
+        return(list("angle" = principal_angle, "cos_angle" = cos_angle,
+                    "principal_vector1" = principal_mat1, 
+                    "principal_vector2" = principal_mat2))
+      }
+    }
+    # First two elements of the lists are fitted thetas
+    theta1hat = t(res[[1]])
+    theta2hat = t(res[[2]])
+    # Extract joint structure, 3 and 4 are Cs, 5 and 6 are Ds
+    # Ranks are 7, 8, 9
+    r0 = res[[9]]
+    r1 = res[[7]] - r0
+    r2 = res[[8]] - r0
+    # DCCA joint from Dongbang
+    col1_dcca = svd(theta1hat)$u[,1:(r0+r1)]
+    col2_dcca = svd(theta2hat)$u[,1:(r0+r2)]
+    angle_result_dcca = angle_cal(col1_dcca, col2_dcca)
+    # Get DCCA joint canonical variables
+    j1hat = angle_result_dcca$principal_vector1[,1:r0, drop = FALSE]
+    j2hat = angle_result_dcca$principal_vector2[,1:r0, drop = FALSE]
+    # Get DCCA individual canonical variables
+    i1hat = svd(theta1hat - projection(j1hat) %*% theta1hat)$u[, 1:r1, drop=FALSE]
+    i2hat = svd(theta2hat - projection(j2hat) %*% theta2hat)$u[, 1:r2, drop=FALSE]
+    #--------------------------------------------------------------
+    
+    joint <- (j1hat + j2hat) / 2
+    indiv1 <- i1hat
+    indiv2 <- i2hat
     return (form_output(joint, indiv1, indiv2))
   }
   compute[["slide"]] <- function(Y1, Y2, rank1, rank2) {
@@ -388,4 +466,4 @@ results.save[["signal_strength2"]] <- signal_strength2
 results.save[["rank_spec"]] <- rank_spec
 results.save[["no_joint"]] <- no_joint
 results.save[["no_indiv"]] <- no_indiv
-save(results.save, file=paste0("results/demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
+save(results.save, file=paste0("results/dcca_demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
