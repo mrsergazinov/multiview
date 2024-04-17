@@ -11,6 +11,7 @@ suppressPackageStartupMessages({
 })
 
 # define number of cores and start parallel backend
+set.seed(1234)
 numCores <- detectCores() - 1  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
@@ -20,13 +21,15 @@ rj <- 4
 ri1 <- 3
 ri2 <- 2
 m <- 50
-phi_max <- 0.1
+phi_max <- 0.8
 n1 <- 80
 n2 <- 100
-sigma1 = 1
-sigma2 = 1
+snr1 <- 4
+snr2 <- 4
 signal_strength1 <- 10
 signal_strength2 <- 12
+sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
+sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
 rank_spec <- 'exact'
 no_joint <- FALSE
 no_indiv <- FALSE
@@ -44,7 +47,7 @@ if (length(args) > 0) {
 }
 
 sim_iter <- 50
-models <- c("jive", "ajive", "dcca", "slide", "proposed", "proposed_subsampling1", "proposed_subsampling2")
+models <- c("jive", "ajive", "dcca", "slide", "proposed", "proposed_subsampling")
 iters <- foreach(i = 1:sim_iter,
                    .packages=c("pracma", "r.jive", "ajive", "SLIDE", "Ckmeans.1d.dp")) %dopar% {
   # compute error
@@ -233,55 +236,7 @@ iters <- foreach(i = 1:sim_iter,
     
     return (form_output(joint, indiv1, indiv2))
   }
-  compute[["proposed_subsampling1"]] <- function(Y1, Y2, rank1, rank2, numSamples=100) {
-    avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-    avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-    avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-    for (i in 1:numSamples){
-      Y1.sample <- Y1[, sample(1:ncol(Y1), as.integer(ncol(Y1)/2), replace=FALSE)]
-      Y2.sample <- Y2[, sample(1:ncol(Y2), as.integer(ncol(Y2)/2), replace=FALSE)]
-      svd.Y1.sample <- svd(Y1.sample)
-      svd.Y2.sample <- svd(Y2.sample)
-      u1.sample <- svd.Y1.sample$u[, 1:rank1]
-      u2.sample <- svd.Y2.sample$u[, 1:rank2]
-      sample.P1 <- (u1.sample %*% t(u1.sample))
-      sample.P2 <- (u2.sample %*% t(u2.sample))
-      avg.P1 <- avg.P1 + sample.P1
-      avg.P2 <- avg.P2 + sample.P2
-      prod <- (sample.P1 %*% sample.P2 + sample.P2 %*% sample.P1) / 2
-      avg.P <- avg.P + prod
-    }
-    avg.P1 <- avg.P1 / numSamples
-    avg.P2 <- avg.P2 / numSamples
-    avg.P <- avg.P / numSamples
-  
-    svd.avg <- svd(avg.P)
-    if (svd.avg$d[1] < 0.5) {
-      joint <- NULL
-      jointPerp <- diag(nrow(avg.P))
-    } else {
-      cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
-      # q1 <- rank1 / m
-      # q2 <- rank2 / m
-      # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
-      # & (svd.avg$d > b)
-      joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-      jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
-    }
-  
-    avg.P1 <- jointPerp %*% avg.P1
-    svd.avg1 <- svd(avg.P1)
-    cluster <- Ckmeans.1d.dp(svd.avg1$d, k = 2)
-    indiv1 <- svd.avg1$u[, cluster$cluster == 2, drop = FALSE]
-    
-    avg.P2 <- jointPerp %*% avg.P2
-    svd.avg2 <- svd(avg.P2)
-    cluster <- Ckmeans.1d.dp(svd.avg2$d, k = 2)
-    indiv2 <- svd.avg2$u[,  cluster$cluster == 2, drop = FALSE]
-  
-    return (form_output(joint, indiv1, indiv2))
-  }
-  compute[["proposed_subsampling2"]] <- function(Y1, Y2, rank1, rank2, numSamples=100) {
+  compute[["proposed_subsampling"]] <- function(Y1, Y2, rank1, rank2, numSamples=200) {
     avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
     avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
     avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -314,10 +269,6 @@ iters <- foreach(i = 1:sim_iter,
       jointPerp <- diag(nrow(avg.P))
     } else {
       cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
-      # q1 <- rank1 / m
-      # q2 <- rank2 / m
-      # b <- q1 + q2 - 2*q1*q2 + 2 * sqrt(q1*q2*(1-q1)*(1-q2))
-      # & (svd.avg$d > b)
       joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
       jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
     }
@@ -335,8 +286,8 @@ iters <- foreach(i = 1:sim_iter,
     return (form_output(joint, indiv1, indiv2))
   }
   # data generator
-  d1 <- svd(matrix(signal_strength1 * rnorm(m * n1), m, n1))$d[1:(rj+ri1)]
-  d2 <- svd(matrix(signal_strength2 * rnorm(m * n2), m, n2))$d[1:(rj+ri2)]
+  d1 <- runif(rj+ri1, min=signal_strength1, max=2*signal_strength1)
+  d2 <- runif(rj+ri2, min=signal_strength2, max=2*signal_strength2)
   d1 <- sample(d1)
   d2 <- sample(d2)
   dj1 <- d1[1:rj]
@@ -394,8 +345,16 @@ iters <- foreach(i = 1:sim_iter,
     error1 <- (-1) * sample(1:2, 1)
     error2 <- (-1) * sample(1:2, 1)
   }
-  rank1 <- rj + ri1 + error1
-  rank2 <- rj + ri2 + error2
+  if (no_joint) {
+    rank1 <- ri1 + error1
+    rank2 <- ri2 + error2
+  } else if (no_indiv) {
+    rank1 <- rj + error1
+    rank2 <- rj + error2
+  } else {
+    rank1 <- rj + ri1 + error1
+    rank2 <- rj + ri2 + error2
+  }
 
   # compute results
   result <- list()
@@ -457,8 +416,8 @@ results.save[["m"]] <- m
 results.save[["phi_max"]] <- phi_max
 results.save[["n1"]] <- n1
 results.save[["n2"]] <- n2
-results.save[["SNR1"]] <- signal_strength1 / sigma1
-results.save[["SNR2"]] <- signal_strength2 / sigma2
+results.save[["SNR1"]] <- snr1
+results.save[["SNR2"]] <- snr2
 results.save[["sigma1"]] <- sigma1
 results.save[["sigma2"]] <- sigma2
 results.save[["signal_strength1"]] <- signal_strength1
@@ -466,4 +425,4 @@ results.save[["signal_strength2"]] <- signal_strength2
 results.save[["rank_spec"]] <- rank_spec
 results.save[["no_joint"]] <- no_joint
 results.save[["no_indiv"]] <- no_indiv
-save(results.save, file=paste0("results/dcca_demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
+save(results.save, file=paste0("results/demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
