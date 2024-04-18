@@ -21,7 +21,7 @@ rj <- 4
 ri1 <- 3
 ri2 <- 2
 m <- 50
-phi_max <- 0.8
+phi_max <- 0.0
 n1 <- 80
 n2 <- 100
 snr1 <- 4
@@ -47,7 +47,7 @@ if (length(args) > 0) {
 }
 
 sim_iter <- 50
-models <- c("jive", "ajive", "dcca", "slide", "proposed", "proposed_subsampling")
+models <- c("jive", "ajive", "dcca", "slide", "unifac", "proposed", "proposed_subsampling")
 iters <- foreach(i = 1:sim_iter,
                    .packages=c("pracma", "r.jive", "ajive", "SLIDE", "Ckmeans.1d.dp")) %dopar% {
   # compute error
@@ -205,6 +205,32 @@ iters <- foreach(i = 1:sim_iter,
     joint <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 1))
     indiv1 <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 0))
     indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1))
+    return (form_output(joint, indiv1, indiv2))
+  }
+  compute[["unifac"]] <- function(Y1, Y2, rank1, rank2) {
+    source('src/unifac.plus.given.R')
+    Y <- cbind(Y1, Y2)
+    p.ind <- list()
+    p.ind[[1]] <- 1:ncol(Y1)
+    p.ind[[2]] <- (ncol(Y1)+1):ncol(Y)
+    p.ind.list <- list()
+    p.ind.list[[1]] <- unlist(p.ind[1:2])
+    p.ind.list[[2]] <- unlist(p.ind[c(1)])
+    p.ind.list[[3]] <- unlist(p.ind[c(2)])
+    res.g <- unifac.plus.given(t(Y), p.ind, p.ind.list, n=m, max.iter=1000)
+    Jmat.ug <- t(res.g$S[[1]])
+    I1.mat.ug <- t(res.g$S[[2]])
+    I2.mat.ug <- t(res.g$S[[3]])
+    
+    svd.joint <- svd(Jmat.ug)
+    svd.I1 <- svd(I1.mat.ug)
+    svd.I2 <- svd(I2.mat.ug)
+    joint <- svd.joint$u[, svd.joint$d > 1e-6, drop = FALSE]
+    indiv1 <- svd.I1$u[, svd.I1$d > 1e-6, drop = FALSE]
+    indiv2 <- svd.I2$u[, svd.I2$d > 1e-6, drop = FALSE]
+    if (length(joint) == 0) joint <- NULL
+    if (length(indiv1) == 0) indiv1 <- NULL
+    if (length(indiv2) == 0) indiv2 <- NULL
     return (form_output(joint, indiv1, indiv2))
   }
   compute[["proposed"]] <- function(Y1, Y2, rank1, rank2) {
