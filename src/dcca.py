@@ -5,7 +5,7 @@ Created on Mon Mar  6 15:01:27 2017
 """
 
 import numpy as np
-import scipy as sp
+from scipy import linalg
 from sklearn.linear_model import LinearRegression
 import math
 
@@ -13,7 +13,7 @@ def sPOET(Y, K=None, K_max=None, K_min=None, method=None):
 #assume Y is mean-zero p*n matrix, and K is the rank of its covariance matrix.
     p,n = Y.shape
         
-    U, S, V_t = sp.linalg.svd(Y, full_matrices=False)
+    U, S, V_t = linalg.svd(Y, full_matrices=False)
     
     S = np.diag(S)
     
@@ -63,7 +63,7 @@ def dCCA(Y_1,Y_2, r_1=None, r_2=None, r_12=None, method=None):
     
     Theta = (Lambda_1_inv_half @ V_1.T @ X_1_hat) @ (X_2_hat.T @ V_2 @ Lambda_2_inv_half)/n
             
-    U_theta, D_theta, V_theta_t= sp.linalg.svd(Theta, full_matrices=True) # D_theta is a vector
+    U_theta, D_theta, V_theta_t= linalg.svd(Theta, full_matrices=True) # D_theta is a vector
     
             
     Gamma_1 = V_1 @ Lambda_1_inv_half @ U_theta
@@ -76,7 +76,7 @@ def dCCA(Y_1,Y_2, r_1=None, r_2=None, r_12=None, method=None):
     
     
     if r_12 is None or r_12 < 1:        
-        ccor_hat = sp.linalg.svdvals(V_y1_t[:r_1,:] @ V_y2_t.T[:,:r_2])
+        ccor_hat = linalg.svdvals(V_y1_t[:r_1,:] @ V_y2_t.T[:,:r_2])
         r_12 = select_r12_by_MDLIC(ccor_hat, r_1, r_2, n)
  
 
