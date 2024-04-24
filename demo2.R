@@ -28,10 +28,9 @@ signal_strength1 <- 10
 signal_strength2 <- 12
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
 sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
-rank_spec <- 0
+rank_spec <- 1
 no_joint <- FALSE
 no_indiv <- FALSE
-save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # set args from command line
@@ -44,6 +43,7 @@ if (length(args) > 0) {
     eval(parse(text = args[[i]]))
   }
 }
+save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
