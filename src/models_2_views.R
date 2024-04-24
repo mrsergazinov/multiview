@@ -1,4 +1,4 @@
-my_lib_path <- "../multiview_rlibs"
+my_lib_path <- "./multiview_rlibs"
 .libPaths(my_lib_path)
 
 library(reticulate)
