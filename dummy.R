@@ -11,7 +11,7 @@ set.seed(1234)
 numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
-clusterEvalQ(cl, my_lib_path)
+clusterEvalQ(cl, .libPaths(my_lib_path))
 
 # run parallel
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
