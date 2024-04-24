@@ -11,18 +11,11 @@ set.seed(1234)
 numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
+clusterEvalQ(cl, my_lib_path)
 
 # run parallel
-iters <- foreach(i = 1:10) %dopar% {
-  my_lib_path <- "./multiview_rlibs"
-  .libPaths(my_lib_path)
-  library(reticulate)
-  library(ajive)
-  library(r.jive)
-  library(SLIDE)
-  library(Ckmeans.1d.dp)
-  library(pracma)
-  library(PRIMME)
+packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
+iters <- foreach(i = 1:10, .packages=packages) %dopar% {
   data <- generate_data(50, 80, 70,
                        2, 2, 2, 0,
                        10, 10,
