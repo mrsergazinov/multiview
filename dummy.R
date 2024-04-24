@@ -1,3 +1,5 @@
+my_lib_path <- "./multiview_rlibs"
+.libPaths(my_lib_path)
 suppressPackageStartupMessages({
   library(foreach)
   library(doParallel)
