@@ -2,7 +2,8 @@ suppressPackageStartupMessages({
   library(foreach)
   library(doParallel)
 })
-
+source('src/generate_data_2_views.R')
+source('src/models_2_views.R')
 # define number of cores and start parallel backend
 set.seed(1234)
 numCores <- 48  # Leave one core for system processes
@@ -10,10 +11,25 @@ cl <- makeCluster(numCores)
 registerDoParallel(cl)
 
 # run parallel
-iters <- foreach(i = 1:100) %dopar% {
-  source('src/generate_data_2_views.R')
-  source('src/models_2_views.R')
-  c(0,0)
+iters <- foreach(i = 1:10) %dopar% {
+  my_lib_path <- "./multiview_rlibs"
+  .libPaths(my_lib_path)
+  library(reticulate)
+  library(ajive)
+  library(r.jive)
+  library(SLIDE)
+  library(Ckmeans.1d.dp)
+  library(pracma)
+  library(PRIMME)
+  data <- generate_data(50, 80, 70,
+                       2, 2, 2, 0,
+                       10, 10,
+                       1, 1,
+                       FALSE, FALSE,
+                       30)
+  out <- slide(cbind(data$Y1, data$Y2), c(80, 70))
+  out
+                                             
 }
 # shut down the parallel backend
 stopCluster(cl)

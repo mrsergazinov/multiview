@@ -1,6 +1,4 @@
 unifac.plus.given <- function(X0,p.ind,p.ind.list,n,num.comp=20,max.iter=500,conv.thresh=0.001){
-  library(PRIMME)
-  
   n.source <- length(p.ind)
   X0.resid <- X0
   S <- list()
