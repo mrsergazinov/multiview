@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
 
 # define number of cores and start parallel backend
 set.seed(1234)
-numCores <- detectCores() - 1  # Leave one core for system processes
+numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
 
@@ -41,8 +41,9 @@ if (length(args) > 0) {
 }
 
 sim_iter <- 50
-models <- c("jive", "ajive", "dcca", "slide", "unifac", "proposed", "proposed_subsampling")
+models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
 iters <- foreach(i = 1:sim_iter) %dopar% {
+# for (i in 1:sim_iter) {
   # load models
   source("src/models_2_views.R")
   # compute error

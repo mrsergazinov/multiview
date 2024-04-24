@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name=jive
-#SBATCH --time=2
+#SBATCH --time=2-0
 #SBATCH --nodes=1
 #SBATCH --mem=10GB
 #SBATCH --partition=long

@@ -10,7 +10,7 @@ cl <- makeCluster(numCores)
 registerDoParallel(cl)
 
 # run parallel
-iters <- foreach(i = 1:sim_iter) %dopar% {
+iters <- foreach(i = 1:100) %dopar% {
   source('src/generate_data_2_views.R')
   source('src/models_2_views.R')
   c(0,0)
