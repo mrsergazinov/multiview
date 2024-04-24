@@ -11,7 +11,8 @@ packages <- c("tidyverse",
               "foreach", 
               "doParallel", 
               "remotes",
-              "reticulate")
+              "reticulate",
+              "PRIMME")
 
 # Function to check and install packages
 install.packages.if.necessary <- function(packages) {
