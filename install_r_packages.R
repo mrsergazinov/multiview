@@ -27,5 +27,5 @@ install.packages.if.necessary(packages)
 
 # Install custom packages from Github
 remotes::install_github("irinagain/SLIDE")
-remotes::install_github("idc9/r_jive")
+remotes::install_github("mrsergazinov/r_jive")
 
