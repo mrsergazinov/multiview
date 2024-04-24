@@ -29,10 +29,12 @@ generate_data <- function(m, n1, n2,
   Ui1 <- U[, (rj+1):(rj+ri1)]
   Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
   # rotate 
-  phi_max = phi_max * pi / 180
-  ra <- as.integer(min(ri1, ri2)  / 2)
-  angles <- c(phi_max, phi_max + runif(ra-1, min=0,max=pi/2-phi_max))
-  Ui2[, 1:ra] <- Ui1[, 1:ra] %*% diag(cos(angles), nrow=ra) + Ui2[, 1:ra] %*% diag(sin(angles), nrow=ra)
+  if (phi_max != 90) {
+    phi_max = phi_max * pi / 180
+    ra <- as.integer(min(ri1, ri2)  / 2)
+    angles <- c(phi_max, phi_max + runif(ra-1, min=0,max=pi/2-phi_max))
+    Ui2[, 1:ra] <- Ui1[, 1:ra] %*% diag(cos(angles), nrow=ra) + Ui2[, 1:ra] %*% diag(sin(angles), nrow=ra) 
+  }
   # no-joint or no-indiv cases
   if (no_joint) {
     Uj1 <- matrix(0, m, rj)
@@ -63,15 +65,8 @@ generate_data <- function(m, n1, n2,
   P2 <- Pjoint + Pindiv2
   
   # signal rank
-  error1 <- 0
-  error2 <- 0
-  if (rank_spec == 'over') {
-    error1 <- sample(1:2, 1)
-    error2 <- sample(1:2, 1)
-  } else if (rank_spec == 'under') {
-    error1 <- (-1) * sample(1:2, 1)
-    error2 <- (-1) * sample(1:2, 1)
-  }
+  error1 <- rank_spec * sample(1:2, 1)
+  error2 <- rank_spec * sample(1:2, 1)
   if (no_joint) {
     rank1 <- ri1 + error1
     rank2 <- ri2 + error2
