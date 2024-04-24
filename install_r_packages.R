@@ -16,7 +16,7 @@ packages <- c("tidyverse",
 # Function to check and install packages
 install.packages.if.necessary <- function(packages) {
   new.packages <- packages[!(packages %in% installed.packages()[,"Package"])]
-  if (length(new.packages)) install.packages(new.packages, dependencies = TRUE)
+  if (length(new.packages)) install.packages(new.packages, dependencies = TRUE, repos = "http://cran.us.r-project.org")
 }
 
 # Run the installation function
