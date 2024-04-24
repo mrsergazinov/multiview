@@ -10,8 +10,9 @@ source('src/models_2_views.R')
 set.seed(1234)
 numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
+clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
 registerDoParallel(cl)
-clusterEvalQ(cl, .libPaths(my_lib_path))
+
 
 # run parallel
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
