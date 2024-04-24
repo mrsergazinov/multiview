@@ -219,6 +219,9 @@ compute[["proposed_subsampling"]] <- function(Y1, Y2, rank1, rank2, numSamples=2
     q2 <- rank2 / m
     q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
     q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
+    if (q.minus == 0) {
+      q.minus <- 1e-6 # offset to avoid comp error
+    }
     A0 <- 1 - min(q1, q2) 
     pdf <- function(x) {
       sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
@@ -227,8 +230,10 @@ compute[["proposed_subsampling"]] <- function(Y1, Y2, rank1, rank2, numSamples=2
       A0 + integrate(pdf, q.minus, lam)$value - 0.95
     }
     # find closest to 0.95
-    
+    lam <- uniroot(cdf, c(q.minus, q.plus))$root
+    return (lam)
   }
+  thresh <- global_null(nrow(Y1), rank1, rank2)
   
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -257,7 +262,7 @@ compute[["proposed_subsampling"]] <- function(Y1, Y2, rank1, rank2, numSamples=2
   avg.P <- avg.P / numSamples
   
   svd.avg <- svd(avg.P)
-  if (svd.avg$d[1] < 0.5) {
+  if (svd.avg$d[1] < thresh) {
     joint <- NULL
     jointPerp <- diag(nrow(avg.P))
   } else {
