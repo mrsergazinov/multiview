@@ -26,7 +26,7 @@ sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
 rank_spec <- 'exact'
 no_joint <- FALSE
 no_indiv <- FALSE
-save_file <- paste0("demo2_", rank_spec, "_", no_joint, "_", no_indiv)
+save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # set args from command line
@@ -82,28 +82,15 @@ for (iter in iters) {
     results[[model]] = rbind(results[[model]], iter[[model]])
   }
 }
-# process and save
-results <- lapply(results, function(x) colMeans(x))
-results <- do.call(rbind, results)
-results <- as.data.frame(results)
-colnames(results) <- c("fdr.P1", "tpr.P1",
-                      "fdr.P2", "tpr.P2",
-                      "fdr.Pjoint", "tpr.Pjoint",
-                      "fdr.Pindiv1", "tpr.Pindiv1",
-                      "fdr.Pindiv2", "tpr.Pindiv2")
-# compute precision = 1 - fdr
-results <- results %>% mutate(precision.Pjoint = 1 - fdr.Pjoint,
-                              precision.Pindiv1 = 1 - fdr.Pindiv1,
-                              precision.Pindiv2 = 1 - fdr.Pindiv2)
-# avg precision and avg tpr
-results$avg_precision <- (results$precision.Pjoint +
-                            results$precision.Pindiv1 +
-                            results$precision.Pindiv2) / 3
-results$avg_tpr <- (results$tpr.Pjoint +
-                      results$tpr.Pindiv1 +
-                      results$tpr.Pindiv2) / 3
-# compute F1 score
-results$f1 <- 2 * (results$avg_precision * results$avg_tpr) / (results$avg_precision + results$avg_tpr)
+for (model in models) {
+  results[[model]] <- as.data.frame(results[[model]])
+  colnames(results[[model]]) <- c("fdr.P1", "tpr.P1",
+                                  "fdr.P2", "tpr.P2",
+                                  "fdr.Pjoint", "tpr.Pjoint",
+                                  "fdr.Pindiv1", "tpr.Pindiv1",
+                                  "fdr.Pindiv2", "tpr.Pindiv2")
+  
+}
 # save results
 results.save <- list()
 results.save[["results"]] <- results
@@ -124,4 +111,4 @@ results.save[["signal_strength2"]] <- signal_strength2
 results.save[["rank_spec"]] <- rank_spec
 results.save[["no_joint"]] <- no_joint
 results.save[["no_indiv"]] <- no_indiv
-save(results.save, file=paste0("results/demo2_", format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
+save(results.save, file=paste0(save_file, format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
