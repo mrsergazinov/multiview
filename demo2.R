@@ -1,12 +1,17 @@
-suppressPackageStartupMessages({
-  library(foreach)
-  library(doParallel)
-})
+my_lib_path <- "./multiview_rlibs"
+.libPaths(my_lib_path)
+
+library(foreach)
+library(doParallel)
+source('src/generate_data_2_views.R')
+source('src/models_2_views.R')
+source('src/metrics.R')
 
 # define number of cores and start parallel backend
 set.seed(1234)
 numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
+clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
 registerDoParallel(cl)
 
 # define other params
@@ -42,14 +47,17 @@ if (length(args) > 0) {
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
-iters <- foreach(i = 1:sim_iter) %dopar% {
+packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
+iters <- foreach(i = 1:10, .packages=packages) %dopar% {
 # for (i in 1:sim_iter) {
-  # load models
-  source("src/models_2_views.R")
-  # compute error
-  source("src/metrics.R")
-  # data generator
-  source("src/generate_data_2_views.R")
+  compute <- list(slide = slide_func, 
+                  jive = jive_func, 
+                  ajive = ajive_func, 
+                  dcca = dcca_func, 
+                  unifac = unifac_func, 
+                  proposed = proposed_func, 
+                  proposed_subsampling = proposed_subsampling_func)
+  
   data <- generate_data(m, n1, n2, 
                         rj, ri1, ri2, rank_spec, 
                         signal_strength1, signal_strength2, 

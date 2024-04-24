@@ -8,8 +8,8 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=48
 #SBATCH --output=out.%j
-module purge
-module load R Python
+# module purge
+# module load R Python
 bash install_all.sh
 
 Rscript demo2.R snr1=8 snr2=8 phi_max=90 no_joint=FALSE no_indiv=FALSE

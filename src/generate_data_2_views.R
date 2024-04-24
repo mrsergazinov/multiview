@@ -1,8 +1,3 @@
-my_lib_path <- "./multiview_rlibs"
-.libPaths(my_lib_path)
-
-library(pracma)
-
 generate_data <- function(m, n1, n2, 
                           rj, ri1, ri2, rank_spec, 
                           signal_strength1, signal_strength2, 

@@ -1,18 +1,17 @@
 my_lib_path <- "./multiview_rlibs"
 .libPaths(my_lib_path)
-suppressPackageStartupMessages({
-  library(foreach)
-  library(doParallel)
-})
+
+library(foreach)
+library(doParallel)
 source('src/generate_data_2_views.R')
 source('src/models_2_views.R')
+
 # define number of cores and start parallel backend
 set.seed(1234)
 numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
 clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
 registerDoParallel(cl)
-
 
 # run parallel
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')

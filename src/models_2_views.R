@@ -1,18 +1,3 @@
-my_lib_path <- "./multiview_rlibs"
-.libPaths(my_lib_path)
-
-library(reticulate)
-library(ajive)
-library(r.jive)
-library(SLIDE)
-library(Ckmeans.1d.dp)
-library(pracma)
-library(PRIMME)
-use_virtualenv("./multiview_pylibs", required = TRUE)
-source_python("src/dcca.py")
-source('src/unifac.plus.given.R')
-
-compute <- list()
 form_output <- function(joint, indiv1, indiv2, dims) {
   # Simplified function to handle null checks and calculations
   check_and_compute <- function(X, Y = NULL) {
@@ -43,7 +28,7 @@ form_output <- function(joint, indiv1, indiv2, dims) {
               "r1" = P1$r, "r2" = P2$r,
               "rj" = Pjoint$r, "ri1" = Pindiv1$r, "ri2" = Pindiv2$r))
 }
-compute[["ajive"]] <- function(Y1, Y2, rank1, rank2){
+ajive_func <- function(Y1, Y2, rank1, rank2){
   out <- ajive(list(Y1, Y2), c(rank1, rank2),
                n_wedin_samples = 100, 
                n_rand_dir_samples = 100)
@@ -60,7 +45,7 @@ compute[["ajive"]] <- function(Y1, Y2, rank1, rank2){
   indiv2 <- check_null(out$block_decomps[[2]][['individual']][['u']])
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["jive"]] <- function(Y1, Y2, rank1, rank2) {
+jive_func <- function(Y1, Y2, rank1, rank2) {
   out <- jive(list(t(Y1), t(Y2)), rankA = c(rank1, rank2),
               method='perm', showProgress=FALSE)
   check_null <- function(X, rank){
@@ -72,7 +57,9 @@ compute[["jive"]] <- function(Y1, Y2, rank1, rank2) {
   indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["dcca"]] <- function(Y1, Y2, rank1, rank2) {
+dcca_func <- function(Y1, Y2, rank1, rank2) {
+  use_virtualenv("./multiview_pylibs", required = TRUE)
+  source_python("src/dcca.py")
   res <- dCCA(t(Y1), t(Y2), r_1 = as.integer(rank1), r_2 = as.integer(rank2))
   
   #--------------------------------------------------------------
@@ -147,7 +134,7 @@ compute[["dcca"]] <- function(Y1, Y2, rank1, rank2) {
   indiv2 <- i2hat
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["slide"]] <- function(Y1, Y2, rank1, rank2) {
+slide_func <- function(Y1, Y2, rank1, rank2) {
   out <- slide(cbind(Y1, Y2), pvec = c(ncol(Y1), ncol(Y2)))
   check_null <- function(X, mask){
     if (any(mask)){return(X[, mask, drop = FALSE])}
@@ -158,8 +145,8 @@ compute[["slide"]] <- function(Y1, Y2, rank1, rank2) {
   indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1))
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["unifac"]] <- function(Y1, Y2, rank1, rank2) {
-  
+unifac_func <- function(Y1, Y2, rank1, rank2) {
+  source('src/unifac.plus.given.R')
   Y <- cbind(Y1, Y2)
   m <- nrow(Y)
   p.ind <- list()
@@ -185,7 +172,7 @@ compute[["unifac"]] <- function(Y1, Y2, rank1, rank2) {
   if (length(indiv2) == 0) indiv2 <- NULL
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["proposed"]] <- function(Y1, Y2, rank1, rank2) {
+proposed_func <- function(Y1, Y2, rank1, rank2) {
   U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
   U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
   P.hat <- U1.hat %*% t(U1.hat)
@@ -214,7 +201,7 @@ compute[["proposed"]] <- function(Y1, Y2, rank1, rank2) {
   
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-compute[["proposed_subsampling"]] <- function(Y1, Y2, rank1, rank2, numSamples=200) {
+proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=200) {
   global_null <- function(m, rank1, rank2) {
     q1 <- rank1 / m
     q2 <- rank2 / m
