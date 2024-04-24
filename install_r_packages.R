@@ -1,15 +1,17 @@
 # List of packages to install
-library(tidyverse)
-library(ajive)
-library(r.jive)
-library(SLIDE)
-library(RMTstat)
-library(pracma)
-library(Ckmeans.1d.dp)
-library(foreach)
-library(doParallel)
+my_lib_path <- "./multiview_rlibs"
+if (!file.exists(my_lib_path)) dir.create(my_lib_path)
+.libPaths(my_lib_path)
 
-packages <- c("tidyverse", "r.jive", "RMTstat", "pracma", "Ckmeans.1d.dp", "foreach", "doParallel", "remotes")
+packages <- c("tidyverse", 
+              "r.jive", 
+              "RMTstat", 
+              "pracma", 
+              "Ckmeans.1d.dp", 
+              "foreach", 
+              "doParallel", 
+              "remotes",
+              "reticulate")
 
 # Function to check and install packages
 install.packages.if.necessary <- function(packages) {
