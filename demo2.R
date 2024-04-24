@@ -23,7 +23,7 @@ signal_strength1 <- 10
 signal_strength2 <- 12
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
 sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
-rank_spec <- 'exact'
+rank_spec <- 0
 no_joint <- FALSE
 no_indiv <- FALSE
 save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
