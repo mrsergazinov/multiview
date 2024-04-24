@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
 
 # define number of cores and start parallel backend
 set.seed(1234)
-numCores <- detectCores() - 1  # Leave one core for system processes
+numCores <- 48  # Leave one core for system processes
 cl <- makeCluster(numCores)
 registerDoParallel(cl)
 
@@ -17,5 +17,4 @@ iters <- foreach(i = 1:100) %dopar% {
 }
 # shut down the parallel backend
 stopCluster(cl)
-# collect results
-results <- list()
+print(iters)
