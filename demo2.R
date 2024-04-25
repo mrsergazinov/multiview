@@ -7,29 +7,22 @@ source('src/generate_data_2_views.R')
 source('src/models_2_views.R')
 source('src/metrics.R')
 
-# define number of cores and start parallel backend
-set.seed(1234)
-numCores <- detectCores()-1  # Leave one core for system processes
-cl <- makeCluster(numCores)
-clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
-registerDoParallel(cl)
-
 # define other params
 rj <- 4
 ri1 <- 5
 ri2 <- 4
 m <- 50
-phi_max <- 30
+phi_max <- 90
 n1 <- 80
 n2 <- 100
-snr1 <- 2
-snr2 <- 2
+snr1 <- 8
+snr2 <- 8
 signal_strength1 <- 10
 signal_strength2 <- 12
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
 sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
-rank_spec <- 1
-no_joint <- FALSE
+rank_spec <- 0
+no_joint <- TRUE
 no_indiv <- FALSE
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
@@ -44,6 +37,13 @@ if (length(args) > 0) {
   }
 }
 save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
+
+# define number of cores and start parallel backend
+set.seed(1234)
+numCores <- detectCores()-1  # Leave one core for system processes
+cl <- makeCluster(numCores)
+clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
+registerDoParallel(cl)
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
