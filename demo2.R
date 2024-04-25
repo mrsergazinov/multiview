@@ -9,7 +9,7 @@ source('src/metrics.R')
 
 # define number of cores and start parallel backend
 set.seed(1234)
-numCores <- 48  # Leave one core for system processes
+numCores <- detectCores()-1  # Leave one core for system processes
 cl <- makeCluster(numCores)
 clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
 registerDoParallel(cl)
