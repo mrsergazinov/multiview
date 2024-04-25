@@ -173,7 +173,7 @@ unifac_func <- function(Y1, Y2, rank1, rank2) {
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
 global_null <- function(Y1, Y2, rank1, rank2) {
-  m <- nrows(Y1)
+  m <- nrow(Y1)
   q1 <- rank1 / m
   q2 <- rank2 / m
   q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
