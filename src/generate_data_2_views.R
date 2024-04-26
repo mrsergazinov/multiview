@@ -3,7 +3,7 @@ generate_data <- function(m, n1, n2,
                           signal_strength1, signal_strength2, 
                           sigma1, sigma2,
                           no_joint, no_indiv, 
-                          phi_max) {
+                          phi_max=NA, angles=NA) {
   # data generator
   d1 <- runif(rj+ri1, min=signal_strength1, max=2*signal_strength1)
   d2 <- runif(rj+ri2, min=signal_strength2, max=2*signal_strength2)
@@ -24,10 +24,13 @@ generate_data <- function(m, n1, n2,
   Ui1 <- U[, (rj+1):(rj+ri1)]
   Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
   # rotate 
-  if (phi_max != 90) {
+  if (!is.na(phi_max) && (phi_max != 90)) {
     phi_max = phi_max * pi / 180
     ra <- as.integer(min(ri1, ri2)  / 2)
     angles <- c(phi_max, phi_max + runif(ra-1, min=0,max=pi/2-phi_max))
+    Ui2[, 1:ra] <- Ui1[, 1:ra] %*% diag(cos(angles), nrow=ra) + Ui2[, 1:ra] %*% diag(sin(angles), nrow=ra) 
+  } else if (!all(is.na(angles))) {
+    ra <- length(angles)
     Ui2[, 1:ra] <- Ui1[, 1:ra] %*% diag(cos(angles), nrow=ra) + Ui2[, 1:ra] %*% diag(sin(angles), nrow=ra) 
   }
   # no-joint or no-indiv cases
@@ -74,6 +77,8 @@ generate_data <- function(m, n1, n2,
   }
   
   return(list(Y1=Y1, Y2=Y2, 
+              X1=X1, X2=X2,
+              Z1=Z1, Z2=Z2,
               P1=P1, P2=P2, 
               Pjoint=Pjoint, Pindiv1=Pindiv1, Pindiv2=Pindiv2,
               rank1=rank1, rank2=rank2,

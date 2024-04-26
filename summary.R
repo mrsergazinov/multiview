@@ -30,7 +30,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -39,22 +39,20 @@ all_params <- lapply(file_paths, extract_params)
 df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
 # Organize the data frame
-df <- df[, c("f1_jive",
-             "f1_slide",
-             "f1_ajive", 
-             "f1_dcca",
-             "f1_unifac",
-             "f1_proposed", 
-             "f1_proposed_subsampling",
-             "phi.max", 
+models <- c('jive', 'slide', 'ajive', 'dcca', 'unifac', 'proposed', 'proposed_subsampling')
+cols <- sapply(models, function(x) paste0(x,'_avgF1'))
+names(cols) <- NULL
+df <- df[, c(cols,
+             "phi_max", 
              "SNR1", 
              "SNR2", 
              "no_joint", 
-             "no_indiv")]
+             "no_indiv",
+             "rank_spec")]
 
 # Print the data frame
-df_short <- df[1:9, c("f1_jive", "f1_slide", "f1_ajive", "f1_dcca", "f1_unifac", "f1_proposed", "f1_proposed_subsampling")]
-df_short <- cbind(expand.grid(c('high SNR', 'medium SNR', 'low SNR'), c('Orthogonal', 'Slightly aligned', 'Aligned')), df_short)
-# round to 3 decimal places
-df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')] <- round(df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 3)
-kable(df_short[, c('Var2', 'Var1', 'f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 'latex')
+# df_short <- df[1:9, c("f1_jive", "f1_slide", "f1_ajive", "f1_dcca", "f1_unifac", "f1_proposed", "f1_proposed_subsampling")]
+# df_short <- cbind(expand.grid(c('high SNR', 'medium SNR', 'low SNR'), c('Orthogonal', 'Slightly aligned', 'Aligned')), df_short)
+# # round to 3 decimal places
+# df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')] <- round(df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 3)
+# kable(df_short[, c('Var2', 'Var1', 'f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 'latex')
