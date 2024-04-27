@@ -2,461 +2,7 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=8"
 [1] "snr2=8"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=30"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [[1]]
@@ -683,6 +229,460 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=4"
 [1] "snr2=4"
+[1] "phi_max=45"
+[1] "no_joint=FALSE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=2"
+[1] "snr2=2"
+[1] "phi_max=45"
+[1] "no_joint=FALSE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=90"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -908,8 +908,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=60"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -1135,9 +1135,9 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=30"
+[1] "snr1=1"
+[1] "snr2=1"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [[1]]
@@ -1362,462 +1362,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=30"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -2045,6 +1591,687 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=8"
 [1] "snr2=8"
+[1] "phi_max=45"
+[1] "no_joint=TRUE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=4"
+[1] "snr2=4"
+[1] "phi_max=45"
+[1] "no_joint=TRUE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=2"
+[1] "snr2=2"
+[1] "phi_max=45"
+[1] "no_joint=TRUE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=90"
 [1] "no_joint=TRUE"
 [1] "no_indiv=FALSE"
@@ -2270,8 +2497,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=60"
 [1] "no_joint=TRUE"
 [1] "no_indiv=FALSE"
@@ -2497,8 +2724,235 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
+[1] "snr1=1"
+[1] "snr2=1"
+[1] "phi_max=45"
+[1] "no_joint=TRUE"
+[1] "no_indiv=FALSE"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=30"
 [1] "no_joint=TRUE"
 [1] "no_indiv=FALSE"
@@ -2724,1824 +3178,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=90"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=60"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=30"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=90"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=60"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=30"
-[1] "no_joint=TRUE"
-[1] "no_indiv=FALSE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=TRUE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=TRUE"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=90"
 [1] "no_joint=FALSE"
 [1] "no_indiv=TRUE"
@@ -4769,463 +3407,7 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=8"
 [1] "snr2=8"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=30"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [1] "rank_spec=1"
@@ -5453,6 +3635,462 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=4"
 [1] "snr2=4"
+[1] "phi_max=45"
+[1] "no_joint=FALSE"
+[1] "no_indiv=FALSE"
+[1] "rank_spec=1"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=2"
+[1] "snr2=2"
+[1] "phi_max=45"
+[1] "no_joint=FALSE"
+[1] "no_indiv=FALSE"
+[1] "rank_spec=1"
+[[1]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[2]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[3]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[4]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[5]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[6]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[7]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[8]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[9]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[10]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[11]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[12]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[13]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[14]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[15]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[16]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[17]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[18]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[19]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[20]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[21]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[22]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[23]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[24]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[25]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[26]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[27]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[28]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[29]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[30]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[31]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[32]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[33]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[34]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[35]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[36]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[37]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[38]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[39]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[40]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[41]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[42]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[43]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[44]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[45]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[46]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[47]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[48]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[49]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[50]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[51]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[52]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[53]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[54]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+[[55]]
+[1] "/home/mrsergazinov/multiview/multiview_rlibs"
+[2] "/usr/local/R/4.2.0/lib64/R/library"          
+
+Loading required package: iterators
+Loading required package: parallel
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=90"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -5679,8 +4317,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=60"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -5907,9 +4545,9 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=30"
+[1] "snr1=1"
+[1] "snr2=1"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [1] "rank_spec=1"
@@ -6135,464 +4773,8 @@ Loading required package: parallel
 
 Loading required package: iterators
 Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
+[1] "snr1=1"
+[1] "snr2=1"
 [1] "phi_max=30"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
@@ -6821,463 +5003,7 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=8"
 [1] "snr2=8"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=8"
-[1] "snr2=8"
-[1] "phi_max=30"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [1] "rank_spec=-1"
@@ -7505,463 +5231,7 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=4"
 [1] "snr2=4"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=4"
-[1] "snr2=4"
-[1] "phi_max=30"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [1] "rank_spec=-1"
@@ -8189,463 +5459,7 @@ Loading required package: iterators
 Loading required package: parallel
 [1] "snr1=2"
 [1] "snr2=2"
-[1] "phi_max=90"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=60"
-[1] "no_joint=FALSE"
-[1] "no_indiv=FALSE"
-[1] "rank_spec=-1"
-[[1]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[2]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[3]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[4]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[5]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[6]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[7]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[8]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[9]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[10]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[11]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[12]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[13]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[14]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[15]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[16]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[17]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[18]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[19]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[20]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[21]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[22]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[23]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[24]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[25]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[26]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[27]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[28]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[29]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[30]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[31]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[32]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[33]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[34]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[35]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[36]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[37]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[38]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[39]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[40]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[41]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[42]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[43]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[44]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[45]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[46]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[47]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[48]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[49]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[50]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[51]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[52]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[53]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[54]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-[[55]]
-[1] "/home/mrsergazinov/multiview/multiview_rlibs"
-[2] "/usr/local/R/4.2.0/lib64/R/library"          
-
-Loading required package: iterators
-Loading required package: parallel
-[1] "snr1=2"
-[1] "snr2=2"
-[1] "phi_max=30"
+[1] "phi_max=45"
 [1] "no_joint=FALSE"
 [1] "no_indiv=FALSE"
 [1] "rank_spec=-1"

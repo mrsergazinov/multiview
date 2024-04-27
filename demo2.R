@@ -48,8 +48,7 @@ registerDoParallel(cl)
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
-iters <- foreach(i = 1:10, .packages=packages) %dopar% {
-# for (i in 1:sim_iter) {
+iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
   compute <- list(slide = slide_func, 
                   jive = jive_func, 
                   ajive = ajive_func, 
