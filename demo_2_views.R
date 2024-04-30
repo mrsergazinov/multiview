@@ -4,6 +4,7 @@ my_lib_path <- "./multiview_rlibs"
 library(foreach)
 library(doParallel)
 source('src/generate_data_2_views.R')
+source('src/utils.R')
 source('src/models_2_views.R')
 source('src/metrics.R')
 
@@ -40,11 +41,11 @@ rj <- 4
 ri1 <- 5
 ri2 <- 4
 m <- 50
-phi_max <- 60
+phi_max <- 90
 n1 <- 80
 n2 <- 100
-snr1 <- 2
-snr2 <- 2
+snr1 <- 3/4
+snr2 <- 3/4
 signal_strength1 <- 10
 signal_strength2 <- 12
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
@@ -77,15 +78,15 @@ registerDoParallel(cl)
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
-compute <- list(slide = slide_func, 
-                jive = jive_func, 
-                ajive = ajive_func, 
-                dcca = dcca_func, 
-                unifac = unifac_func, 
-                proposed = proposed_func, 
-                proposed_subsampling = proposed_subsampling_func)
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
 iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
+  compute <- list(slide = slide_func, 
+                  jive = jive_func, 
+                  ajive = ajive_func, 
+                  dcca = dcca_func, 
+                  unifac = unifac_func, 
+                  proposed = proposed_func, 
+                  proposed_subsampling = proposed_subsampling_func)
   data <- generate_data(m, n1, n2, 
                         rj, ri1, ri2, rank_spec, 
                         signal_strength1, signal_strength2, 
