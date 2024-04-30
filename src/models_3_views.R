@@ -1,6 +1,20 @@
 source('src/utils.R')
 
 form_output <- function(joint, indiv1, indiv2, indiv3, dims){
+  check_and_compute <- function(X, Y = NULL) {
+    # If both X and Y are NULL, return infinity and a zero matrix
+    if (is.null(X) && is.null(Y)) {
+      return(list("r" = Inf, "P" = matrix(0, nrow = dims, ncol = dims)))
+    }
+    # Calculate for single or combined inputs
+    compute_P <- function(Z) {
+      if (is.null(Z)) matrix(0, nrow = dims, ncol = dims) else Z %*% t(Z)
+    }
+    P_X <- compute_P(X)
+    P_Y <- compute_P(Y)
+    return(list("r" = ifelse(is.null(X), 0, ncol(X)) + ifelse(is.null(Y), 0, ncol(Y)),
+                "P" = P_X + P_Y))
+  }
   Pjoint <- check_and_compute(joint)
   Pindiv1 <- check_and_compute(indiv1)
   Pindiv2 <- check_and_compute(indiv2)
@@ -20,7 +34,7 @@ ajive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3){
                n_wedin_samples = 100, 
                n_rand_dir_samples = 100)
   check_null <- function(X) {
-    if (is.na(X)) {
+    if (any(is.na(X))) {
       return (NULL)
     } else if (all(X == 0)){
       return (NULL)
@@ -91,12 +105,58 @@ unifac_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
   if (length(indiv3) == 0) indiv3 <- NULL
   return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
 }
+global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
+  m <- nrow(Y1)
+  q1 <- rank1 / m
+  q2 <- rank2 / m
+  q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  if (q.minus == 0) {
+    q.minus <- 1e-6 # offset to avoid comp error
+  }
+  A0 <- 1 - min(q1, q2) 
+  pdf <- function(x) {
+    sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
+  }
+  cdf <- function(lam) {
+    A0 + integrate(pdf, q.minus, lam)$value - 0.95
+  }
+  # find closest to 0.95
+  lam <- 0
+  if (A0 > 0.95) {
+    lam <- 0
+  } else {
+    lam <- uniroot(cdf, c(q.minus, q.plus))$root
+  }
+  # compute product of projections
+  if (compute_prod) {
+    svd.Y1 <- svd(Y1)
+    svd.Y2 <- svd(Y2)
+    U1.hat <- svd.Y1$u[, 1:rank1, drop = FALSE]
+    U2.hat <- svd.Y2$u[, 1:rank2, drop = FALSE]
+    P.hat <- U1.hat %*% t(U1.hat)
+    Q.hat <- U2.hat %*% t(U2.hat)
+    prod <- P.hat %*% Q.hat
+    prod.sym <- (prod + t(prod)) / 2
+    svd.prod <- svd(prod)
+    return (list("noJoint" = (svd.prod$d[1] < lam),
+                 "P.hat" = P.hat,
+                 "Q.hat" = Q.hat,
+                 "prod.sym" = prod.sym,
+                 "svd.prod" = svd.prod,
+                 "svd.Y1" = svd.Y1,
+                 "svd.Y2" = svd.Y2))
+  } else {
+    return (lam)
+  }
+  
+}
 global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
   out1 <- global_null_2_views(Y1, Y2, rank1, rank2)
-  out2 <- global_null_2_views(Y1, Y3, rank1, rank3)
-  out3 <- global_null_2_views(Y2, Y3, rank2, rank3)
+  out2 <- global_null_2_views(Y2, Y3, rank2, rank3)
+  out3 <- global_null_2_views(Y3, Y1, rank3, rank1)
   prod <- out1$P.hat %*% out2$P.hat %*% out3$P.hat
-  prod.sym <- (prod + 
+  prod.sym <- (out1$P.hat %*% out2$P.hat %*% out3$P.hat +
                  out2$P.hat %*% out1$P.hat %*% out3$P.hat + 
                  out3$P.hat %*% out2$P.hat %*% out1$P.hat) / 3
   svd.prod <- svd(prod)
@@ -105,7 +165,10 @@ global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
                "Q.hat" = out2$P.hat,
                "R.hat" = out3$P.hat,
                "prod.sym" = prod.sym,
-               "svd.prod" = svd.prod))
+               "svd.prod" = svd.prod,
+               "svd.Y1" = out1$svd.Y1,
+               "svd.Y2" = out1$svd.Y1,
+               "svd.Y3" = out1$svd.Y1))
 }
 proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
   out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
@@ -135,6 +198,9 @@ proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
 }
 proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSamples=300, return_scores=FALSE) {
   out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
+  thresh1 <- (out$svd.Y1$d[rank1] + out$svd.Y1$d[rank1+1]) / 2
+  thresh2 <- (out$svd.Y2$d[rank2] + out$svd.Y2$d[rank2+1]) / 2
+  thresh3 <- (out$svd.Y3$d[rank3] + out$svd.Y3$d[rank3+1]) / 2
   
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -157,9 +223,9 @@ proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSample
     svd.Y1.sample <- svd(Y1.sample)
     svd.Y2.sample <- svd(Y2.sample)
     svd.Y3.sample <- svd(Y3.sample)
-    u1.sample <- svd.Y1.sample$u[, 1:rank1]
-    u2.sample <- svd.Y2.sample$u[, 1:rank2]
-    u3.sample <- svd.Y3.sample$u[, 1:rank3]
+    u1.sample <- svd.Y1.sample$u[, svd.Y1.sample$d > thresh1, drop = FALSE]
+    u2.sample <- svd.Y2.sample$u[, svd.Y2.sample$d > thresh2, drop = FALSE]
+    u3.sample <- svd.Y3.sample$u[, svd.Y3.sample$d > thresh3, drop = FALSE]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     sample.P3 <- (u3.sample %*% t(u3.sample))

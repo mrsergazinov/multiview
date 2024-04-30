@@ -1,6 +1,5 @@
 source('src/utils.R')
 form_output <- function(joint, indiv1, indiv2, dims) {
-  # Simplified function to handle null checks and calculations
   check_and_compute <- function(X, Y = NULL) {
     # If both X and Y are NULL, return infinity and a zero matrix
     if (is.null(X) && is.null(Y)) {
@@ -15,7 +14,6 @@ form_output <- function(joint, indiv1, indiv2, dims) {
     return(list("r" = ifelse(is.null(X), 0, ncol(X)) + ifelse(is.null(Y), 0, ncol(Y)),
                 "P" = P_X + P_Y))
   }
-  
   # Apply the function to each combination of inputs
   Pjoint <- check_and_compute(joint)
   Pindiv1 <- check_and_compute(indiv1)
@@ -176,6 +174,52 @@ unifac_func <- function(Y1, Y2, rank1, rank2) {
   if (length(indiv2) == 0) indiv2 <- NULL
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
+global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
+  m <- nrow(Y1)
+  q1 <- rank1 / m
+  q2 <- rank2 / m
+  q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  if (q.minus == 0) {
+    q.minus <- 1e-6 # offset to avoid comp error
+  }
+  A0 <- 1 - min(q1, q2) 
+  pdf <- function(x) {
+    sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
+  }
+  cdf <- function(lam) {
+    A0 + integrate(pdf, q.minus, lam)$value - 0.95
+  }
+  # find closest to 0.95
+  lam <- 0
+  if (A0 > 0.95) {
+    lam <- 0
+  } else {
+    lam <- uniroot(cdf, c(q.minus, q.plus))$root
+  }
+  # compute product of projections
+  if (compute_prod) {
+    svd.Y1 <- svd(Y1)
+    svd.Y2 <- svd(Y2)
+    U1.hat <- svd.Y1$u[, 1:rank1, drop = FALSE]
+    U2.hat <- svd.Y2$u[, 1:rank2, drop = FALSE]
+    P.hat <- U1.hat %*% t(U1.hat)
+    Q.hat <- U2.hat %*% t(U2.hat)
+    prod <- P.hat %*% Q.hat
+    prod.sym <- (prod + t(prod)) / 2
+    svd.prod <- svd(prod)
+    return (list("noJoint" = (svd.prod$d[1] < lam),
+                 "P.hat" = P.hat,
+                 "Q.hat" = Q.hat,
+                 "prod.sym" = prod.sym,
+                 "svd.prod" = svd.prod,
+                 "svd.Y1" = svd.Y1,
+                 "svd.Y2" = svd.Y2))
+  } else {
+    return (lam)
+  }
+  
+}
 proposed_func <- function(Y1, Y2, rank1, rank2) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
   
@@ -188,13 +232,11 @@ proposed_func <- function(Y1, Y2, rank1, rank2) {
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
-  P.hat <- jointPerp %*% out$P.hat
-  svd.P.hat <- svd(P.hat)
+  svd.P.hat <- svd(jointPerp %*% out$P.hat)
   cluster <- Ckmedian.1d.dp(svd.P.hat$d, k = 2)
   indiv1 <- svd.P.hat$u[, cluster$cluster == 2, drop = FALSE]
   
-  Q.hat <- jointPerp %*% out$Q.hat
-  svd.Q.hat <- svd(Q.hat)
+  svd.Q.hat <- svd(jointPerp %*% out$Q.hat)
   cluster <- Ckmedian.1d.dp(svd.Q.hat$d, k = 2)
   indiv2 <- svd.Q.hat$u[, cluster$cluster == 2, drop = FALSE]
   
@@ -202,7 +244,9 @@ proposed_func <- function(Y1, Y2, rank1, rank2) {
 }
 proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
-    
+  thresh1 <- (out$svd.Y1$d[rank1] + out$svd.Y1$d[rank1+1]) / 2
+  thresh2 <- (out$svd.Y2$d[rank2] + out$svd.Y2$d[rank2+1]) / 2
+  
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -216,8 +260,8 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, retu
     }
     svd.Y1.sample <- svd(Y1.sample)
     svd.Y2.sample <- svd(Y2.sample)
-    u1.sample <- svd.Y1.sample$u[, 1:rank1]
-    u2.sample <- svd.Y2.sample$u[, 1:rank2]
+    u1.sample <- svd.Y1.sample$u[, svd.Y1.sample$d > thresh1, drop = FALSE]
+    u2.sample <- svd.Y2.sample$u[, svd.Y2.sample$d > thresh2, drop = FALSE]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
