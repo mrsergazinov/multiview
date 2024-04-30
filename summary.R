@@ -5,17 +5,22 @@ extract_params <- function(file_path) {
   load(file_path)
   
   out <- list()
+  results.save = list("results" = results)
   models <- names(results.save$results)
   for (model in models) {
     table <- results.save$results[[model]]
     table[['precision.joint']] <- 1 - table$fdr.Pjoint
     table[['precision.indiv1']] <- 1 - table$fdr.Pindiv1
     table[['precision.indiv2']] <- 1 - table$fdr.Pindiv2
-    table[['avg.precision']] <- (table$precision.joint + table$precision.indiv1 + table$precision.indiv2) / 3
-    table[['avg.tpr']] <- (table$tpr.Pjoint + table$tpr.Pindiv1 + table$tpr.Pindiv2) / 3
-    table[['f1']] <- 2 * table$avg.precision * table$avg.tpr / (table$avg.precision + table$avg.tpr)
-    out[[paste0(model, '_avgF1')]] <- mean(table$f1)
-    out[[paste0(model, '_stdF1')]] <- sd(table$f1)
+    table[['avg.precision']] <- (table[['precision.joint']] + 
+                                   table[['precision.indiv1']] + 
+                                   table[['precision.indiv2']]) / 3
+    table[['avg.tpr']] <- (table[['tpr.Pjoint']] + 
+                             table[['tpr.Pindiv1']] + 
+                             table[['tpr.Pindiv2']]) / 3
+    table[['f1.avg']] <- 2 * table$avg.precision * table$avg.tpr / (table$avg.precision + table$avg.tpr)
+    out[[paste0(model, '_avgF1')]] <- mean(table$f1.avg)
+    out[[paste0(model, '_stdF1')]] <- sd(table$f1.avg)
   }
   
   # Extract desired parameters
@@ -30,7 +35,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_0_FALSE_FALSE.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -51,8 +56,8 @@ df <- df[, c(cols,
              "rank_spec")]
 
 # Print the data frame
-# df_short <- df[1:9, c("f1_jive", "f1_slide", "f1_ajive", "f1_dcca", "f1_unifac", "f1_proposed", "f1_proposed_subsampling")]
-# df_short <- cbind(expand.grid(c('high SNR', 'medium SNR', 'low SNR'), c('Orthogonal', 'Slightly aligned', 'Aligned')), df_short)
-# # round to 3 decimal places
-# df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')] <- round(df_short[, c('f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 3)
+df_short <- df[, cols]
+df_short <- cbind(expand.grid(c(90, 60, 45, 30), c(8, 4, 2, 1)), df_short)
+# round to 3 decimal places
+df_short <- round(df_short, 3)
 # kable(df_short[, c('Var2', 'Var1', 'f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 'latex')
