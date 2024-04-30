@@ -1,0 +1,209 @@
+source('src/utils.R')
+
+form_output <- function(joint, indiv1, indiv2, indiv3, dims){
+  Pjoint <- check_and_compute(joint)
+  Pindiv1 <- check_and_compute(indiv1)
+  Pindiv2 <- check_and_compute(indiv2)
+  Pindiv3 <- check_and_compute(indiv3)
+  P1 <- check_and_compute(joint, indiv1)
+  P2 <- check_and_compute(joint, indiv2)
+  P3 <- check_and_compute(joint, indiv3)
+  return (list("P1" = P1$P, "P2" = P2$P, "P3" = P3$P,
+               "Pjoint" = Pjoint$P, "Pindiv1" = Pindiv1$P,
+               "Pindiv2" = Pindiv2$P, "Pindiv3" = Pindiv3$P,
+               "r1" = P1$r, "r2" = P2$r, "r3" = P3$r,
+               "rj" = Pjoint$r, "ri1" = Pindiv1$r,
+               "ri2" = Pindiv2$r, "ri3" = Pindiv3$r))
+}
+ajive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3){
+  out <- ajive(list(Y1, Y2, Y3), c(rank1, rank2, rank3),
+               n_wedin_samples = 100, 
+               n_rand_dir_samples = 100)
+  check_null <- function(X) {
+    if (is.na(X)) {
+      return (NULL)
+    } else if (all(X == 0)){
+      return (NULL)
+    }
+    return (X)
+  }
+  joint <- check_null(out$joint_scores)
+  indiv1 <- check_null(out$block_decomps[[1]][['individual']][['u']])
+  indiv2 <- check_null(out$block_decomps[[2]][['individual']][['u']])
+  indiv3 <- check_null(out$block_decomps[[3]][['individual']][['u']])
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
+jive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  out <- jive(list(t(Y1), t(Y2), t(Y3)), rankA = c(rank1, rank2, rank3),
+              method='perm', showProgress=FALSE)
+  check_null <- function(X, rank){
+    if (rank == 0){ return (NULL) }
+    return (X[, 1:rank, drop = FALSE])
+  }
+  joint <- check_null(svd(t(out$joint[[1]]))$u, out$rankJ)
+  indiv1 <- check_null(svd(t(out$individual[[1]]))$u, out$rankA[1])
+  indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
+  indiv3 <- check_null(svd(t(out$individual[[3]]))$u, out$rankA[3])
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
+slide_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  out <- slide(cbind(Y1, Y2, Y3), pvec = c(ncol(Y1), ncol(Y2), ncol(Y3)))
+  check_null <- function(X, mask){
+    if (any(mask)){return(X[, mask, drop = FALSE])}
+    return (NULL)
+  }
+  joint <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 1 & out$S[3, ] == 1))
+  indiv1 <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 0 & out$S[3, ] == 0))
+  indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1 & out$S[3, ] == 0))
+  indiv3 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 0 & out$S[3, ] == 1))
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
+unifac_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  source('src/unifac.plus.given.R')
+  Y <- cbind(Y1, Y2, Y3)
+  m <- nrow(Y)
+  p.ind <- list()
+  p.ind[[1]] <- 1:ncol(Y1)
+  p.ind[[2]] <- (ncol(Y1) + 1):(ncol(Y1) + ncol(Y2))
+  p.ind[[3]] <- (ncol(Y1) + ncol(Y2) + 1):ncol(Y)
+  p.ind.list <- list()
+  p.ind.list[[1]] <- unlist(p.ind[1:3])
+  p.ind.list[[2]] <- unlist(p.ind[c(1)])
+  p.ind.list[[3]] <- unlist(p.ind[c(2)])
+  p.ind.list[[4]] <- unlist(p.ind[c(3)])
+  res.g <- unifac.plus.given(t(Y), p.ind, p.ind.list, n=m, max.iter=1000)
+  Jmat.ug <- t(res.g$S[[1]])
+  I1.mat.ug <- t(res.g$S[[2]])
+  I2.mat.ug <- t(res.g$S[[3]])
+  I3.mat.ug <- t(res.g$S[[4]])
+  
+  svd.joint <- svd(Jmat.ug)
+  svd.I1 <- svd(I1.mat.ug)
+  svd.I2 <- svd(I2.mat.ug)
+  svd.I3 <- svd(I3.mat.ug)
+  joint <- svd.joint$u[, svd.joint$d > 1e-6, drop = FALSE]
+  indiv1 <- svd.I1$u[, svd.I1$d > 1e-6, drop = FALSE]
+  indiv2 <- svd.I2$u[, svd.I2$d > 1e-6, drop = FALSE]
+  indiv3 <- svd.I3$u[, svd.I3$d > 1e-6, drop = FALSE]
+  if (length(joint) == 0) joint <- NULL
+  if (length(indiv1) == 0) indiv1 <- NULL
+  if (length(indiv2) == 0) indiv2 <- NULL
+  if (length(indiv3) == 0) indiv3 <- NULL
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
+global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
+  out1 <- global_null_2_views(Y1, Y2, rank1, rank2)
+  out2 <- global_null_2_views(Y1, Y3, rank1, rank3)
+  out3 <- global_null_2_views(Y2, Y3, rank2, rank3)
+  prod <- out1$P.hat %*% out2$P.hat %*% out3$P.hat
+  prod.sym <- (prod + 
+                 out2$P.hat %*% out1$P.hat %*% out3$P.hat + 
+                 out3$P.hat %*% out2$P.hat %*% out1$P.hat) / 3
+  svd.prod <- svd(prod)
+  return (list("noJoint" = (out1$noJoint || out2$noJoint || out3$noJoint),
+               "P.hat" = out1$P.hat,
+               "Q.hat" = out2$P.hat,
+               "R.hat" = out3$P.hat,
+               "prod.sym" = prod.sym,
+               "svd.prod" = svd.prod))
+}
+proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+  out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
+  
+  if (out$noJoint) {
+    joint <- NULL
+    jointPerp <- diag(nrow(prod))
+  } else {
+    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
+    joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
+  
+  svd.P.hat <- svd(jointPerp %*% out$P.hat)
+  cluster <- Ckmedian.1d.dp(svd.P.hat$d, k = 2)
+  indiv1 <- svd.P.hat$u[, cluster$cluster == 2, drop = FALSE]
+  
+  svd.Q.hat <- svd(jointPerp %*% out$Q.hat)
+  cluster <- Ckmedian.1d.dp(svd.Q.hat$d, k = 2)
+  indiv2 <- svd.Q.hat$u[, cluster$cluster == 2, drop = FALSE]
+  
+  svd.R.hat <- svd(jointPerp %*% out$R.hat)
+  cluster <- Ckmedian.1d.dp(svd.R.hat$d, k = 2)
+  indiv3 <- svd.R.hat$u[, cluster$cluster == 2, drop = FALSE]
+  
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
+proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSamples=300, return_scores=FALSE) {
+  out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
+  
+  avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  avg.P3 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
+  for (i in 1:numSamples){
+    if (i %% 3 == 0) {
+      Y1.sample <- Y1[, sample(1:ncol(Y1), as.integer(ncol(Y1)/2), replace=FALSE)]
+      Y2.sample <- Y2
+      Y3.sample <- Y3
+    } else if (i %% 3 == 1) {
+      Y1.sample <- Y1
+      Y2.sample <- Y2[, sample(1:ncol(Y2), as.integer(ncol(Y2)/2), replace=FALSE)]
+      Y3.sample <- Y3
+    } else {
+      Y1.sample <- Y1
+      Y2.sample <- Y2
+      Y3.sample <- Y3[, sample(1:ncol(Y3), as.integer(ncol(Y3)/2), replace=FALSE)]
+    }
+    svd.Y1.sample <- svd(Y1.sample)
+    svd.Y2.sample <- svd(Y2.sample)
+    svd.Y3.sample <- svd(Y3.sample)
+    u1.sample <- svd.Y1.sample$u[, 1:rank1]
+    u2.sample <- svd.Y2.sample$u[, 1:rank2]
+    u3.sample <- svd.Y3.sample$u[, 1:rank3]
+    sample.P1 <- (u1.sample %*% t(u1.sample))
+    sample.P2 <- (u2.sample %*% t(u2.sample))
+    sample.P3 <- (u3.sample %*% t(u3.sample))
+    avg.P1 <- avg.P1 + sample.P1
+    avg.P2 <- avg.P2 + sample.P2
+    avg.P3 <- avg.P3 + sample.P3
+    prod <- (sample.P1 %*% sample.P2 %*% sample.P3 + 
+               sample.P2 %*% sample.P1 %*% sample.P3 + 
+               sample.P3 %*% sample.P2 %*% sample.P1) / 3
+    avg.P <- avg.P + prod
+  }
+  avg.P1 <- avg.P1 / numSamples
+  avg.P2 <- avg.P2 / numSamples
+  avg.P3 <- avg.P3 / numSamples
+  avg.P <- avg.P / numSamples
+  
+  if (out$noJoint) {
+    joint <- NULL
+    jointPerp <- diag(nrow(avg.P))
+  } else {
+    svd.avg <- svd(avg.P)
+    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
+  }
+  
+  svd.avg1 <- svd(jointPerp %*% avg.P1)
+  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$P.hat)$d, k = 2)
+  indiv1 <- svd.avg1$u[, cluster$cluster == 2, drop = FALSE]
+  
+  svd.avg2 <- svd(jointPerp %*% avg.P2)
+  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$Q.hat)$d, k = 2)
+  indiv2 <- svd.avg2$u[,  cluster$cluster == 2, drop = FALSE]
+  
+  svd.avg3 <- svd(jointPerp %*% avg.P3)
+  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$R.hat)$d, k = 2)
+  indiv3 <- svd.avg3$u[, cluster$cluster == 2, drop = FALSE]
+  
+  if (return_scores) {
+    return (list("joint" = joint, 
+                 "indiv1" = indiv1, 
+                 "indiv2" = indiv2, 
+                 "indiv3" = indiv3,
+                 "test" = out))
+  }
+  return (form_output(joint, indiv1, indiv2, indiv3, nrow(Y1)))
+}
