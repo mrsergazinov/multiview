@@ -74,14 +74,9 @@ clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
 registerDoParallel(cl)
 
 sim_iter <- 50
-models <- c("ajive", "proposed_subsampling")
-  # c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
+models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
 iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
-# library(ajive)
-# library(Ckmeans.1d.dp)
-# library(pracma)
-# for (i in 1:sim_iter) {
   compute <- list(slide = slide_func, 
                   jive = jive_func, 
                   ajive = ajive_func, 
