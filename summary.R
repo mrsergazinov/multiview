@@ -5,7 +5,6 @@ extract_params <- function(file_path) {
   load(file_path)
   
   out <- list()
-  results.save = list("results" = results)
   models <- names(results.save$results)
   for (model in models) {
     table <- results.save$results[[model]]
