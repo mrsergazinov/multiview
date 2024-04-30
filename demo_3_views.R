@@ -4,6 +4,7 @@ my_lib_path <- "./multiview_rlibs"
 library(foreach)
 library(doParallel)
 source('src/generate_data_3_views.R')
+source('src/utils.R')
 source('src/models_3_views.R')
 source('src/metrics.R')
 
@@ -16,12 +17,16 @@ m <- 50
 phi_max <- 60
 n1 <- 80
 n2 <- 100
-snr1 <- 2
-snr2 <- 2
+n3 <- 90
+snr1 <- 1/2
+snr2 <- 1/2
+snr3 <- 1/2
 signal_strength1 <- 10
 signal_strength2 <- 12
+signal_strength3 <- 15
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
 sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
+sigma3 <- (signal_strength3 / snr3) / (sqrt(m) + sqrt(n3))
 rank_spec <- 0
 no_joint <- FALSE
 no_indiv <- FALSE
@@ -39,6 +44,7 @@ save_file <- paste0("results/demo3_", rank_spec, "_", no_joint, "_", no_indiv)
 # check correctness + update
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
 sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
+sigma3 <- (signal_strength3 / snr3) / (sqrt(m) + sqrt(n3))
 try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # define number of cores and start parallel backend
@@ -50,33 +56,33 @@ registerDoParallel(cl)
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "unifac", "proposed", "proposed_subsampling")
-compute <- list(slide = slide_func, 
-                jive = jive_func, 
-                ajive = ajive_func, 
-                dcca = dcca_func, 
-                unifac = unifac_func, 
-                proposed = proposed_func, 
-                proposed_subsampling = proposed_subsampling_func)
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
 iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
-  data <- generate_data(m, n1, n2, 
-                        rj, ri1, ri2, rank_spec, 
-                        signal_strength1, signal_strength2, 
-                        sigma1, sigma2,
+# for (i in 1:sim_iter) {
+  compute <- list(slide = slide_func, 
+                  jive = jive_func, 
+                  ajive = ajive_func, 
+                  unifac = unifac_func, 
+                  proposed = proposed_func, 
+                  proposed_subsampling = proposed_subsampling_func)
+  data <- generate_data(m, n1, n2, n3,
+                        rj, ri1, ri2, ri3, rank_spec, 
+                        signal_strength1, signal_strength2, signal_strength3,
+                        sigma1, sigma2, sigma3,
                         no_joint, no_indiv, 
                         phi_max)
   
   # compute results
   result <- list()
   for (model in models) {
-    out <- compute[[model]](Y1, Y2, Y3, rank1, rank2, rank3)
-    out <- c(compute_fd(out$P1, P1) / out$r1, compute_tp(out$P1, P1) / rank1,
-             compute_fd(out$P2, P2) / out$r2, compute_tp(out$P2, P2) / rank2,
-             compute_fd(out$P3, P3) / out$r3, compute_tp(out$P3, P3) / rank3,
-             compute_fd(out$Pjoint, Pjoint) / out$rj, compute_tp(out$Pjoint, Pjoint) / rj,
-             compute_fd(out$Pindiv1, Pindiv1) / out$ri1, compute_tp(out$Pindiv1, Pindiv1) / ri1,
-             compute_fd(out$Pindiv2, Pindiv2) / out$ri2, compute_tp(out$Pindiv2, Pindiv2) / ri2,
-             compute_fd(out$Pindiv3, Pindiv3) / out$ri3, compute_tp(out$Pindiv3, Pindiv3) / ri3)
+    out <- compute[[model]](data$Y1, data$Y2, data$Y3, data$rank1, data$rank2, data$rank3)
+    out <- c(compute_fd(out$P1, data$P1) / out$r1, compute_tp(out$P1, data$P1) / data$rank1,
+             compute_fd(out$P2, data$P2) / out$r2, compute_tp(out$P2, data$P2) / data$rank2,
+             compute_fd(out$P3, data$P3) / out$r3, compute_tp(out$P3, data$P3) / data$rank3,
+             compute_fd(out$Pjoint, data$Pjoint) / out$rj, compute_tp(out$Pjoint, data$Pjoint) / data$rj,
+             compute_fd(out$Pindiv1, data$Pindiv1) / out$ri1, compute_tp(out$Pindiv1, data$Pindiv1) / data$ri1,
+             compute_fd(out$Pindiv2, data$Pindiv2) / out$ri2, compute_tp(out$Pindiv2, data$Pindiv2) / data$ri2,
+             compute_fd(out$Pindiv3, data$Pindiv3) / out$ri3, compute_tp(out$Pindiv3, data$Pindiv3) / data$ri3)
     # check if any NA
     if (any(is.na(out))){
       print(paste0("NA detected in ", model))
