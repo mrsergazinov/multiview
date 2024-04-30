@@ -12,7 +12,8 @@ packages <- c("tidyverse",
               "doParallel", 
               "remotes",
               "reticulate",
-              "PRIMME")
+              "PRIMME",
+              "BiocManager")
 
 # Function to check and install packages
 install.packages.if.necessary <- function(packages) {
@@ -25,6 +26,7 @@ install.packages.if.necessary <- function(packages) {
 
 # Run the installation function
 install.packages.if.necessary(packages)
+BiocManager::install("mixOmics")
 
 # Install custom packages from Github
 remotes::install_github("irinagain/SLIDE")
