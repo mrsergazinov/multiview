@@ -28,7 +28,7 @@ form_output <- function(joint, indiv1, indiv2, dims) {
               "r1" = P1$r, "r2" = P2$r,
               "rj" = Pjoint$r, "ri1" = Pindiv1$r, "ri2" = Pindiv2$r))
 }
-ajive_func <- function(Y1, Y2, rank1, rank2){
+ajive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE){
   out <- ajive(list(Y1, Y2), c(rank1, rank2),
                n_wedin_samples = 100, 
                n_rand_dir_samples = 100)
@@ -43,6 +43,9 @@ ajive_func <- function(Y1, Y2, rank1, rank2){
   joint <- check_null(out$joint_scores)
   indiv1 <- check_null(out$block_decomps[[1]][['individual']][['u']])
   indiv2 <- check_null(out$block_decomps[[2]][['individual']][['u']])
+  if (return_scores) {
+    return (list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2))
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
 jive_func <- function(Y1, Y2, rank1, rank2) {
