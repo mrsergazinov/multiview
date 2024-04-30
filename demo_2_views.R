@@ -52,19 +52,21 @@ sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
 rank_spec <- 0
 no_joint <- FALSE
 no_indiv <- FALSE
-try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # set args from command line
 args <- commandArgs(trailingOnly = TRUE)
-# Check if arguments are provided
 if (length(args) > 0) {
-  # Parse command-line arguments
   for (i in seq_along(args)) {
     print(args[[i]])
     eval(parse(text = args[[i]]))
   }
 }
 save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
+
+# check correctness + update
+sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
+sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
+try(if (no_joint && no_indiv) stop("At least one of no_joint and no_indiv must be FALSE"))
 
 # define number of cores and start parallel backend
 set.seed(1234)
@@ -75,26 +77,21 @@ registerDoParallel(cl)
 
 sim_iter <- 50
 models <- c("slide", "jive", "ajive", "dcca", "unifac", "proposed", "proposed_subsampling")
+compute <- list(slide = slide_func, 
+                jive = jive_func, 
+                ajive = ajive_func, 
+                dcca = dcca_func, 
+                unifac = unifac_func, 
+                proposed = proposed_func, 
+                proposed_subsampling = proposed_subsampling_func)
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
 iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
-  compute <- list(slide = slide_func, 
-                  jive = jive_func, 
-                  ajive = ajive_func, 
-                  dcca = dcca_func, 
-                  unifac = unifac_func, 
-                  proposed = proposed_func, 
-                  proposed_subsampling = proposed_subsampling_func)
-  
   data <- generate_data(m, n1, n2, 
                         rj, ri1, ri2, rank_spec, 
                         signal_strength1, signal_strength2, 
                         sigma1, sigma2,
                         no_joint, no_indiv, 
                         phi_max)
-  Y1 <- data$Y1
-  Y2 <- data$Y2
-  rank1 <- data$rank1
-  rank2 <- data$rank2
   # compute results
   result <- list()
   for (model in models) {
