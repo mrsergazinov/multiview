@@ -172,7 +172,7 @@ unifac_func <- function(Y1, Y2, rank1, rank2) {
   if (length(indiv2) == 0) indiv2 <- NULL
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-global_null <- function(Y1, Y2, rank1, rank2) {
+global_null <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   m <- nrow(Y1)
   q1 <- rank1 / m
   q2 <- rank2 / m
@@ -196,47 +196,51 @@ global_null <- function(Y1, Y2, rank1, rank2) {
     lam <- uniroot(cdf, c(q.minus, q.plus))$root
   }
   # compute product of projections
-  U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
-  U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
-  P.hat <- U1.hat %*% t(U1.hat)
-  Q.hat <- U2.hat %*% t(U2.hat)
-  prod <- P.hat %*% Q.hat
-  return (svd(prod)$d[1] <= lam)
+  if (compute_prod) {
+    U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
+    U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
+    P.hat <- U1.hat %*% t(U1.hat)
+    Q.hat <- U2.hat %*% t(U2.hat)
+    prod <- P.hat %*% Q.hat
+    prod.sym <- (prod + t(prod)) / 2
+    svd.prod <- svd(prod)
+    return (list("noJoint" = (svd.prod$d[1] < lam),
+                 "P.hat" = P.hat,
+                 "Q.hat" = Q.hat,
+                 "prod.sym" = prod.sym,
+                 "svd.prod" = svd.prod))
+  } else {
+    return (lam)
+  }
+  
 }
 proposed_func <- function(Y1, Y2, rank1, rank2) {
-  noJoint <- global_null(Y1, Y2, rank1, rank2)
+  out <- global_null(Y1, Y2, rank1, rank2)
   
-  U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
-  U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
-  P.hat <- U1.hat %*% t(U1.hat)
-  Q.hat <- U2.hat %*% t(U2.hat)
-  
-  prod <- (P.hat %*% Q.hat + Q.hat %*% P.hat) / 2
-  svd.prod <- svd(prod)
-  if (noJoint) {
+  if (out$noJoint) {
     joint <- NULL
     jointPerp <- diag(nrow(prod))
   } else {
-    cluster <- Ckmedian.1d.dp(sqrt(svd.prod$d), k = 3)
-    joint <- svd.prod$u[, cluster$cluster == 3, drop = FALSE]
+    cluster <- Ckmedian.1d.dp(sqrt(out$svd.prod$d), k = 3)
+    joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
-  P.hat <- jointPerp %*% P.hat
+  P.hat <- jointPerp %*% out$P.hat
   svd.P.hat <- svd(P.hat)
-  cluster <- Ckmedian.1d.dp(sqrt(svd.P.hat$d), k = 2)
+  cluster <- Ckmedian.1d.dp(svd.P.hat$d, k = 2)
   indiv1 <- svd.P.hat$u[, cluster$cluster == 2, drop = FALSE]
   
-  Q.hat <- jointPerp %*% Q.hat
+  Q.hat <- jointPerp %*% out$Q.hat
   svd.Q.hat <- svd(Q.hat)
-  cluster <- Ckmedian.1d.dp(sqrt(svd.Q.hat$d), k = 2)
+  cluster <- Ckmedian.1d.dp(svd.Q.hat$d, k = 2)
   indiv2 <- svd.Q.hat$u[, cluster$cluster == 2, drop = FALSE]
   
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=200) {
-  noJoint <- global_null(Y1, Y2, rank1, rank2)
-  
+proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, return_scores=FALSE) {
+  out <- global_null(Y1, Y2, rank1, rank2)
+    
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -264,24 +268,28 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=200) {
   avg.P <- avg.P / numSamples
   
   svd.avg <- svd(avg.P)
-  if (noJoint) {
+  if (out$noJoint) {
     joint <- NULL
     jointPerp <- diag(nrow(avg.P))
   } else {
-    cluster <- Ckmedian.1d.dp(svd.avg$d, k=3)
+    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
     joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
-  avg.P1 <- jointPerp %*% avg.P1
-  svd.avg1 <- svd(avg.P1)
-  cluster <- Ckmeans.1d.dp(svd.avg1$d, k = 2)
+  svd.avg1 <- svd(jointPerp %*% avg.P1)
+  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$P.hat)$d, k = 2)
   indiv1 <- svd.avg1$u[, cluster$cluster == 2, drop = FALSE]
   
-  avg.P2 <- jointPerp %*% avg.P2
-  svd.avg2 <- svd(avg.P2)
-  cluster <- Ckmeans.1d.dp(svd.avg2$d, k = 2)
+  svd.avg2 <- svd(jointPerp %*% avg.P2)
+  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$Q.hat)$d, k = 2)
   indiv2 <- svd.avg2$u[,  cluster$cluster == 2, drop = FALSE]
   
+  if (return_scores) {
+    return (list("joint" = joint, 
+                 "indiv1" = indiv1, 
+                 "indiv2" = indiv2, 
+                 "test" = out))
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
