@@ -55,8 +55,8 @@ df <- df[, c(cols,
              "rank_spec")]
 
 # Print the data frame
-df_short <- df[, cols]
-df_short <- cbind(expand.grid(c(90, 60, 45, 30), c(8, 4, 2, 1)), df_short)
+# df_short <- df[, cols]
+# df_short <- cbind(expand.grid(c(90, 60, 45, 30), c(8, 4, 2, 1)), df_short)
 # round to 3 decimal places
-df_short <- round(df_short, 3)
+# df_short <- round(df_short, 3)
 # kable(df_short[, c('Var2', 'Var1', 'f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 'latex')
