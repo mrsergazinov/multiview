@@ -110,24 +110,25 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   q1 <- rank1 / m
   q2 <- rank2 / m
   q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  if (q.minus == 0) {
-    q.minus <- 1e-6 # offset to avoid comp error
-  }
-  A0 <- 1 - min(q1, q2) 
-  pdf <- function(x) {
-    sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
-  }
-  cdf <- function(lam) {
-    A0 + integrate(pdf, q.minus, lam)$value - 0.95
-  }
-  # find closest to 0.95
-  lam <- 0
-  if (A0 > 0.95) {
-    lam <- 0
-  } else {
-    lam <- uniroot(cdf, c(q.minus, q.plus))$root
-  }
+  lam <- sqrt(q.plus)
+  # q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  # if (q.minus == 0) {
+  #   q.minus <- 1e-6 # offset to avoid comp error
+  # }
+  # A0 <- 1 - min(q1, q2) 
+  # pdf <- function(x) {
+  #   sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
+  # }
+  # cdf <- function(lam) {
+  #   A0 + integrate(pdf, q.minus, lam)$value - 0.95
+  # }
+  # # find closest to 0.95
+  # lam <- 0
+  # if (A0 > 0.95) {
+  #   lam <- 0
+  # } else {
+  #   lam <- uniroot(cdf, c(q.minus, q.plus))$root
+  # }
   # compute product of projections
   if (compute_prod) {
     svd.Y1 <- svd(Y1)
@@ -145,40 +146,43 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
                  "prod.sym" = prod.sym,
                  "svd.prod" = svd.prod,
                  "svd.Y1" = svd.Y1,
-                 "svd.Y2" = svd.Y2))
+                 "svd.Y2" = svd.Y2,
+                 "lam" = lam))
   } else {
     return (lam)
   }
-  
 }
 global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
   out1 <- global_null_2_views(Y1, Y2, rank1, rank2)
   out2 <- global_null_2_views(Y2, Y3, rank2, rank3)
   out3 <- global_null_2_views(Y3, Y1, rank3, rank1)
-  prod <- out1$P.hat %*% out2$P.hat %*% out3$P.hat
   prod.sym <- (out1$P.hat %*% out2$P.hat %*% out3$P.hat +
                  out2$P.hat %*% out1$P.hat %*% out3$P.hat + 
                  out3$P.hat %*% out2$P.hat %*% out1$P.hat) / 3
-  svd.prod <- svd(prod)
+  joint_rank <- min(sum(out1$svd.prod$d > out1$lam),
+                    sum(out2$svd.prod$d > out2$lam),
+                    sum(out3$svd.prod$d > out3$lam))
+  
   return (list("noJoint" = (out1$noJoint || out2$noJoint || out3$noJoint),
                "P.hat" = out1$P.hat,
                "Q.hat" = out2$P.hat,
                "R.hat" = out3$P.hat,
                "prod.sym" = prod.sym,
-               "svd.prod" = svd.prod,
+               "joint_rank" = joint_rank,
                "svd.Y1" = out1$svd.Y1,
-               "svd.Y2" = out1$svd.Y1,
-               "svd.Y3" = out1$svd.Y1))
+               "svd.Y2" = out2$svd.Y1,
+               "svd.Y3" = out3$svd.Y1))
 }
 proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
   out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
   
   if (out$noJoint) {
     joint <- NULL
-    jointPerp <- diag(nrow(prod))
+    jointPerp <- diag(nrow(Y1))
   } else {
-    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
-    joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
+    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
+    # joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
+    joint <- svd(out$prod.sym)$u[, 1:out$joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
@@ -198,9 +202,6 @@ proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
 }
 proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSamples=300, return_scores=FALSE) {
   out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
-  thresh1 <- (out$svd.Y1$d[rank1] + out$svd.Y1$d[rank1+1]) / 2
-  thresh2 <- (out$svd.Y2$d[rank2] + out$svd.Y2$d[rank2+1]) / 2
-  thresh3 <- (out$svd.Y3$d[rank3] + out$svd.Y3$d[rank3+1]) / 2
   
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -223,9 +224,9 @@ proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSample
     svd.Y1.sample <- svd(Y1.sample)
     svd.Y2.sample <- svd(Y2.sample)
     svd.Y3.sample <- svd(Y3.sample)
-    u1.sample <- svd.Y1.sample$u[, svd.Y1.sample$d > thresh1, drop = FALSE]
-    u2.sample <- svd.Y2.sample$u[, svd.Y2.sample$d > thresh2, drop = FALSE]
-    u3.sample <- svd.Y3.sample$u[, svd.Y3.sample$d > thresh3, drop = FALSE]
+    u1.sample <- svd.Y1.sample$u[, 1:rank1, drop = FALSE]
+    u2.sample <- svd.Y2.sample$u[, 1:rank2, drop = FALSE]
+    u3.sample <- svd.Y3.sample$u[, 1:rank3, drop = FALSE]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     sample.P3 <- (u3.sample %*% t(u3.sample))
@@ -244,11 +245,12 @@ proposed_subsampling_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, numSample
   
   if (out$noJoint) {
     joint <- NULL
-    jointPerp <- diag(nrow(avg.P))
+    jointPerp <- diag(nrow(Y1))
   } else {
     svd.avg <- svd(avg.P)
-    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
-    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
+    # joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    joint <- svd.avg$u[, 1:out$joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   

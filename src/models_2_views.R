@@ -179,24 +179,25 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   q1 <- rank1 / m
   q2 <- rank2 / m
   q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  if (q.minus == 0) {
-    q.minus <- 1e-6 # offset to avoid comp error
-  }
-  A0 <- 1 - min(q1, q2) 
-  pdf <- function(x) {
-    sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
-  }
-  cdf <- function(lam) {
-    A0 + integrate(pdf, q.minus, lam)$value - 0.95
-  }
-  # find closest to 0.95
-  lam <- 0
-  if (A0 > 0.95) {
-    lam <- 0
-  } else {
-    lam <- uniroot(cdf, c(q.minus, q.plus))$root
-  }
+  lam <- sqrt(q.plus)
+  # q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
+  # if (q.minus == 0) {
+  #   q.minus <- 1e-6 # offset to avoid comp error
+  # }
+  # A0 <- 1 - min(q1, q2) 
+  # pdf <- function(x) {
+  #   sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
+  # }
+  # cdf <- function(lam) {
+  #   A0 + integrate(pdf, q.minus, lam)$value - 0.95
+  # }
+  # # find closest to 0.95
+  # lam <- 0
+  # if (A0 > 0.95) {
+  #   lam <- 0
+  # } else {
+  #   lam <- uniroot(cdf, c(q.minus, q.plus))$root
+  # }
   # compute product of projections
   if (compute_prod) {
     svd.Y1 <- svd(Y1)
@@ -214,7 +215,8 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
                  "prod.sym" = prod.sym,
                  "svd.prod" = svd.prod,
                  "svd.Y1" = svd.Y1,
-                 "svd.Y2" = svd.Y2))
+                 "svd.Y2" = svd.Y2,
+                 "lam" = lam))
   } else {
     return (lam)
   }
@@ -225,10 +227,12 @@ proposed_func <- function(Y1, Y2, rank1, rank2) {
   
   if (out$noJoint) {
     joint <- NULL
-    jointPerp <- diag(nrow(prod))
+    jointPerp <- diag(nrow(Y1))
   } else {
-    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
-    joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
+    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
+    # joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
+    joint_rank <- sum(out$svd.prod$d > out$lam)
+    joint <- svd(out$prod.sym)$u[, 1:joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
@@ -244,8 +248,6 @@ proposed_func <- function(Y1, Y2, rank1, rank2) {
 }
 proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
-  thresh1 <- (out$svd.Y1$d[rank1] + out$svd.Y1$d[rank1+1]) / 2
-  thresh2 <- (out$svd.Y2$d[rank2] + out$svd.Y2$d[rank2+1]) / 2
   
   avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
   avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
@@ -260,8 +262,8 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, retu
     }
     svd.Y1.sample <- svd(Y1.sample)
     svd.Y2.sample <- svd(Y2.sample)
-    u1.sample <- svd.Y1.sample$u[, svd.Y1.sample$d > thresh1, drop = FALSE]
-    u2.sample <- svd.Y2.sample$u[, svd.Y2.sample$d > thresh2, drop = FALSE]
+    u1.sample <- svd.Y1.sample$u[, 1:rank1, drop = FALSE]
+    u2.sample <- svd.Y2.sample$u[, 1:rank2, drop = FALSE]
     sample.P1 <- (u1.sample %*% t(u1.sample))
     sample.P2 <- (u2.sample %*% t(u2.sample))
     avg.P1 <- avg.P1 + sample.P1
@@ -276,10 +278,12 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, retu
   svd.avg <- svd(avg.P)
   if (out$noJoint) {
     joint <- NULL
-    jointPerp <- diag(nrow(avg.P))
+    jointPerp <- diag(nrow(Y1))
   } else {
-    cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
-    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
+    # joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    joint_rank <- sum(out$svd.prod$d > out$lam)
+    joint <- svd.avg$u[, 1:joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
