@@ -209,11 +209,13 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
     prod <- P.hat %*% Q.hat
     prod.sym <- (prod + t(prod)) / 2
     svd.prod <- svd(prod)
+    svd.prod.sym <- svd(prod.sym)
     return (list("noJoint" = (svd.prod$d[1] < lam),
                  "P.hat" = P.hat,
                  "Q.hat" = Q.hat,
                  "prod.sym" = prod.sym,
                  "svd.prod" = svd.prod,
+                 "svd.prod.sym" = svd.prod.sym,
                  "svd.Y1" = svd.Y1,
                  "svd.Y2" = svd.Y2,
                  "lam" = lam))
@@ -280,10 +282,10 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, retu
     joint <- NULL
     jointPerp <- diag(nrow(Y1))
   } else {
-    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k=3)
-    # joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-    joint_rank <- sum(out$svd.prod$d > out$lam)
-    joint <- svd.avg$u[, 1:joint_rank, drop = FALSE]
+    cluster <- Ckmedian.1d.dp(out$svd.prod.sym$d, k=3)
+    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
+    # joint_rank <- sum(out$svd.prod$d > out$lam)
+    # joint <- svd.avg$u[, 1:joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
