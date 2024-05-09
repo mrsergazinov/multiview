@@ -34,7 +34,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_0_FALSE_FALSE.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -43,7 +43,17 @@ all_params <- lapply(file_paths, extract_params)
 df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
 # Organize the data frame
-models <- c('jive', 'slide', 'ajive', 'dcca', 'unifac', 'proposed', 'proposed_subsampling')
+# models <- c('jive', 'slide', 'ajive', 'dcca', 
+#             'unifac', 'proposed', 
+#             'proposed_subsampling', 
+#             'proposed_subsampling_clustered', 
+#             'proposed_subsampling_clustered_sym',
+#             'proposed_subsampling_clustered_sym_nonAVG')
+models <- c("ajive",
+            'proposed_subsampling', 
+            'proposed_subsampling_clustered',
+            'proposed_subsampling_clustered_sym',
+            'proposed_subsampling_clustered_sym_nonAVG')
 cols <- sapply(models, function(x) paste0(x,'_avgF1'))
 names(cols) <- NULL
 df <- df[, c(cols,
@@ -53,6 +63,18 @@ df <- df[, c(cols,
              "no_joint", 
              "no_indiv",
              "rank_spec")]
+# rename columns
+colnames(df) <- c('AJIVE', 
+                  'Proposed: bound', 
+                  'Proposed: PQ clust.', 
+                  'Proposed: AVG(PQ + QP) clust.', 
+                  'Proposed: PQ + QP clust.', 
+                  'phi_max', 
+                  'SNR1', 
+                  'SNR2', 
+                  'no_joint', 
+                  'no_indiv',
+                  'rank_spec')
 
 # Print the data frame
 # df_short <- df[, cols]
