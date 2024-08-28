@@ -2,107 +2,97 @@ library(tidyverse)
 library(ajive)
 library(RMTstat)
 library(pracma)
-library(latex2exp)
-library(lemon)
+library(gridExtra)
+source('src/generate_data_2_views.R')
+source('src/bounds.R')
 
 # create list with params for simulation
-num_exp <- 3
+num_exp <- 6
+rj <- 4
+ri1 <- 4
+ri2 <- 5
+rank1 <- rj + ri1
+rank2 <- rj + ri2
+m <- 50
+n1 <- 60
+n2 <- 70
+sim_iter <- 100
+signal_strength1 <- 100
+signal_strength2 <- 100
 params <- list(
-  rj = rep(4, num_exp),
-  ri1 = rep(3, num_exp),
-  ri2 = rep(3, num_exp),
-  m = rep(30, num_exp),
-  phi_max = c(0, 0.3, 0.5),
-  n1 = rep(30, num_exp),
-  n2 = rep(40, num_exp),
-  sim_iter = rep(100, num_exp),
-  signal_strength1 = rep(10, num_exp),
-  signal_strength2 = rep(12, num_exp),
-  sigma1 = c(1, 5, 10),
-  sigma2 = c(1, 6, 10)
+  angles = matrix(c(NA, NA, NA,
+                    80/180*pi, 75/180*pi, 65/180*pi,
+                    70/180*pi, 65/180*pi, 60/180*pi,
+                    60/180*pi, 55/180*pi, 50/180*pi,
+                    50/180*pi, 45/180*pi, 40/180*pi,
+                    40/180*pi, 35/180*pi, 30/180*pi), 
+                  nrow = num_exp, byrow = TRUE),
+  sigma = c(0.1, 0.15, 0.2, 0.3, 0.4, 0.6)
 )
 
 # create dataframe with columns singular values, product, and parameters
-df <- data.frame(
-  Singular_value = numeric(0),
-  Product = character(0),
-  Parameters = character(0)
-)
-param.title <- c()
+plts <- list()
 for (exp_id in 1:num_exp) {
-  rj <- params$rj[exp_id]
-  ri1 <- params$ri1[exp_id]
-  ri2 <- params$ri2[exp_id]
-  m <- params$m[exp_id]
-  phi_max <- params$phi_max[exp_id]
-  n1 <- params$n1[exp_id]
-  n2 <- params$n2[exp_id]
-  sim_iter <- params$sim_iter[exp_id]
-  signal_strength1 <- params$signal_strength1[exp_id]
-  signal_strength2 <- params$signal_strength2[exp_id]
-  sigma1 = params$sigma1[exp_id]
-  sigma2 = params$sigma2[exp_id]
-  d1 <- svd(matrix(signal_strength1 * rnorm(m * n1), m, n1))$d[1:(rj+ri1)]
-  d2 <- svd(matrix(signal_strength2 * rnorm(m * n2), m, n2))$d[1:(rj+ri2)]
-  d1 <- sample(d1)
-  d2 <- sample(d2)
-  dj1 <- d1[1:rj]
-  dj2 <- d2[1:rj]
-  di1 <- d1[(rj+1):(rj+ri1)]
-  di2 <- d2[(rj+1):(rj+ri2)]
-  # generate data
-  U <- svd(matrix(rnorm(m * (n1+n2)), m, n1+n2))$u
-  # joint part
-  Uj <- U[, 1:rj]
-  Ujperp <- U[, (rj+1):ncol(U)]
-  O <- randortho(rj, type = 'orthonormal') # rotate Uj
-  Uj1 <- Uj %*% O
-  Uj2 <- Uj
-  # individual part
-  Ui1 <- U[, (rj+1):(rj+ri1)]
-  Ui2 <- U[, (rj+ri1+1):(rj+ri1+ri2)]
-  O <-  matrix(runif(ri1 * ri2, -phi_max, phi_max), ri1, ri2) # rotate
-  Ui2 <- Ui2 + Ui1 %*% O
-  Ui2 <- gramSchmidt(Ui2)$Q # orthonormalize
-  # loadings
-  Vj1 <- svd(matrix(rnorm(m * n1), m, n1))$v[, 1:rj]
-  Vj2 <- svd(matrix(rnorm(m * n2), m, n2))$v[, 1:rj]
-  Vi1 <- svd(matrix(rnorm(m * n1), m, n1))$v[, 1:ri1]
-  Vi2 <- svd(matrix(rnorm(m * n2), m, n2))$v[, 1:ri2]
-  # combine
-  X1 <- Uj1 %*% diag(dj1) %*% t(Vj1) + Ui1 %*% diag(di1) %*% t(Vi1)
-  Y1 <- X1 + matrix(rnorm(m * n1), m, n1) * sigma1
-  X2 <- Uj2 %*% diag(dj2) %*% t(Vj2) + Ui2 %*% diag(di2) %*% t(Vi2)
-  Y2 <- X2 + matrix(rnorm(m * n2), m, n2) * sigma2
-  # angle
-  angle <- min(acos(svd(t(Ui1) %*% Ui2)$d))
-
-  # compute P, Q - true
-  P <- cbind(Uj1, Ui1) %*% t(cbind(Uj1, Ui1))
-  Q <- cbind(Uj2, Ui2) %*% t(cbind(Uj2, Ui2))
-  # compute estimated P, Q
-  rank1 <- rj + ri1
-  rank2 <- rj + ri2
-  U1.hat <- svd(Y1)$u[, 1:rank1, drop = FALSE]
-  U2.hat <- svd(Y2)$u[, 1:rank2, drop = FALSE]
-  P.hat <- U1.hat %*% t(U1.hat)
-  Q.hat <- U2.hat %*% t(U2.hat)
-
-  # use ggplot to plot singular values of P %*% Q and P.hat %*% Q.hat
-  df <- rbind(df, data.frame(
-    Singular_value = c(svd(P %*% Q)$d, svd(P.hat %*% Q.hat)$d),
-    Product = rep(c('PQ', 'P.hat Q.hat'), each = length(svd(P %*% Q)$d)),
-    Parameters = rep(exp_id, 2 * length(svd(P %*% Q)$d))
-  ))
-  param.title <- c(param.title, paste(c('SNR = ', signal_strength1 / sigma1, 
-                              ', ', 'Angle = ', round(angle, 2)), collapse = ''))
+  sing.vals <- c()
+  Rs <- c()
+  for (iter in 1:sim_iter) {
+    data <- generate_data(m, n1, n2,
+                          rj, ri1, ri2, 0,
+                          signal_strength1, signal_strength2, 
+                          params$sigma[exp_id], params$sigma[exp_id],
+                          FALSE, FALSE,
+                          angles=params$angles[exp_id,])
+    # compute estimated P, Q
+    U1.hat <- svd(data$Y1)$u[, 1:rank1, drop = FALSE]
+    U2.hat <- svd(data$Y2)$u[, 1:rank2, drop = FALSE]
+    P.hat <- U1.hat %*% t(U1.hat)
+    Q.hat <- U2.hat %*% t(U2.hat)
+    sing.vals <- c(sing.vals, svd(P.hat %*% Q.hat)$d)
+    # compute bound
+    R <- bound.cai(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
+    Rs <- c(Rs, R)
+  }
+  R <- mean(Rs)
+  
+  # compute true sing.vals
+  xticks <- c(0, 1)
+  if (! all(is.na(params$angles[exp_id, ]))) {
+    xticks <- c(xticks, cos(params$angles[exp_id, ]))
+  }
+  # plot histogram of singular values
+  snr1 <- signal_strength1 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n1)))
+  snr2 <- signal_strength2 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n2)))
+  snr <- mean(c(snr1, snr2))
+  plts[[exp_id]] <- ggplot(data.frame(sing.vals = sing.vals), aes(x = sing.vals)) +
+    geom_histogram(binwidth = 0.1, aes(y = after_stat(count / sum(count)))) +
+    ggtitle(paste0("Angle = ", round(params$angles[exp_id, 3] / pi * 180, 0), 
+                   ", ",
+                   "SNR = ", round(snr, 0))) +
+    xlab('Singular values') +
+    ylab('Frequency') + 
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5))
+  # max bin height
+  max_height <- max(ggplot_build(plts[[exp_id]])$data[[1]]$y)
+  # add bounds via annotation
+  plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
+                                              xmin = -0.05, xmax = R+0.05,
+                                              ymin = 0, ymax = max_height,
+                                              alpha = 0.3, fill = 'red')
+  plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
+                                              xmin = 1-R-0.05, xmax = 1+0.05,
+                                              ymin = 0, ymax = max_height,
+                                              alpha=0.3, fill='green')
+  if (!all(is.na(params$angles[exp_id, ]))) {
+    indiv.sing.vals <- cos(params$angles[exp_id, ])
+    plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
+                                                xmin = max(0, min(indiv.sing.vals)-R-0.05),
+                                                xmax = min(1, max(indiv.sing.vals)+R+0.05),
+                                                ymin = 0, ymax = max_height,
+                                                alpha=0.3, fill='blue')
+  }
+  plts[[exp_id]] <- plts[[exp_id]] + geom_vline(xintercept = xticks, color = 'red')
 }
 
-#facet grid of histograms
-p <- ggplot(df, aes(x = Singular_value)) +
-  geom_histogram(binwidth = 0.1, position = 'dodge') +
-  facet_wrap(~factor(Product, c('PQ', 'P.hat Q.hat'), labels = c('True product', 'Estimated product')) + 
-               factor(Parameters, labels = param.title), scales = 'free') +
-  theme_minimal() +
-  xlab('Singular values') +
-  ylab('Count')
+# facet grid of 6 plots
+grid.arrange(grobs = plts, ncol = 3)
