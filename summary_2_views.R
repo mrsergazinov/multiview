@@ -43,14 +43,9 @@ all_params <- lapply(file_paths, extract_params)
 df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
 # Organize the data frame
-# models <- c('jive', 'slide', 'ajive', 'dcca', 
-#             'unifac', 'proposed', 
-#             'proposed_subsampling', 
-#             'proposed_subsampling_clustered', 
-#             'proposed_subsampling_clustered_sym',
-#             'proposed_subsampling_clustered_sym_nonAVG')
-models <- c("ajive",
-            'proposed_subsampling', 
+models <- c('jive', 'slide', 'ajive', 'dcca',
+            'unifac', 'proposed',
+            'proposed_subsampling',
             'proposed_subsampling_clustered',
             'proposed_subsampling_clustered_sym',
             'proposed_subsampling_clustered_sym_nonAVG')
@@ -63,18 +58,6 @@ df <- df[, c(cols,
              "no_joint", 
              "no_indiv",
              "rank_spec")]
-# rename columns
-colnames(df) <- c('AJIVE', 
-                  'Proposed: bound', 
-                  'Proposed: PQ clust.', 
-                  'Proposed: AVG(PQ + QP) clust.', 
-                  'Proposed: PQ + QP clust.', 
-                  'phi_max', 
-                  'SNR1', 
-                  'SNR2', 
-                  'no_joint', 
-                  'no_indiv',
-                  'rank_spec')
 
 # Print the data frame
 # df_short <- df[, cols]

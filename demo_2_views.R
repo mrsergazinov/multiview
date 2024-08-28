@@ -8,65 +8,33 @@ source('src/utils.R')
 source('src/models_2_views.R')
 source('src/metrics.R')
 
-file_paths <- list.files(path = './results', pattern = "^demo2.*\\.RData$", full.names = TRUE)
+# define other params
+rj <- 4
+ri1 <- 5
+ri2 <- 4
+m <- 50
+phi_max <- 90
+n1 <- 80
+n2 <- 100
+snr1 <- 3/4
+snr2 <- 3/4
+signal_strength1 <- 10
+signal_strength2 <- 12
+sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
+sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
+rank_spec <- 0
+no_joint <- FALSE
+no_indiv <- FALSE
 
-for (file in file_paths) {
-  load(file)
-  rj <- results.save$rj
-  ri1 <- results.save$ri1
-  ri2 <- results.save$ri2
-  m <- results.save$m
-  phi_max <- results.save$phi_max
-  n1 <- results.save$n1
-  n2 <- results.save$n2
-  snr1 <- results.save$SNR1
-  snr2 <- results.save$SNR2
-  signal_strength1 <- results.save$signal_strength1
-  signal_strength2 <- results.save$signal_strength2
-  sigma1 <- results.save$sigma1
-  sigma2 <- results.save$sigma2
-  rank_spec <- results.save$rank_spec
-  no_joint <- results.save$no_joint
-  no_indiv <- results.save$no_indiv
-
-  print(paste0("snr1: ", snr1))
-  print(paste0("snr2: ", snr2))
-  print(paste0("signal_strength1: ", signal_strength1))
-  print(paste0("signal_strength2: ", signal_strength2))
-  print(paste0("sigma1: ", sigma1))
-  print(paste0("sigma2: ", sigma2))
-  print(paste0("phi_max: ", phi_max))
-  print(paste0("no joint: ", no_joint))
-  print(paste0("no indiv: ", no_indiv))
-  print(paste0("rank_spec: ", rank_spec))
-  
-# # define other params
-# rj <- 4
-# ri1 <- 5
-# ri2 <- 4
-# m <- 50
-# phi_max <- 90
-# n1 <- 80
-# n2 <- 100
-# snr1 <- 3/4
-# snr2 <- 3/4
-# signal_strength1 <- 10
-# signal_strength2 <- 12
-# sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
-# sigma2 <- (signal_strength2 / snr2) / (sqrt(m) + sqrt(n2))
-# rank_spec <- 0
-# no_joint <- FALSE
-# no_indiv <- FALSE
-# 
-# # set args from command line
-# args <- commandArgs(trailingOnly = TRUE)
-# if (length(args) > 0) {
-#   for (i in seq_along(args)) {
-#     print(args[[i]])
-#     eval(parse(text = args[[i]]))
-#   }
-# }
-# save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
+# set args from command line
+args <- commandArgs(trailingOnly = TRUE)
+if (length(args) > 0) {
+  for (i in seq_along(args)) {
+    print(args[[i]])
+    eval(parse(text = args[[i]]))
+  }
+}
+save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
 
 # check correctness + update
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
@@ -84,10 +52,6 @@ sim_iter <- 50
 models <- c("proposed", "proposed_subsampling")
 packages <- c('reticulate', 'ajive', 'r.jive', 'SLIDE', 'Ckmeans.1d.dp', 'pracma', 'PRIMME')
 iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
-# for (i in 1:sim_iter) {
-#   library(Ckmeans.1d.dp)
-#   library(ajive)
-#   library(pracma)
   compute <- list(slide = slide_func, 
                   jive = jive_func, 
                   ajive = ajive_func, 
@@ -137,29 +101,25 @@ for (model in models) {
                                   "fdr.Pindiv2", "tpr.Pindiv2")
   
 }
-# # save results
-# results.save <- list()
-# results.save[["results"]] <- results
-# results.save[["sim_iter"]] <- sim_iter
-# results.save[["rj"]] <- rj
-# results.save[["ri1"]] <- ri1
-# results.save[["ri2"]] <- ri2
-# results.save[["m"]] <- m
-# results.save[["phi_max"]] <- phi_max
-# results.save[["n1"]] <- n1
-# results.save[["n2"]] <- n2
-# results.save[["SNR1"]] <- snr1
-# results.save[["SNR2"]] <- snr2
-# results.save[["sigma1"]] <- sigma1
-# results.save[["sigma2"]] <- sigma2
-# results.save[["signal_strength1"]] <- signal_strength1
-# results.save[["signal_strength2"]] <- signal_strength2
-# results.save[["rank_spec"]] <- rank_spec
-# results.save[["no_joint"]] <- no_joint
-# results.save[["no_indiv"]] <- no_indiv
-# save(results.save, file=paste0(save_file, format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
+# save results
+results.save <- list()
+results.save[["results"]] <- results
+results.save[["sim_iter"]] <- sim_iter
+results.save[["rj"]] <- rj
+results.save[["ri1"]] <- ri1
+results.save[["ri2"]] <- ri2
+results.save[["m"]] <- m
+results.save[["phi_max"]] <- phi_max
+results.save[["n1"]] <- n1
+results.save[["n2"]] <- n2
+results.save[["SNR1"]] <- snr1
+results.save[["SNR2"]] <- snr2
+results.save[["sigma1"]] <- sigma1
+results.save[["sigma2"]] <- sigma2
+results.save[["signal_strength1"]] <- signal_strength1
+results.save[["signal_strength2"]] <- signal_strength2
+results.save[["rank_spec"]] <- rank_spec
+results.save[["no_joint"]] <- no_joint
+results.save[["no_indiv"]] <- no_indiv
+save(results.save, file=paste0(save_file, format(Sys.time(), "%Y-%m-%d_%H-%M-%S"), ".RData"))
 
-results.save$results[['proposed']] <- results[['proposed']]
-results.save$results[['proposed_subsampling']] <- results[['proposed_subsampling']]
-save(results.save, file=file)
-}
