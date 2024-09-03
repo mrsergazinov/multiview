@@ -1,8 +1,13 @@
 my_lib_path <- "./multiview_rlibs"
 .libPaths(my_lib_path)
-source('src/models_2_views.R')
+
 library(Ckmeans.1d.dp)
 library(mixOmics)
+library(ajive)
+library(ggplot2)
+
+source('src/models_2_views.R')
+
 
 data(nutrimouse)
 Y1 <- nutrimouse$gene
@@ -18,7 +23,7 @@ Y2[Y2 == 0] <- 0.375 / (100 + 0.75)
 Y1 <- scale(Y1)
 Y2 <- scale(Y2)
 
-out <- proposed_subsampling_func(Y1, Y2, rank1, rank2, return_scores = TRUE)
+out <- proposed_func(Y1, Y2, rank1, rank2, return_scores = TRUE)
 out.ajive <- ajive_func(Y1, Y2, rank1, rank2, return_scores = TRUE)
 
 data <- data.frame(diet = nutrimouse$diet, genotype = nutrimouse$genotype)
@@ -32,7 +37,6 @@ data[['Indiv 1 AJIVE']] <- out.ajive$indiv2[, 1]
 data[['Indiv 2 AJIVE']] <- out.ajive$indiv2[, 2]
 
 # Plot
-library(ggplot2)
 ggplot(data, aes(x = `Joint 1`, y = `Joint 2`, color = diet, shape = genotype)) +
   geom_point(size=2) +
   theme_minimal()
