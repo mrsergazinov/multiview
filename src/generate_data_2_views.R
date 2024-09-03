@@ -63,8 +63,8 @@ generate_data <- function(m, n1, n2,
   P2 <- Pjoint + Pindiv2
   
   # signal rank
-  error1 <- rank_spec * sample(1:2, 1)
-  error2 <- rank_spec * sample(1:2, 1)
+  error1 <- rank_spec * sample(0:2, 1)
+  error2 <- rank_spec * sample(0:2, 1)
   if (no_joint) {
     rank1 <- ri1 + error1
     rank2 <- ri2 + error2
