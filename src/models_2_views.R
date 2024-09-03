@@ -43,7 +43,13 @@ ajive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE){
   indiv1 <- check_null(out$block_decomps[[1]][['individual']][['u']])
   indiv2 <- check_null(out$block_decomps[[2]][['individual']][['u']])
   if (return_scores) {
-    return (list("joint" = joint, "indiv1" = indiv1, "indiv2" = indiv2))
+    return (
+      list(
+        "joint" = joint, 
+        "indiv1" = indiv1, 
+        "indiv2" = indiv2
+        )
+      )
   }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
@@ -224,7 +230,7 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   }
   
 }
-proposed_func <- function(Y1, Y2, rank1, rank2) {
+proposed_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
   
   if (out$noJoint) {
@@ -246,6 +252,12 @@ proposed_func <- function(Y1, Y2, rank1, rank2) {
   cluster <- Ckmedian.1d.dp(svd.Q.hat$d, k = 2)
   indiv2 <- svd.Q.hat$u[, cluster$cluster == 2, drop = FALSE]
   
+  if (return_scores) {
+    return (list("joint" = joint, 
+                 "indiv1" = indiv1, 
+                 "indiv2" = indiv2, 
+                 "test" = out))
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
 proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, return_scores=FALSE) {
