@@ -1,5 +1,5 @@
 library(knitr)
-# Function to extract desired parameters from a saved file
+source('src/utils.R')
 
 extract_params <- function(file_path) {
   load(file_path)
@@ -34,7 +34,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_0_FALSE_FALSE.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -42,26 +42,16 @@ all_params <- lapply(file_paths, extract_params)
 # Convert list of lists to data frame
 df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
-# Organize the data frame
-models <- c('jive', 'slide', 'ajive', 'dcca',
-            'unifac', 'proposed',
-            'proposed_subsampling',
-            'proposed_subsampling_clustered',
-            'proposed_subsampling_clustered_sym',
-            'proposed_subsampling_clustered_sym_nonAVG')
-cols <- sapply(models, function(x) paste0(x,'_avgF1'))
-names(cols) <- NULL
-df <- df[, c(cols,
-             "phi_max", 
-             "SNR1", 
-             "SNR2", 
-             "no_joint", 
-             "no_indiv",
-             "rank_spec")]
+# Round to 3 decimal places
+df <- round(df, 3)
 
-# Print the data frame
-# df_short <- df[, cols]
-# df_short <- cbind(expand.grid(c(90, 60, 45, 30), c(8, 4, 2, 1)), df_short)
-# round to 3 decimal places
-# df_short <- round(df_short, 3)
-# kable(df_short[, c('Var2', 'Var1', 'f1_jive', 'f1_slide', 'f1_ajive', 'f1_dcca', 'f1_unifac', 'f1_proposed', 'f1_proposed_subsampling')], 'latex')
+# Select
+# df = df[
+#   df$SNR1 == 4 | 
+#     df$SNR1 == 1 | 
+#     df$SNR1 == 0.5, 
+#   ]
+
+# Apply the function and print the result
+latex_output <- convert_to_latex(df)
+cat(latex_output)
