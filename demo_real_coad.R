@@ -52,33 +52,62 @@ for (i in 1:100){
   rank1 <- optishrink(trainData[[1]])$nb.eigen
   rank2 <- optishrink(trainData[[2]])$nb.eigen
   
-  # Proposed
-  out <- proposed_func(trainData[[1]], trainData[[2]], rank1, rank2, return_scores = TRUE)
-  W1.joint <- ginv(trainData[[1]]) %*% out$joint
-  W2.joint <- ginv(trainData[[2]]) %*% out$joint
-  W1.indiv <- ginv(trainData[[1]]) %*% out$indiv1
-  W2.indiv <- ginv(trainData[[2]]) %*% out$indiv2
+  # supervised PCA
+  trainPCA <- list(
+    trainData[[1]], trainData[[2]]
+    # plsda(trainData[[1]], trainType, ncomp = rank1),
+    # plsda(trainData[[2]], trainType, ncomp = rank2)
+  )
+  testPCA <- list(
+    testData[[1]], testData[[2]]
+    # predict(trainPCA[[1]], testData[[1]])$variates,
+    # predict(trainPCA[[2]], testData[[2]])$variates
+  )
+  # trainPCA <- lapply(trainPCA, function(model) model$variates$X)
   
-  # Joint
-  data <- data.frame(subtype = trainType, cbind(out$joint, out$joint))
-  test_data = data.frame(subtype = testType, cbind(testData[[1]] %*% W1.joint, testData[[2]] %*% W2.joint))
+  
+  # Proposed
+  out <- proposed_func(trainPCA[[1]], trainPCA[[2]], rank1, rank2, return_scores = TRUE)
+  trainPCA.joint <- lapply(trainPCA, function(x) out$joint)
+  trainPCA.indiv1 <- lapply(trainPCA, function(x) out$indiv1)
+  trainPCA.indiv2 <- lapply(trainPCA, function(x) out$indiv2)
+  testPCA.joint <- list()
+  testPCA.indiv1 <- list()
+  testPCA.indiv2 <- list()
+  for (j in 1:2) {
+    inv.X <- ginv(trainPCA[[j]])
+    testPCA.joint[[j]] <- testPCA[[j]] %*% inv.X %*% out$joint 
+    testPCA.indiv1[[j]] <- testPCA[[j]] %*% inv.X %*% out$indiv1
+    testPCA.indiv2[[j]] <- testPCA[[j]] %*% inv.X %*% out$indiv2
+  }
+  
+  # train models
+  data <- data.frame(subtype = trainType, cbind(trainPCA.joint[[1]], trainPCA.joint[[2]]))
+  test_data <- data.frame(subtype = testType, cbind(testPCA.joint[[1]], testPCA.joint[[2]]))
   model <- multinom(subtype ~ ., data = data)
   predicted_labels <- predict(model, test_data, type = "class")
   error_joint = sum(predicted_labels != testType) / length(testType)
   
-  # Individual
-  data <- data.frame(subtype = trainType, out$indiv1)
-  test_data = data.frame(subtype = testType, testData[[1]] %*% W1.indiv)
+  data <- data.frame(subtype = trainType, cbind(trainPCA.indiv1[[1]], trainPCA.indiv1[[2]]))
+  test_data <- data.frame(subtype = testType, cbind(testPCA.indiv1[[1]], testPCA.indiv1[[2]]))
   model <- multinom(subtype ~ ., data = data)
   predicted_labels <- predict(model, test_data, type = "class")
   error_indiv1 = sum(predicted_labels != testType) / length(testType)
   
-  data <- data.frame(subtype = trainType, out$indiv2)
-  test_data = data.frame(subtype = testType, testData[[2]] %*% W2.indiv)
+  data <- data.frame(subtype = trainType, cbind(trainPCA.indiv2[[1]], trainPCA.indiv2[[2]]))
+  test_data <- data.frame(subtype = testType, cbind(testPCA.indiv2[[1]], testPCA.indiv2[[2]]))
   model <- multinom(subtype ~ ., data = data)
   predicted_labels <- predict(model, test_data, type = "class")
   error_indiv2 = sum(predicted_labels != testType) / length(testType)
   
-  # Save errors
   result[i, ] <- c(error_joint, error_indiv1, error_indiv2)
 }
+
+prod.sing.vals <- svd(out$test$prod)$d
+p <- ggplot(data.frame(sing.vals = prod.sing.vals), aes(x = sing.vals)) +
+  geom_histogram(binwidth = 0.1, aes(y = after_stat(count / sum(count)))) +
+  ggtitle('Spectrum of Product of Projections') +
+  xlab('Singular values') +
+  ylab('Frequency') + 
+  geom_vline(xintercept = out$test$lam, linetype = 'dashed', color='red') +
+  theme_minimal()

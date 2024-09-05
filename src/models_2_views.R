@@ -219,6 +219,7 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
     return (list("noJoint" = (svd.prod$d[1] < lam),
                  "P.hat" = P.hat,
                  "Q.hat" = Q.hat,
+                 "prod" = prod,
                  "prod.sym" = prod.sym,
                  "svd.prod" = svd.prod,
                  "svd.prod.sym" = svd.prod.sym,

@@ -63,9 +63,14 @@ for (exp_id in 1:num_exp) {
   snr1 <- signal_strength1 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n1)))
   snr2 <- signal_strength2 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n2)))
   snr <- mean(c(snr1, snr2))
+  angle_print = params$angles[exp_id, 3] / pi * 180
+  # check if angle is na
+  if (is.na(angle_print)) {
+    angle_print = 90
+  }
   plts[[exp_id]] <- ggplot(data.frame(sing.vals = sing.vals), aes(x = sing.vals)) +
     geom_histogram(binwidth = 0.1, aes(y = after_stat(count / sum(count)))) +
-    ggtitle(paste0("Angle = ", round(params$angles[exp_id, 3] / pi * 180, 0), 
+    ggtitle(paste0("Angle = ", round(angle_print, 0), 
                    ", ",
                    "SNR = ", round(snr, 0))) +
     xlab('Singular values') +
