@@ -53,7 +53,7 @@ ajive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE){
   }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-jive_func <- function(Y1, Y2, rank1, rank2) {
+jive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   out <- jive(list(t(Y1), t(Y2)), rankA = c(rank1, rank2),
               method='perm', showProgress=FALSE)
   check_null <- function(X, rank){
@@ -63,9 +63,18 @@ jive_func <- function(Y1, Y2, rank1, rank2) {
   joint <- check_null(svd(t(out$joint[[1]]))$u, out$rankJ)
   indiv1 <- check_null(svd(t(out$individual[[1]]))$u, out$rankA[1])
   indiv2 <- check_null(svd(t(out$individual[[2]]))$u, out$rankA[2])
+  if (return_scores) {
+    return (
+      list(
+        "joint" = joint, 
+        "indiv1" = indiv1, 
+        "indiv2" = indiv2
+        )
+      )
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-dcca_func <- function(Y1, Y2, rank1, rank2) {
+dcca_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   use_virtualenv("./multiview_pylibs", required = TRUE)
   source_python("src/dcca.py")
   res <- dCCA(t(Y1), t(Y2), r_1 = as.integer(rank1), r_2 = as.integer(rank2))
@@ -140,9 +149,18 @@ dcca_func <- function(Y1, Y2, rank1, rank2) {
   joint <- (j1hat + j2hat) / 2
   indiv1 <- i1hat
   indiv2 <- i2hat
+  if (return_scores) {
+    return (
+      list(
+        "joint" = joint, 
+        "indiv1" = indiv1, 
+        "indiv2" = indiv2
+        )
+      )
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-slide_func <- function(Y1, Y2, rank1, rank2) {
+slide_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   out <- slide(cbind(Y1, Y2), pvec = c(ncol(Y1), ncol(Y2)))
   check_null <- function(X, mask){
     if (any(mask)){return(X[, mask, drop = FALSE])}
@@ -151,9 +169,18 @@ slide_func <- function(Y1, Y2, rank1, rank2) {
   joint <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 1))
   indiv1 <- check_null(out$model$U, (out$S[1, ] == 1 & out$S[2, ] == 0))
   indiv2 <- check_null(out$model$U, (out$S[1, ] == 0 & out$S[2, ] == 1))
+  if (return_scores) {
+    return (
+      list(
+        "joint" = joint, 
+        "indiv1" = indiv1, 
+        "indiv2" = indiv2
+        )
+      )
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
-unifac_func <- function(Y1, Y2, rank1, rank2) {
+unifac_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   source('src/unifac.plus.given.R')
   Y <- cbind(Y1, Y2)
   m <- nrow(Y)
@@ -178,6 +205,15 @@ unifac_func <- function(Y1, Y2, rank1, rank2) {
   if (length(joint) == 0) joint <- NULL
   if (length(indiv1) == 0) indiv1 <- NULL
   if (length(indiv2) == 0) indiv2 <- NULL
+  if (return_scores) {
+    return (
+      list(
+        "joint" = joint, 
+        "indiv1" = indiv1, 
+        "indiv2" = indiv2
+        )
+      )
+  }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
 global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
@@ -186,24 +222,6 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   q2 <- rank2 / m
   q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
   lam <- sqrt(q.plus)
-  # q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  # if (q.minus == 0) {
-  #   q.minus <- 1e-6 # offset to avoid comp error
-  # }
-  # A0 <- 1 - min(q1, q2) 
-  # pdf <- function(x) {
-  #   sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
-  # }
-  # cdf <- function(lam) {
-  #   A0 + integrate(pdf, q.minus, lam)$value - 0.95
-  # }
-  # # find closest to 0.95
-  # lam <- 0
-  # if (A0 > 0.95) {
-  #   lam <- 0
-  # } else {
-  #   lam <- uniroot(cdf, c(q.minus, q.plus))$root
-  # }
   # compute product of projections
   if (compute_prod) {
     svd.Y1 <- svd(Y1)
@@ -231,17 +249,17 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   }
   
 }
-proposed_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
+proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
   
   if (out$noJoint) {
     joint <- NULL
     jointPerp <- diag(nrow(Y1))
   } else {
-    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
-    # joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
-    joint_rank <- sum(out$svd.prod$d > out$lam)
-    joint <- svd(out$prod.sym)$u[, 1:joint_rank, drop = FALSE]
+    if (is.null(rank_joint)) {
+      rank_joint <- sum(out$svd.prod$d > out$lam)
+    }
+    joint <- svd(out$prod.sym)$u[, 1:rank_joint, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
@@ -257,7 +275,9 @@ proposed_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
     return (list("joint" = joint, 
                  "indiv1" = indiv1, 
                  "indiv2" = indiv2, 
-                 "test" = out))
+                 "test" = out,
+                 "svd.indiv1" = svd.P.hat,
+                 "svd.indiv2" = svd.Q.hat))
   }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
@@ -297,8 +317,8 @@ proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, retu
   } else {
     cluster <- Ckmedian.1d.dp(out$svd.prod.sym$d, k=3)
     joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-    # joint_rank <- sum(out$svd.prod$d > out$lam)
-    # joint <- svd.avg$u[, 1:joint_rank, drop = FALSE]
+    # rank_joint <- sum(out$svd.prod$d > out$lam)
+    # joint <- svd.avg$u[, 1:rank_joint, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
