@@ -1,5 +1,21 @@
+f_lambda <- function(lambda, q1, q2) {
+  # density of the product of two free projections
+  # Compute lambda_+ and lambda_-
+  lambda_plus <- q1 + q2 - 2 * q1 * q2 + 2 * sqrt(q1 * q2 * (1 - q1) * (1 - q2))
+  lambda_minus <- q1 + q2 - 2 * q1 * q2 - 2 * sqrt(q1 * q2 * (1 - q1) * (1 - q2))
+  
+  # Calculate f(lambda)
+  numerator <- sqrt((lambda_plus - lambda) * (lambda - lambda_minus))
+  denominator <- 2 * pi * lambda * (1 - lambda)
+  
+  # Ensure we handle cases where denominator might be zero
+  result <- ifelse(denominator != 0, numerator / denominator, NA)
+  
+  return(result)
+}
+
 bound.v <- function(d1, d2, sigma1, sigma2, m, n1, n2) {
-  # bound using 
+  # bound using Vandegeer
   projection_bound <- function(d, sigma, m, n) {
     normE <- (sqrt(m) + sqrt(n)) * sigma
     normE.quad <- 2 * max(d) * normE + normE^2
@@ -11,6 +27,7 @@ bound.v <- function(d1, d2, sigma1, sigma2, m, n1, n2) {
   E2 <- projection_bound(d2, sigma2, m, n2)
   return (E1 + E2 + E1 * E2)
 }
+
 bound.cai <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
   # bound using Cai and Zhang
   projection_bound <- function(Y, X, Z, rank) {
