@@ -80,12 +80,20 @@ bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
     U2.hat <- svd(Y2.resample)$u[, 1:rank2]
     
     # estimate spectral error in column space estimation
-    epsilon1 <- svd(U1.hat %*% t(U1.hat) - U1 %*% t(U1))$d[1]
-    epsilon2 <- svd(U2.hat %*% t(U2.hat) - U2 %*% t(U2))$d[1]
-    epsilon <- (1 + epsilon1) * (1 + epsilon2) - 1
+    # epsilon1 <- svd(U1.hat %*% t(U1.hat) - U1 %*% t(U1))$d[1]
+    # epsilon2 <- svd(U2.hat %*% t(U2.hat) - U2 %*% t(U2))$d[1]
+    # epsilon <- (1 + epsilon1) * (1 + epsilon2) - 1
+    # out <- c(out, epsilon)
+    # print(epsilon1)
+    # print(epsilon2)
+    # print(epsilon)
+    
+    # Adjustments
+    P1epsilon1 <- svd(U1 %*% t(U1) %*% U1.hat %*% t(U1.hat) - U1 %*% t(U1))$d[1]
+    P2epsilon2 <- svd(U2 %*% t(U2) %*% U2.hat %*% t(U2.hat) - U2 %*% t(U2))$d[1]
+    E1E2 <- svd((U1.hat %*% t(U1.hat) - U1 %*% t(U1)) %*% (U2.hat %*% t(U2.hat) - U2 %*% t(U2)))$d[1]
+    epsilon <- P1epsilon1 + P2epsilon2 + E1E2
     out <- c(out, epsilon)
-    print(epsilon1)
-    print(epsilon2)
     print(epsilon)
   }
   return (out)
