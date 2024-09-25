@@ -31,6 +31,17 @@ rank_spec <- 0
 no_joint <- FALSE
 no_indiv <- FALSE
 
+# estimate sigma 
+est.sigma <- function(Y){ 
+  # from Gavish and Donoho 2014
+  sing.vals <- svd(Y)$d  
+  med.sing.val <- median(sing.vals)
+  # median from Marchenko-Pastur
+  med.mp <- qmp(0.5, ndf = ncol(Y1), pdim = nrow(Y1))
+  print(med.mp)
+  return (med.sing.val / sqrt(med.mp * ncol(Y)))
+}
+
 
 # bootstrap
 bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
@@ -56,9 +67,13 @@ bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
   V2.noise <- shrink.Y2$low.rank$v[, 1:rank2]
   D1 <- rmp(rank1, svr = min(nrow(Y1), ncol(Y1)) / max(nrow(Y1), ncol(Y1)))
   D2 <- rmp(rank2, svr = min(nrow(Y2), ncol(Y2)) / max(nrow(Y2), ncol(Y2)))
-
-  E1.hat <- E1.hat + U1.noise %*% diag(D1) %*% t(V1.noise)
-  E2.hat <- E2.hat + U2.noise %*% diag(D2) %*% t(V2.noise)
+  
+  est.sigma.Y1 <- est.sigma(Y1)
+  est.sigma.Y2 <- est.sigma(Y2)
+  print(est.sigma.Y1)
+  print(est.sigma.Y2)
+  E1.hat <- E1.hat + est.sigma.Y1 * U1.noise %*% diag(D1) %*% t(V1.noise)
+  E2.hat <- E2.hat + est.sigma.Y2 * U2.noise %*% diag(D2) %*% t(V2.noise)
   
   # resampling
   out <- c()
@@ -89,12 +104,16 @@ bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
     # print(epsilon)
     
     # Adjustments
-    P1epsilon1 <- svd(U1 %*% t(U1) %*% U1.hat %*% t(U1.hat) - U1 %*% t(U1))$d[1]
-    P2epsilon2 <- svd(U2 %*% t(U2) %*% U2.hat %*% t(U2.hat) - U2 %*% t(U2))$d[1]
+    P1epsilon1 <- svd(U1 %*% t(U1) %*% (U1.hat %*% t(U1.hat) - U1 %*% t(U1)))$d[1]
+    P2epsilon2 <- svd(U2 %*% t(U2) %*% (U2.hat %*% t(U2.hat) - U2 %*% t(U2)))$d[1]
     E1E2 <- svd((U1.hat %*% t(U1.hat) - U1 %*% t(U1)) %*% (U2.hat %*% t(U2.hat) - U2 %*% t(U2)))$d[1]
     epsilon <- P1epsilon1 + P2epsilon2 + E1E2
     out <- c(out, epsilon)
+    print(P1epsilon1)
+    print(P2epsilon2)
+    print(E1E2)
     print(epsilon)
+    print("----")
   }
   return (out)
 }
