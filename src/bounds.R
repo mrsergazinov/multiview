@@ -55,3 +55,19 @@ bound.cai <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
   E2 <- projection_bound(Y2, X2, Z2, rank2)
   return (E1 + E2 + E1 * E2)
 }
+bound.full <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
+  svd.X1 <- svd(X1)
+  svd.X2 <- svd(X2)
+  svd.Y1 <- svd(Y1)
+  svd.Y2 <- svd(Y2)
+  
+  P1 <- svd.X1$u[, 1:rank1] %*% t(svd.X1$u[, 1:rank1])
+  P2 <- svd.X2$u[, 1:rank2] %*% t(svd.X2$u[, 1:rank2])
+  P1.hat <- svd.Y1$u[, 1:rank1] %*% t(svd.Y1$u[, 1:rank1])
+  P2.hat <- svd.Y2$u[, 1:rank2] %*% t(svd.Y2$u[, 1:rank2])
+  
+  E1 <- P1.hat - P1
+  E2 <- P2.hat - P2
+  
+  return(svd(P1 %*% E2 + E1 %*% P2 + E1 %*% E2)$d[1])
+}
