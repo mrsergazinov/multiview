@@ -6,6 +6,7 @@ library(denoiseR)
 library(MASS)
 library(ggplot2)
 library(gridExtra)
+library(RMTstat)
 
 library(nnet)
 
@@ -20,6 +21,7 @@ source('src/generate_data_2_views.R')
 source('src/utils.R')
 source('src/models_2_views.R')
 source('src/metrics.R')
+source('src/bounds.R')
 load("data/COADdata.rda")
 
 # clean response data: delete 0 valued data and create class idx matrix
@@ -82,27 +84,11 @@ print(str)
 prod.eigenvals <- out$test$svd.prod$d^2
 p <- ggplot(data.frame(prod.eigenvals = prod.eigenvals), aes(x = prod.eigenvals)) +
   geom_histogram(binwidth = 0.1, aes(y = ..density..)) +
-  ggtitle('Spectrum of Product of Projections') +
+  ggtitle('Spectrum of Product') +
   xlab('Singular values') +
   ylab('Frequency') +
   geom_vline(xintercept = out$test$lam^2, linetype = 'dashed', color='red') +
   theme_minimal()
-
-# Define the function f(lambda)
-f_lambda <- function(lambda, q1, q2) {
-  # Compute lambda_+ and lambda_-
-  lambda_plus <- q1 + q2 - 2 * q1 * q2 + 2 * sqrt(q1 * q2 * (1 - q1) * (1 - q2))
-  lambda_minus <- q1 + q2 - 2 * q1 * q2 - 2 * sqrt(q1 * q2 * (1 - q1) * (1 - q2))
-  
-  # Calculate f(lambda)
-  numerator <- sqrt((lambda_plus - lambda) * (lambda - lambda_minus))
-  denominator <- 2 * pi * lambda * (1 - lambda)
-  
-  # Ensure we handle cases where denominator might be zero
-  result <- ifelse(denominator != 0, numerator / denominator, NA)
-  
-  return(result)
-}
 
 # Set values for q1 and q2
 m <- dim(data$Y1)[1]

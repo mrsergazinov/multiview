@@ -32,8 +32,8 @@ sum(ID1 == T) # 167 - no missing
 rnaData = COAD$X1[ID1, ]
 mRNAData = COAD$X2[ID1, ]
 # center and scale
-rnaData = scale(rnaData)
-mRNAData = scale(mRNAData)
+# rnaData = scale(rnaData)
+# mRNAData = scale(mRNAData)
 data = list(Y1 = rnaData, 
             Y2 = mRNAData)
 type = COAD$subtype[ID1]
@@ -43,7 +43,7 @@ rank1 <- optishrink(rnaData)$nb.eigen
 rank2 <- optishrink(mRNAData)$nb.eigen
 
 # extract joint and individual 
-models <- c("naive", "proposed", "slide", "jive", "ajive", "unifac", "dcca")
+models <- c("naive", "jive", "ajive", "slide", "dcca", "unifac", "proposed")
 naive <- function(Y1, Y2, rank1, rank2, return_scores = FALSE){
   joint <- matrix(1, nrow = nrow(Y1), ncol = nrow(Y1))
   indiv1 <- svd(Y1)$u[, 1:rank1]
@@ -65,7 +65,7 @@ for (model in models) {
 }
 save(data, file = "data/COADdata_processed.rda")
 # load data
-load("data/COADdata_processed.rda")
+# load("data/COADdata_processed.rda")
 
 n_sim <- 100
 results <- list()
@@ -103,7 +103,7 @@ for (model in models){
   sds <- apply(results[[model]], 2, sd, na.rm = TRUE)
   str <- paste0(model)
   for (i in 1:3){
-    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i], 2), " (", round(sds[i], 2), ")$")
+    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i], 2), " pm ", round(sds[i], 2), "$")
   }
   print(str)
 }

@@ -18,11 +18,8 @@ library(PRIMME)
 library(pracma)
 library(Ckmeans.1d.dp)
 
-source('src/generate_data_2_views.R')
 source('src/utils.R')
 source('src/models_2_views.R')
-source('src/metrics.R')
-load("data/COADdata.rda")
 
 data(nutrimouse)
 Y1 <- nutrimouse$gene
@@ -41,7 +38,7 @@ Y2 <- scale(Y2)
 data <- list(Y1 = Y1, Y2 = Y2)
 
 # extract joint and individual 
-models <- c("naive", "proposed", "slide", "jive", "ajive", "unifac", "dcca")
+models <- c("naive", "jive", "ajive", "slide",  "dcca", "unifac", "proposed")
 naive <- function(Y1, Y2, rank1, rank2, return_scores = FALSE){
   joint <- matrix(1, nrow = nrow(Y1), ncol = nrow(Y1))
   indiv1 <- svd(Y1)$u[, 1:rank1]
@@ -105,7 +102,7 @@ for (model in models){
   sds <- apply(results[[model]], 2, sd, na.rm = TRUE)
   str <- paste0(model)
   for (i in 1:3){
-    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i], 2), " (", round(sds[i], 2), ")$")
+    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i], 2), " pm ", round(sds[i], 2), "$")
   }
   print(str)
 }
