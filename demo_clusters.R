@@ -6,6 +6,7 @@ library(gridExtra)
 source('src/generate_data_2_views.R')
 source('src/bounds.R')
 
+set.seed(1)
 # create list with params for simulation
 num_exp <- 6
 rj <- 4
@@ -32,7 +33,7 @@ params <- list(
 
 # create dataframe with columns singular values, product, and parameters
 plts <- list()
-offset = 0.075
+offset = 0.02
 for (exp_id in 1:num_exp) {
   data <- generate_data(m, n1, n2,
                         rj, ri1, ri2, 0,
@@ -48,13 +49,12 @@ for (exp_id in 1:num_exp) {
   sing.vals <- svd(P.hat %*% Q.hat)$d
   # compute bound
   R <- bound.full(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
-  
   # compute true sing.vals
   xticks <- c(0, 1)
   if (! all(is.na(params$angles[exp_id, ]))) {
     xticks <- c(xticks, cos(params$angles[exp_id, ]))
   }
-  print(params$angles[exp_id, 3] / pi * 180)
+  
   # plot histogram of singular values
   snr1 <- signal_strength1 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n1)))
   snr2 <- signal_strength2 / (params$sigma[exp_id] * (sqrt(m) + sqrt(n2)))
@@ -65,7 +65,7 @@ for (exp_id in 1:num_exp) {
     angle_print = 90
   }
   plts[[exp_id]] <- ggplot(data.frame(sing.vals = sing.vals), aes(x = sing.vals)) +
-    geom_histogram(binwidth = 0.08, aes(y = after_stat(count / sum(count)))) +
+    geom_histogram(closed = "right") +
     ggtitle(paste0("Angle = ", round(angle_print, 0), 
                    ", ",
                    "SNR = ", round(snr, 0))) +
@@ -76,8 +76,6 @@ for (exp_id in 1:num_exp) {
   # max bin height
   max_height <- max(ggplot_build(plts[[exp_id]])$data[[1]]$y)
   # add bounds via annotation
-  print(sing.vals)
-  print(R)
   plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
                                               xmin = -offset, xmax = R+offset,
                                               ymin = 0, ymax = max_height,
@@ -88,7 +86,6 @@ for (exp_id in 1:num_exp) {
                                               alpha=0.3, fill='green')
   if (!all(is.na(params$angles[exp_id, ]))) {
     indiv.sing.vals <- cos(params$angles[exp_id, ])
-    print(indiv.sing.vals)
     print(min(indiv.sing.vals)-R)
     print(max(indiv.sing.vals)+R)
     plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
@@ -102,3 +99,4 @@ for (exp_id in 1:num_exp) {
 
 # facet grid of 6 plots
 grid.arrange(grobs = plts, ncol = 3)
+
