@@ -4,6 +4,7 @@ my_lib_path <- "./multiview_rlibs"
 library(reticulate)
 library(denoiseR)
 library(MASS)
+library(RMTstat)
 library(ggplot2)
 
 library(nnet)
@@ -39,8 +40,10 @@ data = list(Y1 = rnaData,
 type = COAD$subtype[ID1]
 
 # estimate marginal ranks
-rank1 <- optishrink(rnaData)$nb.eigen
-rank2 <- optishrink(mRNAData)$nb.eigen
+rank1 <- 16
+  # optishrink(rnaData)$nb.eigen
+rank2 <- 16
+  # optishrink(mRNAData)$nb.eigen
 
 # extract joint and individual 
 models <- c("naive", "jive", "ajive", "slide", "dcca", "unifac", "proposed")
@@ -63,7 +66,7 @@ for (model in models) {
   data[[paste0(model, "_indiv1")]] <- out$indiv1
   data[[paste0(model, "_indiv2")]] <- out$indiv2
 }
-save(data, file = "data/COADdata_processed.rda")
+save(data, file = "data/COADdata_processed_rank16_bootstrap.rda")
 # load data
 # load("data/COADdata_processed.rda")
 

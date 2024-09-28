@@ -3,6 +3,7 @@ my_lib_path <- "./multiview_rlibs"
 
 library(reticulate)
 library(denoiseR)
+library(RMTstat)
 library(MASS)
 library(ggplot2)
 library(gridExtra)
