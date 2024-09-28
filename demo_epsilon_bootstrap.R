@@ -37,19 +37,16 @@ est.sigma <- function(Y){
   sing.vals <- svd(Y)$d  
   med.sing.val <- median(sing.vals)
   # median from Marchenko-Pastur
-  med.mp <- qmp(0.5, ndf = ncol(Y1), pdim = nrow(Y1))
-  print(med.mp)
+  med.mp <- qmp(0.5, ndf = ncol(Y), pdim = nrow(Y))
   return (med.sing.val / sqrt(med.mp * ncol(Y)))
 }
 
 
 # bootstrap
-bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
+bootstrap.epsilon <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
   # estimate rank
   shrink.Y1 <- optishrink(Y1)
   shrink.Y2 <- optishrink(Y2)
-  rank1 <- shrink.Y1$nb.eigen
-  rank2 <- shrink.Y2$nb.eigen
   
   # compute residual
   svd.Y1 <- svd(Y1)
@@ -70,22 +67,30 @@ bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
   
   est.sigma.Y1 <- est.sigma(Y1)
   est.sigma.Y2 <- est.sigma(Y2)
-  print(est.sigma.Y1)
-  print(est.sigma.Y2)
   E1.hat <- E1.hat + est.sigma.Y1 * U1.noise %*% diag(D1) %*% t(V1.noise)
   E2.hat <- E2.hat + est.sigma.Y2 * U2.noise %*% diag(D2) %*% t(V2.noise)
   
   # resampling
   out <- c()
+  d <- acos(prod.spectrum)
+  cos.d <- cos(d)
+  sin.d <- sin(d)
   for (i in 1:num_iter) {
     # resample signal
-    U1 <- svd(matrix(rnorm(nrow(Y1) * rank1), nrow = nrow(Y1), ncol = rank1))$u[, 1:rank1]
+    U <- svd(matrix(rnorm(nrow(Y1) * (rank1+rank2)), nrow = nrow(Y1), ncol = rank1+rank2))$u[, 1:(rank1+rank2)]
     V1 <- svd(matrix(rnorm(ncol(Y1) * rank1), nrow = ncol(Y1), ncol = rank1))$u[, 1:rank1]
-    U2 <- svd(matrix(rnorm(nrow(Y2) * rank2), nrow = nrow(Y2), ncol = rank2))$u[, 1:rank2]
     V2 <- svd(matrix(rnorm(ncol(Y2) * rank2), nrow = ncol(Y2), ncol = rank2))$u[, 1:rank2]
+    # align basis
+    U1 <- U[, 1:rank1]
+    U2 <- U[, (rank1+1):(rank1+rank2)]
+    if (rank1 >= rank2) {
+      U2 <- svd(U1[, 1:rank2] %*% diag(cos.d) + U2 %*% diag(sin.d))$u
+    } else {
+      U1 <- svd(U2[, 1:rank1] %*% diag(cos.d) + U1 %*% diag(sin.d))$u
+    }
+    # form signal
     X1 <- U1 %*% diag(shrink.Y1$low.rank$d[1:rank1]) %*% t(V1)
     X2 <- U2 %*% diag(shrink.Y2$low.rank$d[1:rank2]) %*% t(V2)
-    
     # form signal + noise
     Y1.resample <- X1 + E1.hat
     Y2.resample <- X2 + E2.hat
@@ -94,26 +99,18 @@ bootstrap.epsilon <- function(Y1, Y2, num_iter = 100) {
     U1.hat <- svd(Y1.resample)$u[, 1:rank1]
     U2.hat <- svd(Y2.resample)$u[, 1:rank2]
     
-    # estimate spectral error in column space estimation
-    # epsilon1 <- svd(U1.hat %*% t(U1.hat) - U1 %*% t(U1))$d[1]
-    # epsilon2 <- svd(U2.hat %*% t(U2.hat) - U2 %*% t(U2))$d[1]
-    # epsilon <- (1 + epsilon1) * (1 + epsilon2) - 1
-    # out <- c(out, epsilon)
-    # print(epsilon1)
-    # print(epsilon2)
-    # print(epsilon)
+    # form projections
+    P1 <- U1 %*% t(U1)
+    P2 <- U2 %*% t(U2)
+    P1.hat <- U1.hat %*% t(U1.hat)
+    P2.hat <- U2.hat %*% t(U2.hat)
     
     # Adjustments
-    P1epsilon1 <- svd(U1 %*% t(U1) %*% (U1.hat %*% t(U1.hat) - U1 %*% t(U1)))$d[1]
-    P2epsilon2 <- svd(U2 %*% t(U2) %*% (U2.hat %*% t(U2.hat) - U2 %*% t(U2)))$d[1]
-    E1E2 <- svd((U1.hat %*% t(U1.hat) - U1 %*% t(U1)) %*% (U2.hat %*% t(U2.hat) - U2 %*% t(U2)))$d[1]
-    epsilon <- P1epsilon1 + P2epsilon2 + E1E2
-    out <- c(out, epsilon)
-    print(P1epsilon1)
-    print(P2epsilon2)
-    print(E1E2)
-    print(epsilon)
-    print("----")
+    P1E1P2 <- P1 %*% (P1.hat - P1) %*% P2
+    P1E2P2 <- P1 %*% (P2.hat - P2) %*% P2
+    P1E1E2P2 <- P1 %*% (P1.hat - P1) %*% (P2.hat - P2) %*% P2
+    epsilon_n <- svd(P1E1P2 + P1E2P2 + P1E1E2P2)$d[1]
+    out <- c(out, epsilon_n)
   }
   return (out)
 }
@@ -151,4 +148,9 @@ data = list(Y1 = rnaData,
             Y2 = mRNAData)
 
 # bootstrap
-epsilon <- bootstrap.epsilon(data$Y1, data$Y2, num_iter = 100)
+rank1 <- 20
+rank2 <- 16
+out <- proposed_func(data$Y1, data$Y2, rank1, rank2, return_scores = TRUE)
+d <- out$test$svd.prod$d[1:min(rank1, rank2)]
+print(d)
+epsilon <- bootstrap.epsilon(data$Y1, data$Y2, rank1, rank2, d, num_iter = 100)
