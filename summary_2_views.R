@@ -34,7 +34,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_0_FALSE_FALSE.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_bootstrap_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -44,13 +44,6 @@ df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
 # Round to 3 decimal places
 df <- round(df, 3)
-
-# Select
-# df = df[
-#   df$SNR1 == 4 | 
-#     df$SNR1 == 1 | 
-#     df$SNR1 == 0.5, 
-#   ]
 
 # Apply the function and print the result
 latex_output <- convert_to_latex(df)
