@@ -111,24 +111,6 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   q2 <- rank2 / m
   q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
   lam <- sqrt(q.plus)
-  # q.minus <- q1 + q2 - 2*q1*q2 - 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  # if (q.minus == 0) {
-  #   q.minus <- 1e-6 # offset to avoid comp error
-  # }
-  # A0 <- 1 - min(q1, q2) 
-  # pdf <- function(x) {
-  #   sqrt((q.plus - x)*(x - q.minus)) /(2 * pi * x * (1-x))
-  # }
-  # cdf <- function(lam) {
-  #   A0 + integrate(pdf, q.minus, lam)$value - 0.95
-  # }
-  # # find closest to 0.95
-  # lam <- 0
-  # if (A0 > 0.95) {
-  #   lam <- 0
-  # } else {
-  #   lam <- uniroot(cdf, c(q.minus, q.plus))$root
-  # }
   # compute product of projections
   if (compute_prod) {
     svd.Y1 <- svd(Y1)
@@ -152,6 +134,85 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
     return (lam)
   }
 }
+est.sigma <- function(Y){ 
+  # from Gavish and Donoho 2014
+  sing.vals <- svd(Y)$d  
+  med.sing.val <- median(sing.vals)
+  # median from Marchenko-Pastur
+  med.mp <- qmp(0.5, ndf = ncol(Y), pdim = nrow(Y))
+  return (med.sing.val / sqrt(med.mp * ncol(Y)))
+}
+bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
+  # estimate rank
+  shrink.Y1 <- optishrink(Y1)
+  shrink.Y2 <- optishrink(Y2)
+  
+  # compute residual
+  svd.Y1 <- svd(Y1)
+  X1.hat <- svd.Y1$u[, 1:rank1] %*% diag(svd.Y1$d[1:rank1]) %*% t(svd.Y1$v[, 1:rank1])
+  svd.Y2 <- svd(Y2)
+  X2.hat <- svd.Y2$u[, 1:rank2] %*% diag(svd.Y2$d[1:rank2]) %*% t(svd.Y2$v[, 1:rank2])
+  
+  E1.hat <- Y1 - X1.hat
+  E2.hat <- Y2 - X2.hat
+  
+  # impute
+  U1.noise <- shrink.Y1$low.rank$u[, 1:rank1]
+  V1.noise <- shrink.Y1$low.rank$v[, 1:rank1]
+  U2.noise <- shrink.Y2$low.rank$u[, 1:rank2]
+  V2.noise <- shrink.Y2$low.rank$v[, 1:rank2]
+  D1 <- rmp(rank1, svr = min(nrow(Y1), ncol(Y1)) / max(nrow(Y1), ncol(Y1)))
+  D2 <- rmp(rank2, svr = min(nrow(Y2), ncol(Y2)) / max(nrow(Y2), ncol(Y2)))
+  
+  est.sigma.Y1 <- est.sigma(Y1)
+  est.sigma.Y2 <- est.sigma(Y2)
+  E1.hat <- E1.hat + est.sigma.Y1 * U1.noise %*% diag(D1) %*% t(V1.noise)
+  E2.hat <- E2.hat + est.sigma.Y2 * U2.noise %*% diag(D2) %*% t(V2.noise)
+  
+  # resampling
+  out <- c()
+  d <- acos(prod.spectrum)
+  cos.d <- cos(d)
+  sin.d <- sin(d)
+  for (i in 1:num_iter) {
+    # resample signal
+    U <- svd(matrix(rnorm(nrow(Y1) * (rank1+rank2)), nrow = nrow(Y1), ncol = rank1+rank2))$u[, 1:(rank1+rank2)]
+    V1 <- svd(matrix(rnorm(ncol(Y1) * rank1), nrow = ncol(Y1), ncol = rank1))$u[, 1:rank1]
+    V2 <- svd(matrix(rnorm(ncol(Y2) * rank2), nrow = ncol(Y2), ncol = rank2))$u[, 1:rank2]
+    # align basis
+    U1 <- U[, 1:rank1]
+    U2 <- U[, (rank1+1):(rank1+rank2)]
+    if (rank1 >= rank2) {
+      U2 <- svd(U1[, 1:rank2] %*% diag(cos.d) + U2 %*% diag(sin.d))$u
+    } else {
+      U1 <- svd(U2[, 1:rank1] %*% diag(cos.d) + U1 %*% diag(sin.d))$u
+    }
+    # form signal
+    X1 <- U1 %*% diag(shrink.Y1$low.rank$d[1:rank1]) %*% t(V1)
+    X2 <- U2 %*% diag(shrink.Y2$low.rank$d[1:rank2]) %*% t(V2)
+    # form signal + noise
+    Y1.resample <- X1 + E1.hat
+    Y2.resample <- X2 + E2.hat
+    
+    # estimate column space
+    U1.hat <- svd(Y1.resample)$u[, 1:rank1]
+    U2.hat <- svd(Y2.resample)$u[, 1:rank2]
+    
+    # form projections
+    P1 <- U1 %*% t(U1)
+    P2 <- U2 %*% t(U2)
+    P1.hat <- U1.hat %*% t(U1.hat)
+    P2.hat <- U2.hat %*% t(U2.hat)
+    
+    # Adjustments
+    P1E1P2 <- P1 %*% (P1.hat - P1) %*% P2
+    P1E2P2 <- P1 %*% (P2.hat - P2) %*% P2
+    P1E1E2P2 <- P1 %*% (P1.hat - P1) %*% (P2.hat - P2) %*% P2
+    epsilon_n <- svd(P1E1P2 + P1E2P2 + P1E1E2P2)$d[1]
+    out <- c(out, epsilon_n)
+  }
+  return (out)
+}
 global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
   out1 <- global_null_2_views(Y1, Y2, rank1, rank2)
   out2 <- global_null_2_views(Y2, Y3, rank2, rank3)
@@ -159,30 +220,54 @@ global_null <- function(Y1, Y2, Y3, rank1, rank2, rank3, compute_prod = TRUE) {
   prod.sym <- (out1$P.hat %*% out2$P.hat %*% out3$P.hat +
                  out2$P.hat %*% out1$P.hat %*% out3$P.hat + 
                  out3$P.hat %*% out2$P.hat %*% out1$P.hat) / 3
-  joint_rank <- min(sum(out1$svd.prod$d > out1$lam),
-                    sum(out2$svd.prod$d > out2$lam),
-                    sum(out3$svd.prod$d > out3$lam))
   
   return (list("noJoint" = (out1$noJoint || out2$noJoint || out3$noJoint),
                "P.hat" = out1$P.hat,
                "Q.hat" = out2$P.hat,
                "R.hat" = out3$P.hat,
                "prod.sym" = prod.sym,
-               "joint_rank" = joint_rank,
                "svd.Y1" = out1$svd.Y1,
                "svd.Y2" = out2$svd.Y1,
-               "svd.Y3" = out3$svd.Y1))
+               "svd.Y3" = out3$svd.Y1,
+               "svd.prod1" = out1$svd.prod,
+               "svd.prod2" = out2$svd.prod,
+               "svd.prod3" = out3$svd.prod,
+               "lam1" = out1$lam,
+               "lam2" = out2$lam,
+               "lam3" = out3$lam))
 }
-proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
+bootstrap.epsilon <- function(Y1, Y2, Y3, 
+                              rank1, rank2, rank3, 
+                              prod.spectrum1, prod.spectrum2, prod.spectrum3,
+                              num_iter = 100) {
+  epsilon1 <- bootstrap.epsilon_2_views(Y1, Y2, rank1, rank2, prod.spectrum1[1:min(rank1, rank2)], num_iter)
+  epsilon2 <- bootstrap.epsilon_2_views(Y2, Y3, rank2, rank3, prod.spectrum2[1:min(rank2, rank3)], num_iter)
+  epsilon3 <- bootstrap.epsilon_2_views(Y3, Y1, rank3, rank1, prod.spectrum3[1:min(rank3, rank1)], num_iter)
+  return (list("epsilon1" = mean(epsilon1), "epsilon2" = mean(epsilon2), "epsilon3" = mean(epsilon3)))
+}
+proposed_func <- function(Y1, Y2, Y3, rank1, rank2, rank3, bootstrap_iter = 100) {
   out <- global_null(Y1, Y2, Y3, rank1, rank2, rank3)
+  
+  if (!is.null(bootstrap_iter)){
+    bootstrap <- bootstrap.epsilon(Y1, Y2, Y3, 
+                                   rank1, rank2, rank3, 
+                                   out$svd.prod1$d, out$svd.prod2$d, out$svd.prod3$d, 
+                                   bootstrap_iter)
+    joint_rank <- min(sum(out$svd.prod1$d > max(1-bootstrap$epsilon1, out$lam1)), 
+                      sum(out$svd.prod2$d > max(1-bootstrap$epsilon2, out$lam2)),
+                      sum(out$svd.prod3$d > max(1-bootstrap$epsilon3, out$lam3)))
+    
+  } else {
+    joint_rank <- min(sum(out$svd.prod1$d > out$lam1), 
+                      sum(out$svd.prod2$d > out$lam2),
+                      sum(out$svd.prod3$d > out$lam3))
+  }
   
   if (out$noJoint) {
     joint <- NULL
     jointPerp <- diag(nrow(Y1))
   } else {
-    # cluster <- Ckmedian.1d.dp(out$svd.prod$d, k = 3)
-    # joint <- svd(out$prod.sym)$u[, cluster$cluster == 3, drop = FALSE]
-    joint <- svd(out$prod.sym)$u[, 1:out$joint_rank, drop = FALSE]
+    joint <- svd(out$prod.sym)$u[, 1:joint_rank, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
   }
   
