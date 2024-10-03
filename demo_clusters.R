@@ -48,7 +48,8 @@ for (exp_id in 1:num_exp) {
   Q.hat <- U2.hat %*% t(U2.hat)
   sing.vals <- svd(P.hat %*% Q.hat)$d
   # compute bound
-  R <- bound.full(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
+  R.upper <- bound.upper(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
+  R.lower <- bound.lower(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
   # compute true sing.vals
   xticks <- c(0, 1)
   if (! all(is.na(params$angles[exp_id, ]))) {
@@ -77,20 +78,18 @@ for (exp_id in 1:num_exp) {
   max_height <- max(ggplot_build(plts[[exp_id]])$data[[1]]$y)
   # add bounds via annotation
   plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
-                                              xmin = -offset, xmax = R+offset,
+                                              xmin = -offset, xmax = R.upper+offset,
                                               ymin = 0, ymax = max_height,
                                               alpha = 0.3, fill = 'red')
   plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
-                                              xmin = 1-R-offset, xmax = 1+offset,
+                                              xmin = 1-R.lower-offset, xmax = 1+offset,
                                               ymin = 0, ymax = max_height,
                                               alpha=0.3, fill='green')
   if (!all(is.na(params$angles[exp_id, ]))) {
     indiv.sing.vals <- cos(params$angles[exp_id, ])
-    print(min(indiv.sing.vals)-R)
-    print(max(indiv.sing.vals)+R)
     plts[[exp_id]] <- plts[[exp_id]] + annotate("rect",
-                                                xmin = max(0, min(indiv.sing.vals)-R-offset),
-                                                xmax = min(1, max(indiv.sing.vals)+R+offset),
+                                                xmin = max(0, min(indiv.sing.vals)-R.lower-offset),
+                                                xmax = min(1, max(indiv.sing.vals)+R.upper+offset),
                                                 ymin = 0, ymax = max_height,
                                                 alpha=0.3, fill='blue')
   }

@@ -13,21 +13,6 @@ f_lambda <- function(lambda, q1, q2) {
   
   return(result)
 }
-
-bound.v <- function(d1, d2, sigma1, sigma2, m, n1, n2) {
-  # bound using Vandegeer
-  projection_bound <- function(d, sigma, m, n) {
-    normE <- (sqrt(m) + sqrt(n)) * sigma
-    normE.quad <- 2 * max(d) * normE + normE^2
-    s <- min(d)^2
-    kappa <- 2 * normE.quad
-    return (normE.quad * kappa / ((s - kappa) * (s - 3 * kappa / 2)))
-  }
-  E1 <- projection_bound(d1, sigma1, m, n1)
-  E2 <- projection_bound(d2, sigma2, m, n2)
-  return (E1 + E2 + E1 * E2)
-}
-
 bound.cai <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
   # bound using Cai and Zhang
   projection_bound <- function(Y, X, Z, rank) {
@@ -55,7 +40,23 @@ bound.cai <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
   E2 <- projection_bound(Y2, X2, Z2, rank2)
   return (E1 + E2 + E1 * E2)
 }
-bound.full <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
+bound.lower <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
+  svd.X1 <- svd(X1)
+  svd.X2 <- svd(X2)
+  svd.Y1 <- svd(Y1)
+  svd.Y2 <- svd(Y2)
+  
+  P1 <- svd.X1$u[, 1:rank1] %*% t(svd.X1$u[, 1:rank1])
+  P2 <- svd.X2$u[, 1:rank2] %*% t(svd.X2$u[, 1:rank2])
+  P1.hat <- svd.Y1$u[, 1:rank1] %*% t(svd.Y1$u[, 1:rank1])
+  P2.hat <- svd.Y2$u[, 1:rank2] %*% t(svd.Y2$u[, 1:rank2])
+  
+  E1 <- P1.hat - P1
+  E2 <- P2.hat - P2
+  
+  return(svd(P1 %*% E2 %*% P2 + P1 %*% E1 %*% P2 + P1 %*% E1 %*% E2 %*% P2)$d[1])
+}
+bound.upper <- function(Y1, Y2, X1, X2, Z1, Z2, rank1, rank2) {
   svd.X1 <- svd(X1)
   svd.X2 <- svd(X2)
   svd.Y1 <- svd(Y1)
