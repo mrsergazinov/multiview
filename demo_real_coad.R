@@ -62,13 +62,16 @@ compute <- list(naive = naive,
                 proposed = proposed_func)
 for (model in models) {
   out <- compute[[model]](data$Y1, data$Y2, rank1, rank2, return_scores = TRUE)
+  if (model == "proposed"){
+    save.out <- out
+  }
   data[[paste0(model, "_joint")]] <- out$joint
   data[[paste0(model, "_indiv1")]] <- out$indiv1
   data[[paste0(model, "_indiv2")]] <- out$indiv2
 }
 save(data, file = "data/COADdata_processed_rank16_bootstrap.rda")
 # load data
-# load("data/COADdata_processed.rda")
+load("data/COADdata_processed_rank16_bootstrap.rda")
 
 n_sim <- 100
 results <- list()
@@ -122,9 +125,9 @@ for (model in models){
   print(str)
 }
 
-plt <- ggplot(data.frame(sing.vals = out$test$svd.prod$d), aes(x = sing.vals)) +
+plt <- ggplot(data.frame(sing.vals = save.out$test$svd.prod$d), aes(x = sing.vals)) +
   geom_histogram(closed = "right") +
-  geom_vline(xintercept = out$lam.bound, color = 'red') +
+  geom_vline(xintercept = save.out$test$lam, color = 'red') +
   xlab("Singular Value") +
   ylab("Frequency") +
   ggtitle("Marginal rank = 16") +
@@ -132,6 +135,6 @@ plt <- ggplot(data.frame(sing.vals = out$test$svd.prod$d), aes(x = sing.vals)) +
   theme(plot.title = element_text(hjust = 0.5))
 max_height <- max(ggplot_build(plt)$data[[1]]$y)
 plt <- plt + annotate("rect",
-             xmin = out$epsilon.bound, xmax = 1,
+             xmin = 1-mean(save.out$epsilon), xmax = 1,
              ymin = 0, ymax = max_height,
              alpha=0.3, fill='green')
