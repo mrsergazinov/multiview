@@ -41,7 +41,7 @@ type = COAD$subtype[ID1]
 
 # estimate marginal ranks
 rank1 <- 16
-  # optishrink(rnaData)$nb.eigen
+# optishrink(rnaData)$nb.eigen
 rank2 <- 16
   # optishrink(mRNAData)$nb.eigen
 
@@ -121,3 +121,17 @@ for (model in models){
   str <- paste0(str, " & $[", min(angles_indiv1_indiv2), "^circ, ", max(angles_indiv1_indiv2), "^circ]$")
   print(str)
 }
+
+plt <- ggplot(data.frame(sing.vals = out$test$svd.prod$d), aes(x = sing.vals)) +
+  geom_histogram(closed = "right") +
+  geom_vline(xintercept = out$lam.bound, color = 'red') +
+  xlab("Singular Value") +
+  ylab("Frequency") +
+  ggtitle("Marginal rank = 16") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+max_height <- max(ggplot_build(plt)$data[[1]]$y)
+plt <- plt + annotate("rect",
+             xmin = out$epsilon.bound, xmax = 1,
+             ymin = 0, ymax = max_height,
+             alpha=0.3, fill='green')

@@ -122,13 +122,14 @@ for (model in models){
 # Plot proposed
 plot.data <- data.frame(diet = nutrimouse$diet, genotype = nutrimouse$genotype)
 plot.data[['Joint 1']] <- data$proposed_joint[, 1]
-plot.data[['Joint 2']] <- data$proposed_joint[, 2]
+plot.data[['Joint 2']] <- rep(0, nrow(plot.data))
+  # data$proposed_joint[, 2]
 plot.data[['Individual 1']] <- data$proposed_indiv2[, 1]
 plot.data[['Individual 2']] <- data$proposed_indiv2[, 2]
 p1 <- ggplot(plot.data, aes(x = `Joint 1`, y = `Joint 2`, color = diet, shape = genotype)) +
   geom_point(size=3) +
   xlab('Component 1') + 
-  ylab('Component 2') +
+  ylab('NA') +
   ggtitle('Joint View: Gene and Lipid') +
   theme_minimal()
 
@@ -146,8 +147,13 @@ p3 <- ggplot(data.frame(sing.vals = prod.sing.vals), aes(x = sing.vals)) +
   ggtitle('Spectrum of Product of Projections') +
   xlab('Singular values') +
   ylab('Frequency') + 
-  geom_vline(xintercept = out$test$lam, linetype = 'dashed', color='red') +
+  geom_vline(xintercept = out$lam, linetype = 'dashed', color='red') +
   theme_minimal()
+max_height <- max(ggplot_build(p3)$data[[1]]$y)
+p3 <- p3 +  annotate("rect",
+                     xmin = 1-mean(out$epsilon), xmax = 1+offset,
+                     ymin = 0, ymax = max_height,
+                     alpha=0.3, fill='green')
 
 # facet grid of 6 plots
 grid.arrange(grobs = list(p3, p1, p2), ncol = 3)
