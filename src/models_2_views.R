@@ -329,6 +329,7 @@ bootstrap.epsilon <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 10
 }
 proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_iters = 100, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
+  epsilon <- NULL
   if (!is.null(bootstrap_iters)) {
     epsilon <- bootstrap.epsilon(Y1, 
                                  Y2, 
@@ -336,7 +337,7 @@ proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_ite
                                  rank2, 
                                  out$svd.prod$d[1:min(rank1, rank2)], 
                                  num_iter = bootstrap_iters)
-    out$lam <- max(1-mean(epsilon), out$lam)
+    bound <- max(1-mean(epsilon), out$lam)
   }
   
   if (out$noJoint) {
@@ -344,7 +345,7 @@ proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_ite
     jointPerp <- diag(nrow(Y1))
   } else {
     if (is.null(rank_joint)) {
-      rank_joint <- sum(out$svd.prod$d > out$lam)
+      rank_joint <- sum(out$svd.prod$d > bound)
     }
     joint <- svd(out$prod.sym)$u[, 1:rank_joint, drop = FALSE]
     jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
@@ -363,65 +364,9 @@ proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_ite
                  "indiv1" = indiv1, 
                  "indiv2" = indiv2, 
                  "test" = out,
+                 "epsilon" = epsilon,
                  "svd.indiv1" = svd.P.hat,
                  "svd.indiv2" = svd.Q.hat))
-  }
-  return (form_output(joint, indiv1, indiv2, nrow(Y1)))
-}
-proposed_subsampling_func <- function(Y1, Y2, rank1, rank2, numSamples=300, return_scores=FALSE) {
-  out <- global_null_2_views(Y1, Y2, rank1, rank2)
-  
-  avg.P <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-  avg.P1 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-  avg.P2 <- matrix(0, nrow=nrow(Y1), ncol=nrow(Y1))
-  for (i in 1:numSamples){
-    if (i %% 2 == 0) {
-      Y1.sample <- Y1[, sample(1:ncol(Y1), as.integer(ncol(Y1)/2), replace=FALSE)]
-      Y2.sample <- Y2
-    } else {
-      Y1.sample <- Y1
-      Y2.sample <- Y2[, sample(1:ncol(Y2), as.integer(ncol(Y2)/2), replace=FALSE)]
-    }
-    svd.Y1.sample <- svd(Y1.sample)
-    svd.Y2.sample <- svd(Y2.sample)
-    u1.sample <- svd.Y1.sample$u[, 1:rank1, drop = FALSE]
-    u2.sample <- svd.Y2.sample$u[, 1:rank2, drop = FALSE]
-    sample.P1 <- (u1.sample %*% t(u1.sample))
-    sample.P2 <- (u2.sample %*% t(u2.sample))
-    avg.P1 <- avg.P1 + sample.P1
-    avg.P2 <- avg.P2 + sample.P2
-    prod <- (sample.P1 %*% sample.P2 + sample.P2 %*% sample.P1) / 2
-    avg.P <- avg.P + prod
-  }
-  avg.P1 <- avg.P1 / numSamples
-  avg.P2 <- avg.P2 / numSamples
-  avg.P <- avg.P / numSamples
-  
-  svd.avg <- svd(avg.P)
-  if (out$noJoint) {
-    joint <- NULL
-    jointPerp <- diag(nrow(Y1))
-  } else {
-    cluster <- Ckmedian.1d.dp(out$svd.prod.sym$d, k=3)
-    joint <- svd.avg$u[, cluster$cluster == 3, drop = FALSE]
-    # rank_joint <- sum(out$svd.prod$d > out$lam)
-    # joint <- svd.avg$u[, 1:rank_joint, drop = FALSE]
-    jointPerp <- diag(nrow(joint)) - joint %*% t(joint)
-  }
-  
-  svd.avg1 <- svd(jointPerp %*% avg.P1)
-  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$P.hat)$d, k = 2)
-  indiv1 <- svd.avg1$u[, cluster$cluster == 2, drop = FALSE]
-  
-  svd.avg2 <- svd(jointPerp %*% avg.P2)
-  cluster <- Ckmedian.1d.dp(svd(jointPerp %*% out$Q.hat)$d, k = 2)
-  indiv2 <- svd.avg2$u[,  cluster$cluster == 2, drop = FALSE]
-  
-  if (return_scores) {
-    return (list("joint" = joint, 
-                 "indiv1" = indiv1, 
-                 "indiv2" = indiv2, 
-                 "test" = out))
   }
   return (form_output(joint, indiv1, indiv2, nrow(Y1)))
 }
