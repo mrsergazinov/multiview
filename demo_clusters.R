@@ -1,8 +1,15 @@
+my_lib_path <- "./multiview_rlibs"
+.libPaths(my_lib_path)
+
+library(MASS)
 library(tidyverse)
+library(Ckmeans.1d.dp)
 library(ajive)
 library(RMTstat)
+library(denoiseR)
 library(pracma)
 library(gridExtra)
+source('src/models_2_views.R')
 source('src/generate_data_2_views.R')
 source('src/bounds.R')
 
