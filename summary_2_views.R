@@ -34,7 +34,7 @@ extract_params <- function(file_path) {
 }
 
 # Get paths of all saved files starting with "demo2_"
-file_paths <- list.files(path = './results', pattern = "^demo2_bootstrap_1_FALSE_FALSE.*\\.RData$", full.names = TRUE)
+file_paths <- list.files(path = './results', pattern = "^demo2_estrank_.*\\.RData$", full.names = TRUE)
 
 # Extract parameters from each file
 all_params <- lapply(file_paths, extract_params)
@@ -48,3 +48,8 @@ df <- round(df, 3)
 # Apply the function and print the result
 latex_output <- convert_to_latex(df)
 cat(latex_output)
+
+# select columns that end on avg_F1
+df_avgF1 <- cbind(df[, grep('avgF1$', colnames(df))], df[, c('SNR1', 'phi_max', 'rank_spec')])
+df_avgF1$max_avgF1 <- apply(df_avgF1[, grep('avgF1$', colnames(df_avgF1))], 1, max)
+df_avgF1[which(df_avgF1$proposed_avgF1 >= df_avgF1$max_avgF1),]

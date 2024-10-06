@@ -34,7 +34,7 @@ if (length(args) > 0) {
     eval(parse(text = args[[i]]))
   }
 }
-save_file <- paste0("results/demo2_", rank_spec, "_", no_joint, "_", no_indiv)
+save_file <- paste0("results/demo2_estrank_", rank_spec, "_", no_joint, "_", no_indiv)
 
 # check correctness + update
 sigma1 <- (signal_strength1 / snr1) / (sqrt(m) + sqrt(n1))
@@ -57,8 +57,7 @@ iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
                   ajive = ajive_func, 
                   dcca = dcca_func, 
                   unifac = unifac_func, 
-                  proposed = proposed_func, 
-                  proposed_subsampling = proposed_subsampling_func)
+                  proposed = proposed_func)
   data <- generate_data(m, n1, n2, 
                         rj, ri1, ri2, rank_spec, 
                         signal_strength1, signal_strength2, 

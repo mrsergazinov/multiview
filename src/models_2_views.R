@@ -55,7 +55,7 @@ ajive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE){
 }
 jive_func <- function(Y1, Y2, rank1, rank2, return_scores=FALSE) {
   out <- jive(list(t(Y1), t(Y2)), rankA = c(rank1, rank2),
-              method='given', showProgress=FALSE)
+              method='given', showProgress=FALSE, orthIndiv=FALSE)
   check_null <- function(X, rank){
     if (rank == 0){ return (NULL) }
     return (X[, 1:rank, drop = FALSE])
