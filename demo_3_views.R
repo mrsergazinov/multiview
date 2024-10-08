@@ -62,8 +62,7 @@ iters <- foreach(i = 1:sim_iter, .packages=packages) %dopar% {
                   jive = jive_func, 
                   ajive = ajive_func, 
                   unifac = unifac_func, 
-                  proposed = proposed_func, 
-                  proposed_subsampling = proposed_subsampling_func)
+                  proposed = proposed_func)
   data <- generate_data(m, n1, n2, n3,
                         rj, ri1, ri2, ri3, rank_spec, 
                         signal_strength1, signal_strength2, signal_strength3,

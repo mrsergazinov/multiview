@@ -31,8 +31,7 @@ form_output <- function(joint, indiv1, indiv2, indiv3, dims){
 }
 ajive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3){
   out <- ajive(list(Y1, Y2, Y3), c(rank1, rank2, rank3),
-               n_wedin_samples = 100, 
-               n_rand_dir_samples = 100)
+               n_wedin_samples = 100, n_rand_dir_samples = 100)
   check_null <- function(X) {
     if (any(is.na(X))) {
       return (NULL)
@@ -49,7 +48,7 @@ ajive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3){
 }
 jive_func <- function(Y1, Y2, Y3, rank1, rank2, rank3) {
   out <- jive(list(t(Y1), t(Y2), t(Y3)), rankA = c(rank1, rank2, rank3),
-              method='perm', showProgress=FALSE)
+              method='given', showProgress=FALSE, orthIndiv=FALSE)
   check_null <- function(X, rank){
     if (rank == 0){ return (NULL) }
     return (X[, 1:rank, drop = FALSE])
