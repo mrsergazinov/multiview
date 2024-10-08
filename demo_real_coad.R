@@ -39,6 +39,28 @@ data = list(Y1 = rnaData,
             Y2 = mRNAData)
 type = COAD$subtype[ID1]
 
+# plot scree plot singular values of rnadata and mrnadata
+sing.vals.rna <- svd(rnaData)$d
+sing.vals.mRNA <- svd(mRNAData)$d
+df.sing.vals <- data.frame(x = c(1:length(sing.vals.rna), 1:length(sing.vals.mRNA)),
+                           sing.vals = c(sing.vals.rna, sing.vals.mRNA), 
+                           View = c(rep("RNA", length(sing.vals.rna)), 
+                                    rep("mRNA", length(sing.vals.mRNA)))
+)
+plt <- ggplot(df.sing.vals, aes(x = x, y = sing.vals, color = View)) +
+  geom_point() +
+  geom_line() +
+  xlab("Singular Value Index") +
+  ylab("Singular Value") +
+  ggtitle("Singular Values of RNA and mRNA Data") +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+# put a point at 16th singular value and 42nd singular value
+plt <- plt + geom_point(data = df.sing.vals[df.sing.vals$x == 16, ], 
+                        aes(x = x, y = sing.vals), color = "red", size = 3)
+plt <- plt + geom_point(data = df.sing.vals[df.sing.vals$x == 42, ],
+                        aes(x = x, y = sing.vals), color = "blue", size = 3)
+                      
 # estimate marginal ranks
 rank1 <- 16
 # optishrink(rnaData)$nb.eigen
