@@ -83,21 +83,27 @@ generate_data <- function(m, n1, n2, n3,
   P3 <- Pjoint + Pindiv3
   
   # signal rank
-  error1 <- rank_spec * sample(0:2, 1)
-  error2 <- rank_spec * sample(0:2, 1)
-  error3 <- rank_spec * sample(0:2, 1)
-  if (no_joint) {
-    rank1 <- ri1 + error1
-    rank2 <- ri2 + error2
-    rank3 <- ri3 + error3
-  } else if (no_indiv) {
-    rank1 <- rj + error1
-    rank2 <- rj + error2
-    rank3 <- rj + error3
+  if (rank_spec == 0) {
+    rank1 <- optishrink(Y1)$nb.eigen
+    rank2 <- optishrink(Y2)$nb.eigen
+    rank3 <- optishrink(Y3)$nb.eigen
   } else {
-    rank1 <- rj + ri1 + error1
-    rank2 <- rj + ri2 + error2
-    rank3 <- rj + ri3 + error3
+    error1 <- rank_spec * sample(0:2, 1)
+    error2 <- rank_spec * sample(0:2, 1)
+    error3 <- rank_spec * sample(0:2, 1)
+    if (no_joint) {
+      rank1 <- ri1 + error1
+      rank2 <- ri2 + error2
+      rank3 <- ri3 + error3
+    } else if (no_indiv) {
+      rank1 <- rj + error1
+      rank2 <- rj + error2
+      rank3 <- rj + error3
+    } else {
+      rank1 <- rj + ri1 + error1
+      rank2 <- rj + ri2 + error2
+      rank3 <- rj + ri3 + error3
+    }
   }
   
   return(list(Y1=Y1, Y2=Y2, Y3=Y3,

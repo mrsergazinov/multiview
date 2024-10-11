@@ -19,7 +19,7 @@ extract_params <- function(file_path) {
                              table[['tpr.Pindiv2']]) / 3
     table[['f1.avg']] <- 2 * table$avg.precision * table$avg.tpr / (table$avg.precision + table$avg.tpr) * 10
     out[[paste0(model, '_avgF1')]] <- mean(table$f1.avg)
-    out[[paste0(model, '_stdF1')]] <- sd(table$f1.avg) / sqrt(results.save$sim_iter*20)
+    out[[paste0(model, '_stdF1')]] <- sd(table$f1.avg) / sqrt(results.save$sim_iter)
   }
   
   # Extract desired parameters

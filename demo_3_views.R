@@ -9,18 +9,18 @@ source('src/models_3_views.R')
 source('src/metrics.R')
 
 # define other params
-rj <- 4
+rj <- 3
 ri1 <- 5
 ri2 <- 4
 ri3 <- 4
-m <- 50
-phi_max <- 60
-n1 <- 80
-n2 <- 100
-n3 <- 90
-snr1 <- 1
-snr2 <- 1
-snr3 <- 1
+m <- 35
+phi_max <- 30
+n1 <- 40
+n2 <- 45
+n3 <- 50
+snr1 <- 0.5
+snr2 <- 0.5
+snr3 <- 0.5
 signal_strength1 <- 10
 signal_strength2 <- 12
 signal_strength3 <- 15
