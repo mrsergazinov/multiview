@@ -95,29 +95,22 @@ for (i in 1:n_sim){
   }
 }
 
+str <- ''
 for (model in models){
   ranks <- c(dim(data[[paste0(model, "_joint")]])[2], 
              dim(data[[paste0(model, "_indiv1")]])[2], 
              dim(data[[paste0(model, "_indiv2")]])[2])
   means <- colMeans(results[[model]], na.rm = TRUE)
   sds <- apply(results[[model]], 2, sd, na.rm = TRUE)
-  str <- paste0(model)
-  for (i in 1:3){
-    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i], 2), " pm ", round(sds[i], 2), "$")
-  }
-  print(str)
-}
-
-for (model in models){
-  angles_joint_indiv1 <- round(acos(svd(t(data[[paste0(model, "_joint")]]) %*% data[[paste0(model, "_indiv1")]])$d) / pi * 180)
-  angles_joint_indiv2 <- round(acos(svd(t(data[[paste0(model, "_joint")]]) %*% data[[paste0(model, "_indiv2")]])$d) / pi * 180)
   angles_indiv1_indiv2 <- round(acos(svd(t(data[[paste0(model, "_indiv1")]]) %*% data[[paste0(model, "_indiv2")]])$d) / pi * 180)
-  str <- paste0(model)
-  str <- paste0(str, " & $[", min(angles_joint_indiv1), "^circ, ", max(angles_joint_indiv1), "^circ]$")
-  str <- paste0(str, " & $[", min(angles_joint_indiv2), "^circ, ", max(angles_joint_indiv2), "^circ]$")
-  str <- paste0(str, " & $[", min(angles_indiv1_indiv2), "^circ, ", max(angles_indiv1_indiv2), "^circ]$")
-  print(str)
+  str <- paste0(str, model)
+  for (i in 1:3){
+    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i]*100, 0), "$")
+  }
+  str <- paste0(str, "& $", min(angles_indiv1_indiv2), "$")
+  str <- paste0(str, "\n")
 }
+cat(str)
 
 # Plot proposed
 plot.data <- data.frame(diet = nutrimouse$diet, genotype = nutrimouse$genotype)
