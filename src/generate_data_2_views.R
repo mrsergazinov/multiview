@@ -63,17 +63,24 @@ generate_data <- function(m, n1, n2,
   P2 <- Pjoint + Pindiv2
   
   # signal rank
-  error1 <- rank_spec * sample(0:2, 1)
-  error2 <- rank_spec * sample(0:2, 1)
-  if (no_joint) {
-    rank1 <- ri1 + error1
-    rank2 <- ri2 + error2
-  } else if (no_indiv) {
-    rank1 <- rj + error1
-    rank2 <- rj + error2
-  } else {
-    rank1 <- rj + ri1 + error1
-    rank2 <- rj + ri2 + error2
+  if (rank_spec == 0) {
+    rank1 <- optishrink(Y1)$nb.eigen
+    rank2 <- optishrink(Y2)$nb.eigen
+  }
+  else {
+    rank_spec <- as.integer(rank_spec)
+    error1 <- rank_spec * sample(0:2, 1)
+    error2 <- rank_spec * sample(0:2, 1)
+    if (no_joint) {
+      rank1 <- ri1 + error1
+      rank2 <- ri2 + error2
+    } else if (no_indiv) {
+      rank1 <- rj + error1
+      rank2 <- rj + error2
+    } else {
+      rank1 <- rj + ri1 + error1
+      rank2 <- rj + ri2 + error2
+    }
   }
   
   return(list(Y1=Y1, Y2=Y2, 

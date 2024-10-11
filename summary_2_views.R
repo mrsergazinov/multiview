@@ -17,9 +17,9 @@ extract_params <- function(file_path) {
     table[['avg.tpr']] <- (table[['tpr.Pjoint']] + 
                              table[['tpr.Pindiv1']] + 
                              table[['tpr.Pindiv2']]) / 3
-    table[['f1.avg']] <- 2 * table$avg.precision * table$avg.tpr / (table$avg.precision + table$avg.tpr)
+    table[['f1.avg']] <- 2 * table$avg.precision * table$avg.tpr / (table$avg.precision + table$avg.tpr) * 10
     out[[paste0(model, '_avgF1')]] <- mean(table$f1.avg)
-    out[[paste0(model, '_stdF1')]] <- sd(table$f1.avg)
+    out[[paste0(model, '_stdF1')]] <- sd(table$f1.avg) / sqrt(results.save$sim_iter*20)
   }
   
   # Extract desired parameters
@@ -43,7 +43,7 @@ all_params <- lapply(file_paths, extract_params)
 df <- do.call(rbind, lapply(all_params, data.frame, row.names = NULL))
 
 # Round to 3 decimal places
-df <- round(df, 3)
+df <- round(df, 2)
 
 # Apply the function and print the result
 latex_output <- convert_to_latex(df)
@@ -52,4 +52,7 @@ cat(latex_output)
 # select columns that end on avg_F1
 df_avgF1 <- cbind(df[, grep('avgF1$', colnames(df))], df[, c('SNR1', 'phi_max', 'rank_spec')])
 df_avgF1$max_avgF1 <- apply(df_avgF1[, grep('avgF1$', colnames(df_avgF1))], 1, max)
-df_avgF1[which(df_avgF1$proposed_avgF1 >= df_avgF1$max_avgF1),]
+
+# select columns that end on std_F1
+df_stdF1 <- cbind(df[, grep('stdF1$', colnames(df))])
+

@@ -256,35 +256,40 @@ est.sigma <- function(Y){
   med.mp <- qmp(0.5, ndf = ncol(Y), pdim = nrow(Y))
   return (med.sing.val / sqrt(med.mp * ncol(Y)))
 }
-bootstrap.epsilon <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
+bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
+  print(rank2)
   # estimate rank
   shrink.Y1 <- optishrink(Y1)
   shrink.Y2 <- optishrink(Y2)
   
   # compute residual
   svd.Y1 <- svd(Y1)
-  X1.hat <- svd.Y1$u[, 1:rank1] %*% diag(svd.Y1$d[1:rank1]) %*% t(svd.Y1$v[, 1:rank1])
+  X1.hat <- svd.Y1$u[, 1:rank1, drop = FALSE] %*% diag(svd.Y1$d[1:rank1], nrow = rank1) %*% t(svd.Y1$v[, 1:rank1, drop = FALSE])
   svd.Y2 <- svd(Y2)
-  X2.hat <- svd.Y2$u[, 1:rank2] %*% diag(svd.Y2$d[1:rank2]) %*% t(svd.Y2$v[, 1:rank2])
+  print(rank2)
+  print(dim(svd.Y2$u[, 1:rank2, drop = FALSE]))
+  print(dim(diag(svd.Y2$d[1:rank2], nrow = rank2)))
+  X2.hat <- svd.Y2$u[, 1:rank2, drop = FALSE] %*% diag(svd.Y2$d[1:rank2], nrow = rank2) %*% t(svd.Y2$v[, 1:rank2, drop = FALSE])
   
   E1.hat <- Y1 - X1.hat
   E2.hat <- Y2 - X2.hat
   
   # impute
-  U1.noise <- shrink.Y1$low.rank$u[, 1:rank1]
-  V1.noise <- shrink.Y1$low.rank$v[, 1:rank1]
-  U2.noise <- shrink.Y2$low.rank$u[, 1:rank2]
-  V2.noise <- shrink.Y2$low.rank$v[, 1:rank2]
+  U1.noise <- shrink.Y1$low.rank$u[, 1:rank1, drop=FALSE]
+  V1.noise <- shrink.Y1$low.rank$v[, 1:rank1, drop=FALSE]
+  U2.noise <- shrink.Y2$low.rank$u[, 1:rank2, drop=FALSE]
+  V2.noise <- shrink.Y2$low.rank$v[, 1:rank2, drop=FALSE]
   D1 <- rmp(rank1, svr = min(nrow(Y1), ncol(Y1)) / max(nrow(Y1), ncol(Y1)))
   D2 <- rmp(rank2, svr = min(nrow(Y2), ncol(Y2)) / max(nrow(Y2), ncol(Y2)))
   
   est.sigma.Y1 <- est.sigma(Y1)
   est.sigma.Y2 <- est.sigma(Y2)
-  E1.hat <- E1.hat + est.sigma.Y1 * U1.noise %*% diag(D1) %*% t(V1.noise)
-  E2.hat <- E2.hat + est.sigma.Y2 * U2.noise %*% diag(D2) %*% t(V2.noise)
+  E1.hat <- E1.hat + est.sigma.Y1 * U1.noise %*% diag(D1, nrow=rank1) %*% t(V1.noise)
+  E2.hat <- E2.hat + est.sigma.Y2 * U2.noise %*% diag(D2, nrow=rank2) %*% t(V2.noise)
   
   # resampling
-  out <- c()
+  epsilon_1s <- c()
+  epsilon_2s <- c()
   d <- acos(prod.spectrum)
   cos.d <- cos(d)
   sin.d <- sin(d)
@@ -294,23 +299,24 @@ bootstrap.epsilon <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 10
     V1 <- svd(matrix(rnorm(ncol(Y1) * rank1), nrow = ncol(Y1), ncol = rank1))$u[, 1:rank1]
     V2 <- svd(matrix(rnorm(ncol(Y2) * rank2), nrow = ncol(Y2), ncol = rank2))$u[, 1:rank2]
     # align basis
-    U1 <- U[, 1:rank1]
-    U2 <- U[, (rank1+1):(rank1+rank2)]
+    U1 <- U[, 1:rank1, drop=FALSE]
+    U2 <- U[, (rank1+1):(rank1+rank2), drop=FALSE]
+    rank.rot <- min(rank1, rank2)
     if (rank1 >= rank2) {
-      U2 <- svd(U1[, 1:rank2] %*% diag(cos.d) + U2 %*% diag(sin.d))$u
+      U2 <- svd(U1[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U2 %*% diag(sin.d, nrow=rank.rot))$u
     } else {
-      U1 <- svd(U2[, 1:rank1] %*% diag(cos.d) + U1 %*% diag(sin.d))$u
+      U1 <- svd(U2[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U1 %*% diag(sin.d, nrow=rank.rot))$u
     }
     # form signal
-    X1 <- U1 %*% diag(shrink.Y1$low.rank$d[1:rank1]) %*% t(V1)
-    X2 <- U2 %*% diag(shrink.Y2$low.rank$d[1:rank2]) %*% t(V2)
+    X1 <- U1 %*% diag(shrink.Y1$low.rank$d[1:rank1], nrow=rank1) %*% t(V1)
+    X2 <- U2 %*% diag(shrink.Y2$low.rank$d[1:rank2], nrow=rank2) %*% t(V2)
     # form signal + noise
     Y1.resample <- X1 + E1.hat
     Y2.resample <- X2 + E2.hat
     
     # estimate column space
-    U1.hat <- svd(Y1.resample)$u[, 1:rank1]
-    U2.hat <- svd(Y2.resample)$u[, 1:rank2]
+    U1.hat <- svd(Y1.resample)$u[, 1:rank1, drop=FALSE]
+    U2.hat <- svd(Y2.resample)$u[, 1:rank2, drop=FALSE]
     
     # form projections
     P1 <- U1 %*% t(U1)
@@ -319,25 +325,30 @@ bootstrap.epsilon <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 10
     P2.hat <- U2.hat %*% t(U2.hat)
     
     # Adjustments
-    P1E1P2 <- P1 %*% (P1.hat - P1) %*% P2
-    P1E2P2 <- P1 %*% (P2.hat - P2) %*% P2
-    P1E1E2P2 <- P1 %*% (P1.hat - P1) %*% (P2.hat - P2) %*% P2
-    epsilon_n <- svd(P1E1P2 + P1E2P2 + P1E1E2P2)$d[1]
-    out <- c(out, epsilon_n)
+    P1E2 <-  P1 %*% (P2.hat - P2)
+    E1P2 <- (P1.hat - P1) %*% P2
+    E1E2 <- (P1.hat - P1) %*% (P2.hat - P2)
+    P1E1P2 <- P1 %*% E1P2
+    P1E2P2 <- P1E2 %*% P2
+    P1E1E2P2 <- P1 %*% E1E2 %*% P2
+    epsilon_1 <- svd(P1E1P2 + P1E2P2 + P1E1E2P2)$d[1]
+    epsilon_2 <- svd(P1E2 + E1P2 + E1E2)$d[1]
+    epsilon_1s <- c(epsilon_1s, epsilon_1)
+    epsilon_2s <- c(epsilon_2s, epsilon_2)
   }
-  return (out)
+  return (list("epsilon1" = epsilon_1s, "epsilon2" = epsilon_2s))
 }
 proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_iters = 100, return_scores=FALSE) {
+  print(rank2)
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
   epsilon <- NULL
   if (!is.null(bootstrap_iters)) {
-    epsilon <- bootstrap.epsilon(Y1, 
-                                 Y2, 
-                                 rank1, 
-                                 rank2, 
-                                 out$svd.prod$d[1:min(rank1, rank2)], 
-                                 num_iter = bootstrap_iters)
-    bound <- max(1-mean(epsilon), out$lam)
+    bootstrap <- bootstrap.epsilon_2_views(Y1, Y2, 
+                                           rank1, rank2, out$svd.prod$d[1:min(rank1, rank2)], 
+                                           num_iter = bootstrap_iters)
+    # bound <- max(1-mean(epsilon), out$lam)
+    # bound <- 1-mean(bootstrap$epsilon1)
+    bound <- max(1-mean(bootstrap$epsilon1), mean(bootstrap$epsilon2))
   }
   
   if (out$noJoint) {
@@ -364,7 +375,7 @@ proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_ite
                  "indiv1" = indiv1, 
                  "indiv2" = indiv2, 
                  "test" = out,
-                 "epsilon" = epsilon,
+                 "bootstrap" = bootstrap,
                  "svd.indiv1" = svd.P.hat,
                  "svd.indiv2" = svd.Q.hat))
   }
