@@ -142,7 +142,6 @@ est.sigma <- function(Y){
   return (med.sing.val / sqrt(med.mp * ncol(Y)))
 }
 bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
-  print(rank2)
   # estimate rank
   shrink.Y1 <- optishrink(Y1)
   shrink.Y2 <- optishrink(Y2)
@@ -151,9 +150,6 @@ bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_i
   svd.Y1 <- svd(Y1)
   X1.hat <- svd.Y1$u[, 1:rank1, drop = FALSE] %*% diag(svd.Y1$d[1:rank1], nrow = rank1) %*% t(svd.Y1$v[, 1:rank1, drop = FALSE])
   svd.Y2 <- svd(Y2)
-  print(rank2)
-  print(dim(svd.Y2$u[, 1:rank2, drop = FALSE]))
-  print(dim(diag(svd.Y2$d[1:rank2], nrow = rank2)))
   X2.hat <- svd.Y2$u[, 1:rank2, drop = FALSE] %*% diag(svd.Y2$d[1:rank2], nrow = rank2) %*% t(svd.Y2$v[, 1:rank2, drop = FALSE])
   
   E1.hat <- Y1 - X1.hat
