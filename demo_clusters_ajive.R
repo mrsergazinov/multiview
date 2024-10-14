@@ -34,7 +34,8 @@ params <- list(
                     50/180*pi, 45/180*pi, 40/180*pi), 
                   nrow = num_exp, byrow = TRUE),
   sigma = c(1.32,2.2,6.5)
-    # c(0.1, 0.15, 0.2, 0.3, 0.4, 0.6)
+  # sigma = c(1.32,1.32,1.32)
+  # c(0.1, 0.15, 0.2, 0.3, 0.4, 0.6)
 )
 
 # create dataframe with columns singular values, product, and parameters
@@ -115,18 +116,6 @@ for (exp_id in 1:num_exp) {
 grid.arrange(grobs = list(plt_ajive[[1]], plt_ajive[[2]], plt_ajive[[3]], 
                           plt_ppd[[1]], plt_ppd[[2]], plt_ppd[[3]]),
              ncol = 3, nrow = 2)
-
-
-M <- matrix(rnorm(1000), ncol = 10)
-U1 <- svd(M)$u[, 1:5, drop = FALSE]
-U2 <- svd(M)$u[, 5:10, drop = FALSE]
-P1P2 <- U1 %*% t(U1) %*% U2 %*% t(U2)
-P1_P2 <- (U1 %*% t(U1) + U2 %*% t(U2))/2
-P1P2_P2P1 <- U1 %*% t(U1) %*% U2 %*% t(U2) + U2 %*% t(U2) %*% U1 %*% t(U1)
-non_zero_P1_P2 <- sum(svd(P1_P2)$d > 1e-10)
-non_zero_P1P2_P2P1 <- sum(svd(P1P2_P2P1)$d > 1e-10)
-print(non_zero_P1_P2)
-print(non_zero_P1P2_P2P1)
 
 
 
