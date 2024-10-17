@@ -1,31 +1,23 @@
 my_lib_path <- "./multiview_rlibs"
 .libPaths(my_lib_path)
 
-library(reticulate)
-library(denoiseR)
-library(RMTstat)
-library(MASS)
-library(ggplot2)
-library(gridExtra)
-
 library(mixOmics)
-
-library(nnet)
-
-library(ajive)
-library(SLIDE)
-library(r.jive)
-library(PRIMME)
-library(pracma)
-library(Ckmeans.1d.dp)
-
+library(foreach)
+library(doParallel)
+library(ggplot2)
 source('src/utils.R')
 source('src/models_2_views.R')
+source('src/regression_2_views.R')
 
+
+##########################################################
+#----------- Data preprocessing.-------------------------#
+##########################################################
 data(nutrimouse)
 Y1 <- nutrimouse$gene
 Y2 <- nutrimouse$lipid
 diet <- nutrimouse$diet
+subtype <- nutrimouse$genotype
 rank1 <- 3
 rank2 <- 4
 
@@ -38,116 +30,101 @@ Y1 <- scale(Y1)
 Y2 <- scale(Y2)
 data <- list(Y1 = Y1, Y2 = Y2)
 
-# extract joint and individual 
-models <- c("naive", "jive", "ajive", "slide",  "dcca", "unifac", "proposed")
-naive <- function(Y1, Y2, rank1, rank2, return_scores = FALSE){
-  joint <- matrix(1, nrow = nrow(Y1), ncol = nrow(Y1))
-  indiv1 <- svd(Y1)$u[, 1:rank1]
-  indiv2 <- svd(Y2)$u[, 1:rank2]
-  return(list(joint = joint, indiv1 = indiv1, indiv2 = indiv2))
-}
-compute <- list(naive = naive,
-                slide = slide_func,
-                jive = jive_func,
-                ajive = ajive_func,
-                dcca = dcca_func,
-                unifac = unifac_func,
-                proposed = proposed_func)
-save.proposed.out <- NA
-for (model in models) {
-  out <- compute[[model]](data$Y1, data$Y2, rank1, rank2, return_scores = TRUE)
-  if (model == "proposed"){
-    save.proposed.out <- out
+##########################################################
+#----------- Model fitting.------------------------------#
+##########################################################
+nsim <- 1
+packages <- c(
+  'reticulate', 'ajive','r.jive', 
+  'SLIDE','Ckmeans.1d.dp', 'pracma', 
+  'PRIMME', 'denoiseR', 'RMTstat', 
+  'MASS', 'nnet'
+)
+numCores <- detectCores()-1  # Leave one core for system processes
+cl <- makeCluster(numCores)
+clusterEvalQ(cl, .libPaths("./multiview_rlibs"))
+registerDoParallel(cl)
+iters <- foreach(i = 1:nsim, .packages=packages) %dopar% {
+  naive <- function(Y1, Y2, rank1, rank2, return_scores = FALSE){
+    joint <- matrix(1, nrow = nrow(Y1), ncol = nrow(Y1))
+    indiv1 <- svd(Y1)$u[, 1:rank1]
+    indiv2 <- svd(Y2)$u[, 1:rank2]
+    return(list(joint = joint, indiv1 = indiv1, indiv2 = indiv2))
   }
-  data[[paste0(model, "_joint")]] <- out$joint
-  data[[paste0(model, "_indiv1")]] <- out$indiv1
-  data[[paste0(model, "_indiv2")]] <- out$indiv2
-}
-save(data, file = "data/MICEdata_processed.rda")
-# load data
-load("data/MICEdata_processed.rda")
-
-n_sim <- 100
-results <- list()
-for (model in models){
-  results[[model]] <- matrix(NA, nrow = n_sim, ncol = 3)
-}
-for (i in 1:n_sim){
+  methods <- list(
+    naive = naive,
+    slide = slide_func,
+    jive = jive_func,
+    ajive = ajive_func,
+    dcca = dcca_func,
+    unifac = unifac_func,
+    proposed = proposed_func
+  )
   # split into training and test data
   set.seed(i)
-  id = sample(1:40, 40)
-  trainID = id[1:35] # 80% of the data
-  testID = id[36:40] # 20% of the data
+  trainID = 1:40
+  testID = 1:40
   
   # run models
-  for (model in models){
-    model_results <- c()
-    for (component in c("_joint", "_indiv1", "_indiv2")){
-      train_data <- data.frame(diet = diet[trainID], data[[paste0(model, component)]][trainID, ])
-      test_data <- data.frame(diet = diet[testID], data[[paste0(model, component)]][testID, ])
+  results <- list()
+  for (method_name in names(methods)){
+    method <- methods[[method_name]]
+    out <- reduce_dimensions(method, 
+                             list(data$Y1[trainID, ], data$Y2[trainID, ]), 
+                             list(data$Y1[testID, ], data$Y2[testID, ]), 
+                             c(rank1, rank2))
+    model_results <- c(dim(out$train_joint)[2], dim(out$train_indiv1)[2], dim(out$train_indiv2)[2])
+    model_results <- c(model_results,
+                       (acos(svd(t(out$train_joint) %*% out$train_indiv1)$d[1]) / pi * 180),
+                       (acos(svd(t(out$train_joint) %*% out$train_indiv2)$d[1]) / pi * 180),
+                       (acos(svd(t(out$train_indiv1) %*% out$train_indiv2)$d[1]) / pi * 180))
+    for (component in c("joint", "indiv1", "indiv2")){
+      # genotype
+      train_data <- data.frame(subtype = subtype[trainID], out[[paste0("train_", component)]])
+      test_data <- data.frame(subtype = subtype[testID], out[[paste0("test_", component)]])
+      colnames(train_data) <- colnames(test_data)
+      predictive_model <- multinom(subtype ~ ., data = train_data)
+      predicted_labels <- predict(predictive_model, test_data, subtype = "class")
+      error <- sum(predicted_labels != subtype[testID]) / length(subtype[testID])
+      model_results <- c(model_results, error)
+      
+      # diet
+      train_data <- data.frame(diet = diet[trainID], out[[paste0("train_", component)]])
+      test_data <- data.frame(diet = diet[testID], out[[paste0("test_", component)]])
       colnames(train_data) <- colnames(test_data)
       predictive_model <- multinom(diet ~ ., data = train_data)
-      predicted_labels <- predict(predictive_model, test_data, type = "class")
+      predicted_labels <- predict(predictive_model, test_data, diet = "class")
       error <- sum(predicted_labels != diet[testID]) / length(diet[testID])
       model_results <- c(model_results, error)
     }
-    results[[model]][i, ] <- model_results
+    results[[method_name]] <- model_results
   }
+  results
 }
+# shut down the parallel backend
+stopCluster(cl)
+# go through list and row bind vectors for each method
+collapsed <- list()
+for (method_name in names(iters[[1]])) {
+  method_results <- lapply(iters, function(sim) sim[[method_name]])
+  
+  # Combine the list of vectors into a matrix where each row is a simulation iteration
+  collapsed[[method_name]] <- do.call(rbind, method_results)
+}
+save(collapsed, file = "data/MICEdata_results.rda")
+
 
 str <- ''
-for (model in models){
-  ranks <- c(dim(data[[paste0(model, "_joint")]])[2], 
-             dim(data[[paste0(model, "_indiv1")]])[2], 
-             dim(data[[paste0(model, "_indiv2")]])[2])
-  means <- colMeans(results[[model]], na.rm = TRUE)
-  sds <- apply(results[[model]], 2, sd, na.rm = TRUE)
-  angles_indiv1_indiv2 <- round(acos(svd(t(data[[paste0(model, "_indiv1")]]) %*% data[[paste0(model, "_indiv2")]])$d) / pi * 180)
-  str <- paste0(str, model)
-  for (i in 1:3){
-    str <- paste0(str, " & $", ranks[i] , "$ & $", round(means[i]*100, 0), "$")
-  }
-  str <- paste0(str, "& $", min(angles_indiv1_indiv2), "$")
-  str <- paste0(str, "\n")
+for (method_name in names(collapsed)){
+  results <- collapsed[[method_name]]
+  ranks <- results[1:3]
+  angles <- results[4:6]
+  errors <- results[7:12]
+  str <- paste0(str, method_name, 
+                ' & ', ranks[1], ' & ', round(errors[1]*100, 1), ' & ', round(errors[2]*100, 1),
+                ' & ', ranks[2], ' & ', round(errors[3]*100, 1), ' & ', round(errors[4]*100, 1),
+                ' & ', ranks[3], ' & ', round(errors[5]*100, 1), ' & ', round(errors[6]*100, 1),
+                ' & ', round(angles[3], 0 ),
+                '\n')
 }
 cat(str)
-
-# Plot proposed
-plot.data <- data.frame(diet = nutrimouse$diet, genotype = nutrimouse$genotype)
-plot.data[['Joint 1']] <- data$proposed_joint[, 1]
-plot.data[['Joint 2']] <- rep(0, nrow(plot.data))
-  # data$proposed_joint[, 2]
-plot.data[['Individual 1']] <- data$proposed_indiv2[, 1]
-plot.data[['Individual 2']] <- data$proposed_indiv2[, 2]
-p1 <- ggplot(plot.data, aes(x = `Joint 1`, y = `Joint 2`, color = diet, shape = genotype)) +
-  geom_point(size=3) +
-  xlab('Component 1') + 
-  ylab('NA') +
-  ggtitle('Joint View: Gene and Lipid') +
-  theme_minimal()
-
-p2 <- ggplot(plot.data, aes(x = `Individual 1`, y = `Individual 2`, color = diet, shape = genotype)) +
-  geom_point(size=3) +
-  xlab('Component 1') + 
-  ylab('Component 2') +
-  ggtitle('Individual View 2: Lipid') +
-  theme_minimal()
-
-# Plot histogram of singular values
-prod.sing.vals <- svd(save.proposed.out$test$prod)$d
-p3 <- ggplot(data.frame(sing.vals = prod.sing.vals), aes(x = sing.vals)) +
-  geom_histogram(binwidth = 0.1, aes(y = after_stat(count / sum(count)))) +
-  ggtitle('Spectrum of Product of Projections') +
-  xlab('Singular values') +
-  ylab('Frequency') + 
-  geom_vline(xintercept = out$lam, linetype = 'dashed', color='red') +
-  theme_minimal()
-max_height <- max(ggplot_build(p3)$data[[1]]$y)
-p3 <- p3 +  annotate("rect",
-                     xmin = 1-mean(out$epsilon), xmax = 1+offset,
-                     ymin = 0, ymax = max_height,
-                     alpha=0.3, fill='green')
-
-# facet grid of 6 plots
-grid.arrange(grobs = list(p3, p1, p2), ncol = 3)
-
