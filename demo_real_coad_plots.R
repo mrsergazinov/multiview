@@ -62,7 +62,7 @@ plt3 <- ggplot(data.frame(sing.vals = save.out$test$svd.prod$d), aes(x = sing.va
   ggtitle("Diagnostic plot, estimated ranks") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
-max_height <- max(ggplot_build(plt)$data[[1]]$y)
+max_height <- max(ggplot_build(plt3)$data[[1]]$y)
 plt3 <- plt3 + annotate("rect",
                         xmin = 0, xmax = save.out$test$lam,
                         ymin = 0, ymax = max_height,
@@ -80,7 +80,7 @@ plt2 <- ggplot(data.frame(sing.vals = save.out$test$svd.prod$d), aes(x = sing.va
   ggtitle("Diagnostic plot, manual ranks") +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5))
-max_height <- max(ggplot_build(plt)$data[[1]]$y)
+max_height <- max(ggplot_build(plt2)$data[[1]]$y)
 plt2 <- plt2 + annotate("rect",
                       xmin = 0, xmax = save.out$test$lam,
                       ymin = 0, ymax = max_height,
