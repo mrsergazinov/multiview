@@ -256,7 +256,7 @@ est.sigma <- function(Y){
   med.mp <- qmp(0.5, ndf = ncol(Y), pdim = nrow(Y))
   return (med.sing.val / sqrt(med.mp * ncol(Y)))
 }
-bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100) {
+bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_iter = 100, rotation_correction=TRUE) {
   # estimate rank
   shrink.Y1 <- optishrink(Y1)
   shrink.Y2 <- optishrink(Y2)
@@ -291,17 +291,22 @@ bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_i
   sin.d <- sin(d)
   for (i in 1:num_iter) {
     # resample signal
-    U <- svd(matrix(rnorm(nrow(Y1) * (rank1+rank2)), nrow = nrow(Y1), ncol = rank1+rank2))$u[, 1:(rank1+rank2)]
     V1 <- svd(matrix(rnorm(ncol(Y1) * rank1), nrow = ncol(Y1), ncol = rank1))$u[, 1:rank1]
     V2 <- svd(matrix(rnorm(ncol(Y2) * rank2), nrow = ncol(Y2), ncol = rank2))$u[, 1:rank2]
     # align basis
-    U1 <- U[, 1:rank1, drop=FALSE]
-    U2 <- U[, (rank1+1):(rank1+rank2), drop=FALSE]
-    rank.rot <- min(rank1, rank2)
-    if (rank1 >= rank2) {
-      U2 <- svd(U1[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U2 %*% diag(sin.d, nrow=rank.rot))$u
-    } else {
-      U1 <- svd(U2[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U1 %*% diag(sin.d, nrow=rank.rot))$u
+    if (rotation_correction) {
+      U <- svd(matrix(rnorm(nrow(Y1) * (rank1+rank2)), nrow = nrow(Y1), ncol = rank1+rank2))$u[, 1:(rank1+rank2)]
+      U1 <- U[, 1:rank1, drop=FALSE]
+      U2 <- U[, (rank1+1):(rank1+rank2), drop=FALSE]
+      rank.rot <- min(rank1, rank2)
+      if (rank1 >= rank2) {
+        U2 <- svd(U1[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U2 %*% diag(sin.d, nrow=rank.rot))$u
+      } else {
+        U1 <- svd(U2[, 1:rank.rot, drop=FALSE] %*% diag(cos.d, nrow = rank.rot) + U1 %*% diag(sin.d, nrow=rank.rot))$u
+      }  
+    } else{
+      U1 <- svd(matrix(rnorm(nrow(Y1) * rank1), nrow = nrow(Y1), ncol = rank1))$u[, 1:rank1]
+      U2 <- svd(matrix(rnorm(nrow(Y2) * rank2), nrow = nrow(Y2), ncol = rank2))$u[, 1:rank2]
     }
     # form signal
     X1 <- U1 %*% diag(shrink.Y1$low.rank$d[1:rank1], nrow=rank1) %*% t(V1)
@@ -334,13 +339,14 @@ bootstrap.epsilon_2_views <- function(Y1, Y2, rank1, rank2, prod.spectrum, num_i
   }
   return (list("epsilon1" = epsilon_1s, "epsilon2" = epsilon_2s))
 }
-proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_iters = 100, return_scores=FALSE) {
+proposed_func <- function(Y1, Y2, rank1, rank2, rank_joint = NULL, bootstrap_iters = 100, rotation_correction=TRUE, return_scores=FALSE) {
   out <- global_null_2_views(Y1, Y2, rank1, rank2)
   epsilon <- NULL
   if (!is.null(bootstrap_iters)) {
     bootstrap <- bootstrap.epsilon_2_views(Y1, Y2, 
                                            rank1, rank2, out$svd.prod$d[1:min(rank1, rank2)], 
-                                           num_iter = bootstrap_iters)
+                                           num_iter = bootstrap_iters,
+                                           rotation_correction = rotation_correction)
     # bound <- max(1-mean(epsilon), out$lam)
     # bound <- 1-mean(bootstrap$epsilon1)
     bound <- max(1-mean(bootstrap$epsilon1), mean(bootstrap$epsilon2))
