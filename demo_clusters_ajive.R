@@ -33,7 +33,7 @@ params <- list(
                     50/180*pi, 45/180*pi, 40/180*pi,
                     50/180*pi, 45/180*pi, 40/180*pi), 
                   nrow = num_exp, byrow = TRUE),
-  sigma = c(1.32,2.2,6.5)
+  sigma = c(1.32, 2.2, 4.5)
   # sigma = c(1.32,1.32,1.32)
   # c(0.1, 0.15, 0.2, 0.3, 0.4, 0.6)
 )
@@ -59,7 +59,7 @@ for (exp_id in 1:num_exp) {
   joint_bound_ppd <- mean(out$bootstrap$epsilon1)
   # compute ajive
   spectrum_ajive <- compute_spectrum_ajive(data$Y1, data$Y2, rank1, rank2)
-  spectrum_ajive.true <- svd(cbind(U1, U2))$d
+  spectrum_ajive.true <- svd(cbind(U1, U2))$d^2/2
   out <- compute_bounds_ajive(data$Y1, data$Y2, rank1, rank2, n_wedin_samples=1000, n_rand_dir_samples=1000)
   noise_bound_ajive <- out$random_directions_bound
   joint_bound_ajive <- out$wedin_bound
@@ -103,11 +103,11 @@ for (exp_id in 1:num_exp) {
   max_height <- max(ggplot_build(plt_ajive[[exp_id]])$data[[1]]$y)
   max_length <- max(ggplot_build(plt_ajive[[exp_id]])$data[[1]]$x)
   plt_ajive[[exp_id]] <- plt_ajive[[exp_id]] + annotate("rect",
-                                                        xmin = 0, xmax = noise_bound_ajive,
+                                                        xmin = 0, xmax = noise_bound_ajive^2/2,
                                                         ymin = 0, ymax = max_height,
                                                         alpha = 0.3, fill = 'blue')
   plt_ajive[[exp_id]] <- plt_ajive[[exp_id]] + annotate("rect",
-                                                        xmin = joint_bound_ajive, xmax = max_length,
+                                                        xmin = joint_bound_ajive^2/2, xmax = 1,
                                                         ymin = 0, ymax = max_height,
                                                         alpha = 0.3, fill = 'green')
 }

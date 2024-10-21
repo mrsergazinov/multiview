@@ -97,7 +97,7 @@ compute_spectrum_ajive <- function(Y1, Y2, rank1, rank2) {
   U2 <- svd(Y2)$u[, 1:rank2, drop = FALSE]
   M <- cbind(U1, U2)
   M_svd <- get_svd(M)
-  return (M_svd[['d']])
+  return (M_svd[['d']]^2 / 2)
 }
 
 compute_bounds_ajive <- function(Y1, Y2, rank1, rank2, n_wedin_samples=100, n_rand_dir_samples=100){
