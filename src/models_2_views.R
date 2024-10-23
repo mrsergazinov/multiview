@@ -220,8 +220,7 @@ global_null_2_views <- function(Y1, Y2, rank1, rank2, compute_prod = TRUE) {
   m <- nrow(Y1)
   q1 <- rank1 / m
   q2 <- rank2 / m
-  q.plus <- q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2))
-  lam <- sqrt(q.plus)
+  lam <- sqrt(q1 + q2 - 2*q1*q2 + 2*sqrt(q1*q2*(1-q1)*(1-q2)))
   # compute product of projections
   if (compute_prod) {
     svd.Y1 <- svd(Y1)
