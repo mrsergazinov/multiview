@@ -13,7 +13,7 @@ source('src/models_2_views.R')
 source('src/generate_data_2_views.R')
 source('src/bounds.R')
 
-set.seed(1)
+# set.seed(1)
 # create list with params for simulation
 num_exp <- 6
 rj <- 4
@@ -29,13 +29,13 @@ signal_strength1 <- 100
 signal_strength2 <- 100
 params <- list(
   angles = matrix(c(NA, NA, NA,
-                    80/180*pi, 75/180*pi, 65/180*pi,
+                    85/180*pi, 80/180*pi, 75/180*pi,
                     70/180*pi, 65/180*pi, 60/180*pi,
-                    60/180*pi, 55/180*pi, 50/180*pi,
-                    50/180*pi, 45/180*pi, 40/180*pi,
-                    40/180*pi, 35/180*pi, 30/180*pi), 
+                    55/180*pi, 50/180*pi, 45/180*pi,
+                    40/180*pi, 35/180*pi, 30/180*pi,
+                    25/180*pi, 20/180*pi, 15/180*pi), 
                   nrow = num_exp, byrow = TRUE),
-  sigma = c(0.1, 0.15, 0.2, 0.3, 0.4, 0.6)
+  sigma = c(1,2,3,1,2,3)
 )
 
 # create dataframe with columns singular values, product, and parameters
@@ -49,14 +49,16 @@ for (exp_id in 1:num_exp) {
                         FALSE, FALSE,
                         angles=params$angles[exp_id,])
   # compute estimated P, Q
-  U1.hat <- svd(data$Y1)$u[, 1:rank1, drop = FALSE]
-  U2.hat <- svd(data$Y2)$u[, 1:rank2, drop = FALSE]
+  rank1.hat <- rank1 + sample(1:3, 1)
+  rank2.hat <- rank2 + sample(1:3, 1)
+  U1.hat <- svd(data$Y1)$u[, 1:rank1.hat, drop = FALSE]
+  U2.hat <- svd(data$Y2)$u[, 1:rank2.hat, drop = FALSE]
   P.hat <- U1.hat %*% t(U1.hat)
   Q.hat <- U2.hat %*% t(U2.hat)
   sing.vals <- svd(P.hat %*% Q.hat)$d
   # compute bound
-  R.upper <- bound.upper(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
-  R.lower <- bound.lower(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2)
+  R.upper <- bound.upper(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2, rank1.hat, rank2.hat)
+  R.lower <- bound.lower(data$Y1, data$Y2, data$X1, data$X2, data$Z1, data$Z2, rank1, rank2, rank1.hat, rank2.hat)
   # compute true sing.vals
   xticks <- c(0, 1)
   if (! all(is.na(params$angles[exp_id, ]))) {
